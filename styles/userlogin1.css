@@ -62,8 +62,9 @@ body {
   color: white;
   /* width: 50%; */
   font-family: 'League Spartan', sans-serif !important;
-  font-weight: 300;
+  font-weight: bold;
   text-transform: uppercase;
+
 }
 
 .btn:hover {
