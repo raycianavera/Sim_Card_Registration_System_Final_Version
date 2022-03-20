@@ -14,7 +14,6 @@
        echo "error 1";
        exit();
      }else{
-       echo "error 2";
     //CHECK EMAIL IF VALID USING FILTER
        if(!filter_var($SellerLogin, FILTER_VALIDATE_EMAIL)){
          echo "error 3";
@@ -22,7 +21,6 @@
           exit();
        }else{
          //SENDING DATA
-         echo "error 4";
           if(CheckAccount($conn,$SellerLogin,$SellerPass)){
             echo "error5";
               exit();
