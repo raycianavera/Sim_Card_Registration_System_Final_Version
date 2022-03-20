@@ -50,7 +50,7 @@
               </li>
 
               <li class="nav-item">
-                <form class="form-btnn" action="#" method="POST">
+                <form class="form-btnn" action="../Logout/logoutprocess.php" method="POST">
                   <button type="submit" name="btn-primary" class="nav-link logbtn">Logout</button>
                 </form>
               </li>
