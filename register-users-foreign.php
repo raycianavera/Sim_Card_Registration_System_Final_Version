@@ -33,7 +33,7 @@
     <header>
 
       <nav class="navbar navbar-expand-lg">
-        <a class="div1 navbar-brand" href="navbar.php">
+        <a class="div1 navbar-brand" href="register-users-foreign.php">
             <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
             <span class="brandname">SimCardRegistrationSystem</span>
           </a>
@@ -53,7 +53,7 @@
 
             </ul>
 
-          <form class="form-btnn" action="#" method="POST">
+          <form class="form-btnn" action="Logout/logoutprocess.php" method="POST">
             <button type="submit" name="btn-primary" class="log-button">Logout</button>
           </form>
         </div>
