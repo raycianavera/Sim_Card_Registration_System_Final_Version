@@ -50,7 +50,7 @@
               </li>
 
               <li class="nav-item">
-                <form class="form-btnn" action="../Logout/logoutprocess.php" method="POST">
+                <form class="form-btnn" action="../Logout/logoutprocess_Admin.php" method="POST">
                   <button type="submit" name="btn-primary" class="nav-link logbtn">Logout</button>
                 </form>
               </li>
@@ -87,7 +87,7 @@
         <?php
         if (isset($_POST['submit-search'])) :
           $searchInput = mysqli_real_escape_string($conn, $_POST['input-search']);
-          $sql = "SELECT * FROM report_detail WHERE user_name LIKE '%$searchInput%' OR user_mobile_num LIKE '%$searchInput%' OR remarks LIKE '%$searchInput%' OR sent_at LIKE '%$searchInput%'; ";
+          $sql = "SELECT * FROM report_messages_db WHERE user_name LIKE '%$searchInput%' OR user_mobile_num LIKE '%$searchInput%' OR remarks LIKE '%$searchInput%' OR sent_at LIKE '%$searchInput%'; ";
           $result = mysqli_query($conn, $sql);
           $queryResult = mysqli_num_rows($result);
           if ($queryResult > 0):

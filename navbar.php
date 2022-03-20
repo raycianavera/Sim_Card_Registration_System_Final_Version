@@ -10,7 +10,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
 
-  <title>Sim Card Registration System</title>
+  <title>SimCardRegistrationSystem</title>
   <!-- LOGO ON TAB -->
   <link rel="icon" href="images/logo.png">
   <!-- GOOGLE FONTS -->
@@ -34,7 +34,7 @@
       <nav class="navbar navbar-expand-lg">
         <a class="div1 navbar-brand" href="navbar.php">
             <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
-            <span class="brandname">Sim Card Registration System</span>
+            <span class="brandname">SimCardRegistrationSystem</span>
           </a>
 
         <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

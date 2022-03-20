@@ -1,9 +1,12 @@
 <?php
-  require 'includes/dbh.inc.php';
-  $sql = "SELECT * FROM report_detail";
-  $result = mysqli_query($conn, $sql);
-  session_start();
-
+require 'includes/dbh.inc.php';
+$sql = "SELECT * FROM report_messages_db";
+$result = mysqli_query($conn, $sql);
+session_start();
+$AdminLName = $_SESSION['AdminLastName'] ;
+$AdminFName = $_SESSION['AdminFirstName'];
+$AdminEmail = $_SESSION['AdminEmail'];
+$AdminPass  = $_SESSION['AdminPassword'];
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -12,7 +15,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
 
-  <title>Sim Card Registration System</title>
+  <title>SimCardRegistrationSystem</title>
   <!-- LOGO ON TAB -->
   <link rel="icon" href="images/logo.png">
   <!-- GOOGLE FONTS -->
@@ -52,7 +55,7 @@
               </li>
 
               <li class="nav-item">
-                <form class="form-btnn" action="Logout/logoutprocess.php" method="POST">
+                <form class="form-btnn" action="Logout/logoutprocess_Admin.php" method="POST">
                   <button type="submit" name="btn-primary" class="nav-link logbtn">Logout</button>
                 </form>
               </li>
@@ -72,7 +75,7 @@
 <!-- INBOX PART -->
 
     <div class="row header">
-      <h4>Administrator: <span>Raycia Navera</span></h2>
+        <h4>Administrator: <?php echo "$AdminFName $AdminLName";?></h4>
         <h4 class="rep-message">Reported messages</h4>
     </div>
     <table class="table table-striped">

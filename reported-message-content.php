@@ -53,7 +53,7 @@
             </li>
 
             <li class="nav-item">
-              <form class="form-btnn" action="Logout/logoutprocess.php" method="POST">
+              <form class="form-btnn" action="Logout/logoutprocess_Admin.php" method="POST">
                 <button type="submit" name="btn-primary" class="nav-link logbtn">Logout</button>
               </form>
             </li>
@@ -75,7 +75,7 @@
         $user = mysqli_real_escape_string($conn, $_GET['user']);
 
         // SELECT STATEMENT
-        $sql = "SELECT * FROM report_detail WHERE report_id = '$repId' AND sent_at = '$sentAt' AND user_name = '$user';";
+        $sql = "SELECT * FROM report_messages_db WHERE report_id = '$repId' AND sent_at = '$sentAt' AND user_name = '$user';";
         $result = mysqli_query($conn, $sql);
         $queryResults = mysqli_num_rows($result);  //checks how many rows are the results
 

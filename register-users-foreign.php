@@ -53,7 +53,7 @@
 
             </ul>
 
-          <form class="form-btnn" action="Logout/logoutprocess.php" method="POST">
+          <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">
             <button type="submit" name="btn-primary" class="log-button">Logout</button>
           </form>
         </div>
