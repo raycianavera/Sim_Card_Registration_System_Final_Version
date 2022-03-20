@@ -1,6 +1,6 @@
 <?php
 require 'includes/dbh.inc.php';
-$sql = "SELECT * FROM report_detail";
+$sql = "SELECT * FROM report_messages_db";
 $result = mysqli_query($conn, $sql);
 session_start();
 $AdminLName = $_SESSION['AdminLastName'] ;
