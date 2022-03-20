@@ -27,7 +27,7 @@
           $_SESSION['SellerLastName']  = $SellerLastName;
           $_SESSION['SellerEmail']     = $email;
           $_SESSION['SellerPassword']  = $password;
-
+          header("location:../register-users-local.php");
       }else{
         header("location:../login_sections.php?simRetailer=invalidpassoremail");
       }
