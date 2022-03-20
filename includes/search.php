@@ -32,7 +32,7 @@
     <header>
 
       <nav class="navbar navbar-expand-lg">
-        <a class="div1 navbar-brand" href="navbar.php">
+        <a class="div1 navbar-brand" href="../admininbox.php">
             <img src="../images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
             <span class="brandname">SimCardRegistrationSystem</span>
           </a>
@@ -96,7 +96,7 @@
 
         <!-- <tr class="canHov" onclick="window.location='reported-message-content.php';"> -->
 
-        <tr class="canHov" onclick="window.location='reported-message-content.php';">
+      <tr class="canHov" onclick="window.location='<?php echo "../reported-message-content.php?id=".$row['report_id']."&sent=".$row['sent_at']."&user=".$row['user_name']."";?>';">
           <th scope="row"><?php echo $row['report_id']; ?></th>
           <td><?php echo $row['user_name']; ?></td>
           <td><?php echo $row['remarks']; ?></td>
