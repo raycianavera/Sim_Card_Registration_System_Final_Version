@@ -37,7 +37,7 @@
 
 //CHECK IF THERE IF THE NUMBER EXIST
  function CheckNumber($conn, $UserLoginNumberPHP){
-      $sql = "SELECT*FROM register WHERE simnum = ?;";
+      $sql = "SELECT*FROM registered_simusers_db WHERE simnum = ?;";
       $stmt = mysqli_stmt_init($conn);
 
       //CHECK CONNECTION IF WORKING
@@ -52,7 +52,7 @@
       if ($row = mysqli_fetch_assoc($resultData)){
 
         //SESSION START FOR USER LOGIN;
-          $sql = "SELECT * FROM register WHERE simnum=?;";
+          $sql = "SELECT * FROM registered_simusers_db WHERE simnum=?;";
           $stmt              = mysqli_stmt_init($conn);
           if (mysqli_stmt_prepare($stmt,$sql)){
             mysqli_stmt_bind_param($stmt,"s",$UserLoginNumberPHP);
@@ -64,17 +64,22 @@
                 $_SESSION['UserNumber']      = $row['simnum'];
                 $_SESSION['UserLast']        = $row['lastname'];
                 $_SESSION['UserFirst']       = $row['firstname'];
+                $_SESSION['UserMiddleName']  = $row['midname'];
+                $_SESSION['UserSuffix']      = $row['suffix'];
                 $_SESSION['UserGender']      = $row['gender'];
-                $_SESSION['UserBirthdate']   = $row['datebirth'];
+                $_SESSION['UserBirthdate']   = $row['dateofbirth'];
                 $_SESSION['UserAddress']     = $row['address'];
                 $_SESSION['UserNationality'] = $row['nationality'];
-                $_SESSION['UserType']        = $row['nationality'];
+
+                if(($row['nationality']) == 'Filipino'||($row['nationality']) == 'filipino'){
+                  $_SESSION['UserType']      = 'Local';
+                }else{
+                  $_SESSION['UserType']      = 'Foreign';
+                }
                 $_SESSION['UserDatReg']      = $row['dateofregis'];
                 $_SESSION['UserTimeReg']     = $row['time'];
                 $_SESSION['UserRegSite']     = $row['regisite'];
                 $_SESSION['UserSimCard']     = $row['simcard'];
-                $_SESSION['UserMiddleName']  = $row['middlename'];
-                $_SESSION['UserSuffix']      = $row['suffix'];
 
             }
             header("location:../profile-user.php");

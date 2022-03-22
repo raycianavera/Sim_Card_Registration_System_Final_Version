@@ -23,10 +23,11 @@ if(isset($_POST['reportbutton'])){
   $SimCard       = $_SESSION['UserSimCard']  ;
   $UserMiddlename    = $_SESSION['UserMiddleName'];
   $UserSuffix        = $_SESSION['UserSuffix'];
-
+  $UserSuffix_B      =", ".$UserSuffix;
   $Middle            = substr($UserMiddlename,0,1);
-  $Victim_Name       = $LastName.", ".$FirstName." ".$Middle;
-  $Victim_Image_Name = $LastName."-".$FirstName;
+  $Victim_Name       = $LastName.", ".$FirstName." ".$Middle.$UserSuffix_B;
+  $Victim_Name_B     = $LastName.", ".$FirstName." ".$Middle.$UserSuffix;
+  $Victim_Image_Name = $LastName."-".$FirstName."_".$Middle;
   $Victim_Num        = $SimCardNumber;
    ///////////////////////////////// GETTING IMAGE DETAILS  /////////////////////////////////
   //getting the file information into $file Array
@@ -97,7 +98,7 @@ if(isset($_POST['reportbutton'])){
                                       header("Location:../profile-user.php?reportPage&ReportStatus=uploaderror");
                                   }else{
                                       //uploading the Data
-                                      mysqli_stmt_bind_param($stmt,"sssssss",$Victim_Num,$Victim_Name,$Reported_Num,$Message,$ImageFullName,$Name_ReportImage,$rowCount);
+                                      mysqli_stmt_bind_param($stmt,"sssssss",$Victim_Num,$Victim_Name_B,$Reported_Num,$Message,$ImageFullName,$Name_ReportImage,$rowCount);
                                       mysqli_stmt_execute($stmt); //FILE SENT
                                       move_uploaded_file($fileTempName,$fileDestination); //moving the file
                                       header("Location:../profile-user.php?reportPage&ReportStatus=success");
