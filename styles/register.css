@@ -4,6 +4,8 @@ body {
   padding-bottom: 3rem;
 }
 
+
+
 .navbar-collapse {
   justify-content: right;
 }
@@ -92,22 +94,18 @@ h2 {
 }
 
 /* PHP success */
-p {
+.regsuccess {
   text-align: center;
   font-weight: bold;
-  color: green;
+  color: #18CC5D;
 }
 /* PHP account already exist */
 .nsoexist{
   text-align: center;
   font-weight: bold;
-  color: #d30c0c;
+  color: #ff5f56;
 }
-.passnumexist{
-  text-align: center;
-  font-weight: bold;
-  color: #d30c0c;
-}
+
 
 
 .row {
