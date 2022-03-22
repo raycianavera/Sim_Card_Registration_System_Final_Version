@@ -96,19 +96,19 @@
         <div class="row">
           <div class="col-md-3">
             <label class="labelings">Last Name</label>
-            <input type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>" disabled>
+            <input type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>">
           </div>
           <div class="col-md-3">
             <label class="labelings">First Name</label>
-            <input type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>" disabled>
+            <input type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>">
           </div>
           <div class="col-md-3">
             <label class="labelings">Middle Name</label>
-            <input type="text" name="midname" class="form-control"  value="<?= $row['midname'] ?>" disabled>
+            <input type="text" name="midname" class="form-control"  value="<?= $row['midname'] ?>">
           </div>
           <div class="col-md-3">
             <label class="labelings">Suffix</label>
-            <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>" disabled>
+            <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>">
           </div>
         </div>
 
@@ -152,6 +152,14 @@
           <form class="" action="" method="POST">
 
             <!-- FOURTH ROW -->
+
+            <div class="row srow">
+              <div class="col-md-12 ">
+                <label class="">Address</label>
+                <input type="text" name="addressForeign" class="form-control" value="" required>
+              </div>
+            </div>
+
             <div class="row">
               <div class="col-md-6">
                 <label class="labelings">Type of Sim Card user</label>
@@ -259,7 +267,7 @@
   <div class="row">
     <div class="col-md-3">
       <label class="labelings">Last Name</label>
-      <input type="text" name="lastname" class="form-control"  disabled>
+      <input type="text" name="lastname" class="form-control" disabled>
     </div>
 
     <div class="col-md-3">
@@ -269,12 +277,12 @@
 
     <div class="col-md-3">
       <label class="labelings">Middle Name</label>
-      <input type="text" name="midname" class="form-control"  disabled>
+      <input type="text" name="midname" class="form-control" disabled>
     </div>
 
     <div class="col-md-3">
       <label class="labelings">Suffix</label>
-      <input type="text" name="suffix" class="form-control"disabled>
+      <input type="text" name="suffix" class="form-control" disabled>
     </div>
 
     </div>
@@ -318,7 +326,15 @@
   <!-- END OF AUTOFILL -->
   <form class="" action="" method="post">
 
+
+
     <!-- FOURTH ROW -->
+    <div class="row srow">
+      <div class="col-md-12 ">
+        <label class="">Address</label>
+        <input type="text" name="addressForeign" class="form-control" value="" required>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <label class="labelings">Type of Sim Card user</label>

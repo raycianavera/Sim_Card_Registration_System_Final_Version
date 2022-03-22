@@ -104,22 +104,22 @@
 
           <div class="col-md-3 infodiv">
             <label class="labelings">Last Name</label>
-            <input id="lastname" type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>" disabled>
+            <input id="lastname" type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>">
           </div>
 
           <div class="col-md-3 infodiv">
             <label class="labelings">First Name</label>
-            <input id="firstname" type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>" disabled>
+            <input id="firstname" type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>">
           </div>
 
           <div class="col-md-3 infodiv">
             <label class="labelings">Middle Name</label>
-            <input id="midname" type="text" name="midname" class="form-control" value="<?= $row['midname'] ?>" disabled>
+            <input id="midname" type="text" name="midname" class="form-control" value="<?= $row['midname'] ?>">
           </div>
 
           <div class="col-md-3">
             <label class="labelings">Suffix</label>
-            <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>" disabled>
+            <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>">
           </div>
 
         </div>
@@ -149,7 +149,7 @@
         <div class="row srow">
           <div class="col-12 infodiv">
             <label class="Bday">Address</label>
-            <input id="address" type="text" name="address" class="form-control" value="<?= $row['address'] ?>" disabled>
+            <input id="address" type="text" name="address" class="form-control" value="<?= $row['address'] ?>">
           </div>
         </div>
 
