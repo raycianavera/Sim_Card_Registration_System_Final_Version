@@ -103,7 +103,19 @@
 
         </tr>
 
-      <?php endwhile; endif; endif; ?>
+      <?php endwhile;
+      else :
+        echo "      </tbody>
+            </table>
+            <div class='row noResCon'>
+              <div class='col'>
+                <h2 class='noResult'>No results found for your search!</h2>
+              </div>
+            </div>";
+     endif;
+
+    endif; ?>
+
 
 
       </tbody>

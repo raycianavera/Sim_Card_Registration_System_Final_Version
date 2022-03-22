@@ -8,6 +8,11 @@ body {
   justify-content: right;
 }
 
+.noResult {
+  color: #497E87;
+}
+
+
 .row {
   margin-right: auto;
 }
@@ -288,6 +293,12 @@ h2 {
   color: #669591;
   position: relative;
   bottom: 10px;
+}
+
+.noResCon {
+  background-color: none !important;
+  text-align: center;
+  margin-top: 3rem;
 }
 /* MEDIA QUERY FOR NAV BAR */
 @media only screen and (max-width: 1024px) {}
