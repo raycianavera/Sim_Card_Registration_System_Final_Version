@@ -86,7 +86,7 @@
 // BUTTON CLICKED : WITH RESULTS
   if(isset($_GET['passnum'])){
     $passport = $_GET['passnum'];
-    $query = "SELECT * FROM dummyforeign WHERE passnum =  '$passport'; ";
+    $query = "SELECT * FROM foreign_passport_db WHERE passnum =  '$passport'; ";
     $result = mysqli_query($conn,$query);
 
       if (mysqli_num_rows($result) > 0) {
@@ -187,7 +187,7 @@
            // DATA FROM AUTOFILL
            if(isset($_POST['button'])){
               $passport = $_GET['passnum'];
-               $query = "SELECT * FROM dummyforeign WHERE passnum =  '$passport'; ";
+               $query = "SELECT * FROM foreign_passport_db WHERE passnum =  '$passport'; ";
                $result = mysqli_query($conn,$query);
 
                if (mysqli_num_rows($result) > 0) {
@@ -199,8 +199,9 @@
                    $sfx = $row['suffix'];
                    $dob = $row['dateofbirth'];
                    $gndr = $row['gender'];
-                   $passnumber = $row['passnum'];
-                   $nationalityy = $row['nationality'];
+                   $passnum_nsonum = $row['passnum'];
+                   $nationality = $row['nationality'];
+
 
                  }
 
@@ -212,7 +213,7 @@
                $regisite = $_POST['regisite'];
                $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis']));
 
-               $sqlnso = "SELECT simnum FROM registerforeign WHERE simnum = $simnum";
+               $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = $simnum";
                $result = mysqli_query($conn, $sqlnso);
                $resultsCheck = mysqli_num_rows($result);
                if($resultsCheck == 1){
@@ -222,7 +223,7 @@
                }
 
                else {
-                 $sql = "INSERT INTO registerforeign (lastname, firstname, midname, suffix, dateofbirth, gender, passnum, nationality,simcard,simnum,regisite,dateofregis)
+                 $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum, nationality,simcard,simnum,regisite,dateofregis)
                  VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
                  // PREPARED STATEMENT
                  $stmt = mysqli_stmt_init($conn);
@@ -232,7 +233,7 @@
                    echo "SQL statement failed";
                  }else{
                    // BIND PARAMETER TO THE PLACEHOLDER
-                   mysqli_stmt_bind_param($stmt,"ssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnumber, $nationalityy,$simcard, $simnum, $regisite, $dateofregis);
+                   mysqli_stmt_bind_param($stmt,"ssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $nationality,$simcard, $simnum, $regisite, $dateofregis);
 
                    // RUN PARAMETER INDSIDE DATABASE
                    mysqli_stmt_execute($stmt);
@@ -249,7 +250,7 @@
            <?php
          }
        } else {
-         header("Location: ../Sim-Registration-Final-UI-main/register-users-foreign.php?no-result=nsonum='.$passport.'&button");
+         header("Location: ../Sim_Card_Registration_System_Final_Version/register-users-foreign.php?no-result=nsonum='.$passport.'&button");
          // echo "No results !";
        }
 } else {

@@ -91,6 +91,24 @@ h2 {
   margin-bottom: 2rem;
 }
 
+/* PHP success */
+p {
+  text-align: center;
+  font-weight: bold;
+  color: green;
+}
+/* PHP account already exist */
+.nsoexist{
+  text-align: center;
+  font-weight: bold;
+  color: #d30c0c;
+}
+.passnumexist{
+  text-align: center;
+  font-weight: bold;
+  color: #d30c0c;
+}
+
 
 .row {
   justify-content: center;
