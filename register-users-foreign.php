@@ -73,13 +73,13 @@
         $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
         if(strpos($fulUrl, "signup=success") == true){
-          echo "<p class= 'success'> SUCCESS</p>";
+          echo "<p class= 'regsuccess'>USER SUCCESSFULLY REGISTERED</p>";
         }
         elseif(strpos($fulUrl, "error=simnum-already-exist") == true){
-          echo "<p class= 'passnumexist'> ACCOUNT ALREADY EXIST </p>";
+          echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS SIM CARD NUMBER ALREADY EXISTS</p>";
         }
         elseif(strpos($fulUrl, "no-result") == true){
-          echo "<p class= 'nsoexist'> NO RESULT</p>";
+          echo "<p class= 'nsoexist'>USER NOT FOUND ON DATABASE</p>";
         }
 ?>
 <?php
