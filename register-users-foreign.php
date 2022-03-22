@@ -156,7 +156,7 @@
             <div class="row srow">
               <div class="col-md-12 ">
                 <label class="">Address</label>
-                <input type="text" name="addressForeign" class="form-control" value="" required>
+                <input type="text" name="address" class="form-control" value="" required>
               </div>
             </div>
 
@@ -211,11 +211,14 @@
                    $nationality = $row['nationality'];
 
 
+
+
                  }
 
 
 
                // DATA FROM REGIS
+               $address = $_POST['address'];
                $simcard = $_POST['simcard'];
                $simnum = $_POST['simnum'];
                $regisite = $_POST['regisite'];
@@ -231,8 +234,8 @@
                }
 
                else {
-                 $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum, nationality,simcard,simnum,regisite,dateofregis)
-                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+                 $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum, nationality,address,simcard,simnum,regisite,dateofregis)
+                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
                  // PREPARED STATEMENT
                  $stmt = mysqli_stmt_init($conn);
 
@@ -241,7 +244,7 @@
                    echo "SQL statement failed";
                  }else{
                    // BIND PARAMETER TO THE PLACEHOLDER
-                   mysqli_stmt_bind_param($stmt,"ssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $nationality,$simcard, $simnum, $regisite, $dateofregis);
+                   mysqli_stmt_bind_param($stmt,"sssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $nationality,$address, $simcard, $simnum, $regisite, $dateofregis);
 
                    // RUN PARAMETER INDSIDE DATABASE
                    mysqli_stmt_execute($stmt);
@@ -333,7 +336,7 @@
     <div class="row srow">
       <div class="col-md-12 ">
         <label class="">Address</label>
-        <input type="text" name="addressForeign" class="form-control" value="" required>
+        <input type="text" name="address" class="form-control" value="" required>
       </div>
     </div>
     <div class="row">
