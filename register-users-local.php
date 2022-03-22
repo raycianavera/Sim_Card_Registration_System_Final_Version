@@ -92,7 +92,7 @@
 // BUTTON CLICKED : WITH RESULTS
   if(isset($_GET['nsonum'])){
     $nso = $_GET['nsonum'];
-    $query = "SELECT * FROM dummylocal WHERE nsonum =  '$nso'; ";
+    $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso'; ";
     $result = mysqli_query($conn,$query);
 
       if (mysqli_num_rows($result) > 0) {
@@ -203,7 +203,7 @@
         // DATA FROM AUTOFILL
         if(isset($_POST['button'])){
           $nso = $_GET['nsonum'];
-          $query = "SELECT * FROM dummylocal WHERE nsonum =  '$nso'; ";
+          $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso'; ";
           $result = mysqli_query($conn,$query);
 
           if (mysqli_num_rows($result) > 0) {
@@ -215,8 +215,9 @@
             $sfx = $row['suffix'];
             $dob = $row['dateofbirth'];
             $gndr = $row['gender'];
-            $nsonumber = $row['nsonum'];
+            $passnum_nsonum = $row['nsonum'];
             $address = $row['address'];
+            $nationality = 'Filipino';
           }
 
           // DATA FROM REGIS
@@ -225,7 +226,7 @@
           $regisite = $_POST['regisite'];
           $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis']));
 
-          $sqlnso = "SELECT simnum FROM registerlocal WHERE simnum = $simnum";
+          $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = $simnum";
           $result = mysqli_query($conn, $sqlnso);
           $resultsCheck = mysqli_num_rows($result);
           if($resultsCheck == 1){
@@ -237,15 +238,15 @@
 
           }
           else {
-          $sql = "INSERT INTO registerlocal (lastname, firstname, midname, suffix, dateofbirth, gender, nsonum, address,simcard, simnum,regisite,dateofregis)
-          VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+          $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum, address,nationality,simcard, simnum,regisite,dateofregis)
+          VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
           // PREPARED STATEMENT
           $stmt = mysqli_stmt_init($conn);
           // PREPARE THE PREPARE STATEMENT
           if(!mysqli_stmt_prepare($stmt, $sql)){
             echo "SQL statement failed";
           }else{
-            mysqli_stmt_bind_param($stmt,"ssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $nsonumber, $address,$simcard, $simnum, $regisite, $dateofregis);
+            mysqli_stmt_bind_param($stmt,"sssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $address,$nationality,$simcard, $simnum, $regisite, $dateofregis);
             // RUN PARAMETER INDSIDE DATABASE
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
@@ -263,7 +264,7 @@
    }
   } else {
     // header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
-    header("Location: ../Sim-Registration-Final-UI-main/register-users-local.php?no-result=nsonum='.$nso.'&button");
+    header("Location: ../Sim_Card_Registration_System_Final_Version/register-users-local.php?no-result=nsonum='.$nso.'&button");
     // echo "NO RESULT";
 
   }
