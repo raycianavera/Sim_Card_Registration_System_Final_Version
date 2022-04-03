@@ -1,12 +1,12 @@
 <?php
-$servername = "us-cdbr-east-05.cleardb.net";
-$dbUsername = "bb9fcd6313deff";
-$dbpassword = "8c9f15bf";
-// name of database
-$dbName= "heroku_c1df3a5b9bfc854m";
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-// CREATE CONNECTION (DATABASE)
-$conn = mysqli_connect($servername, $dbUsername,$dbpassword,$dbName);
+$server = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"], 1);
+
+$conn = new mysqli($server, $username, $password, $db);
 
 if(!$conn){
   die("Connection failed:" . mysqli_connect_error());
