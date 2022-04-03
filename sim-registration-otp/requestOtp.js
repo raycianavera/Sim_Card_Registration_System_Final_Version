@@ -14,7 +14,7 @@ loginForm.addEventListener('submit', e => {
     bodyFormData.append('indexButton', 'submit');
     axios({
       method: "post",
-      url: "http://localhost:80/simRegistrationSystem/Sim-Registration-Final-UI/UserprofileBackEnd/index.inc.php",
+      url: "https://sim-registration-php.herokuapp.com/UserprofileBackEnd/index.inc.php",
       data: bodyFormData,
       headers: { "Content-Type": "multipart/form-data" },
     })
