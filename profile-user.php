@@ -46,7 +46,7 @@
 
           <div class='infodiv1'>
             <p class='labelings'>Mobile Number to be reported</p>
-            <input type='tel' name='ReportedNumber' value='' id='reportedMobilenumber' class='form-control' placeholder='Enter number that need to be reported here' required>
+            <input type='tel' name='ReportedNumber' value='' id='reportedMobilenumber' class='form-control' placeholder='Enter the SIM number you want to report' required>
 
           </div>
             <button type='submit' name='reportbutton' class='send-btn'>Send</button>
@@ -164,7 +164,7 @@
 
       <div class='col-md-4 infocol3'>
         <div class='infodiv'>
-          <p class='labelings'>Sim Card</p>
+          <p class='labelings'>Sim Card Type</p>
           <p class='information'>$SimCard</p>
         </div>
       </div>
