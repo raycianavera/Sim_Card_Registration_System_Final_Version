@@ -4,6 +4,8 @@ body {
   padding-bottom: 3rem;
 }
 
+
+
 .table {
     table-layout: fixed;
 }
@@ -14,6 +16,7 @@ body {
 
 .noResult {
   color: #497E87;
+  margin: auto;
 }
 
 
@@ -334,6 +337,9 @@ h2 {
 }
 
 @media only screen and (max-width: 430px) {
+  .noResult {
+    font-size: 18px !important;
+}
   .header h4 {
     font-size: 15px;
   }

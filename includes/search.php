@@ -98,7 +98,7 @@
       <tr class="canHov" onclick="window.location='<?php echo "../reported-message-content.php?id=".$row['report_id']."&sent=".$row['sent_at']."&user=".$row['user_name']."";?>';">
           <th scope="row"><?php echo $row['report_id']; ?></th>
           <td><?php echo $row['user_name']; ?></td>
-          <td><?php echo $row['remarks']; ?></td>
+          <td class="text-truncate"><?php echo $row['remarks']; ?></td>
           <td><?php echo $row['sent_at']; ?></td>
 
         </tr>
@@ -108,10 +108,10 @@
         echo "      </tbody>
             </table>
             <div class='row noResCon'>
-              <div class='col'>
                 <h2 class='noResult'>No results found for your search!</h2>
-              </div>
-            </div>";
+            </div>
+            </body>
+            </html>";
      endif;
 
     endif; ?>
