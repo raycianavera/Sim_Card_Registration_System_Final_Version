@@ -155,10 +155,15 @@
 
         <!-- BUTTON ROW -->
         <div class="row srow nsobutton">
-          <div class="col-12 infodiv">
+          <div class="col-md-6 infodiv">
             <a href="register-users-local.php">
             <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php" >Search Database</button></a>
 
+        </div>
+
+        <div class="col-md-6 infodiv">
+          <button type='submit' name='submit' class='ss-btn upload-btn-wrapper'>
+            <input type='file' name='screenshot-img'>Register Fingerprint</button>
         </div>
         </div>
         </form>
@@ -195,7 +200,7 @@
 
           <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
         <div class="row srow">
-          <button type="submit" name="button" class="send-btn">Proceed to Fingerprint Registration</button>
+          <button type="submit" name="button" class="send-btn">Register User</button>
         </div>
 
         </form>
@@ -327,8 +332,12 @@
 
        <!-- BUTTON ROW -->
        <div class="row srow nsobutton">
-         <div class="col-12 infodiv">
+         <div class="col-md-6 infodiv">
          <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php">Search Database</button>
+       </div>
+       <div class="col-md-6 infodiv">
+         <button type='submit' name='submit' class='ss-btn upload-btn-wrapper'>
+           <input type='file' name='screenshot-img'>Register Fingerprint</button>
        </div>
        </div>
        </form>
@@ -366,7 +375,7 @@
 
        <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
      <div class="row srow">
-       <button type="submit" name="button" class="send-btn">Proceed to Fingerprint Registration</button>
+       <button type="submit" name="button" class="send-btn">Register User</button>
      </div>
 
      </form>

@@ -4,6 +4,10 @@ body {
   padding-bottom: 3rem;
 }
 
+.table {
+    table-layout: fixed;
+}
+
 .navbar-collapse {
   justify-content: right;
 }

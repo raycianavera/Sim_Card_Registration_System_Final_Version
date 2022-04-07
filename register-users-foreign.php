@@ -142,8 +142,12 @@
 
        <!-- BUTTON ROW -->
        <div class="row srow nsobutton">
-         <div class="col-12 infodiv">
+         <div class="col-md-6 infodiv">
          <button type="submit" name="buttondummy" onclick="register-users-local.php" class="send-btn db">Search Database</button>
+         </div>
+         <div class="col-md-6 infodiv">
+           <button type='submit' name='submit' class='ss-btn upload-btn-wrapper'>
+             <input type='file' name='screenshot-img'>Register Fingerprint</button>
          </div>
          </div>
 
@@ -175,19 +179,23 @@
               </div>
             </div>
             <div class="row srow">
-              <div class="col-md-6 infodiv">
+              <div class="col-md-4 infodiv">
                 <label class="labelings">Date of Registration</label>
                 <input type="date" name="dateofregis" class="form-control" required>
               </div>
-              <div class="col-md-6 infodiv">
+              <div class="col-md-4 infodiv">
                 <label class="labelings">Registration Site</label>
                 <input type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+              </div>
+              <div class="col-md-4 infodiv">
+                <label class="labelings">Time of Registration</label>
+                <input type="time" name="timeofregis" class="form-control" placeholder="Cavite" required>
               </div>
             </div>
 
             <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
             <div class="row srow">
-              <button type="submit" name="button" class="send-btn">Proceed to Fingerprint Registration</button>
+              <button type="submit" name="button" class="send-btn">Register User</button>
             </div>
 
           </form>
@@ -321,8 +329,12 @@
 
     <!-- BUTTON ROW -->
     <div class="row srow nsobutton">
-      <div class="col-12 infodiv">
+      <div class="col-md-6 infodiv">
         <button type="submit" name="buttondummy" class="send-btn db" onclick="register-users-local.php">Search Database</button>
+      </div>
+      <div class="col-md-6 infodiv">
+        <button type='submit' name='submit' class='ss-btn upload-btn-wrapper'>
+          <input type='file' name='screenshot-img'>Register Fingerprint</button>
       </div>
     </div>
   </form>
@@ -355,20 +367,25 @@
 
     </div>
     <div class="row srow">
-      <div class="col-md-6 infodiv">
+      <div class="col-md-4 infodiv">
         <label class="labelings">Date of Registration</label>
         <input type="date" name="dateofregis" class="form-control" required>
       </div>
 
-      <div class="col-md-6 infodiv">
+      <div class="col-md-4 infodiv">
         <label class="labelings">Registration Site</label>
         <input type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+      </div>
+
+      <div class="col-md-4 infodiv">
+        <label class="labelings">Time of Registration</label>
+        <input type="time" name="timeofregis" class="form-control" placeholder="Cavite" required>
       </div>
     </div>
 
     <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
     <div class="row srow">
-      <button type="submit" name="button" class="send-btn">Proceed to Fingerprint Registration</button>
+      <button type="submit" name="button" class="send-btn">Register User</button>
     </div>
   </form>
 

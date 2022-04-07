@@ -4,6 +4,47 @@ body {
   padding-bottom: 3rem;
 }
 
+/* SCRENESHOT BUTTON WITH HIDDEN CHOOSE FILE */
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  top: 1rem;
+  /* left: 14px; */
+}
+
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 20px;
+  position: absolute;
+  top: 2.5px;
+  left: 3px;
+  width: 100%;
+  opacity: 0;
+}
+
+.upload-btn-wrapper input[type=file]:hover {
+  cursor: pointer;
+}
+
+.ss-btn {
+  background-color: #2f5a62;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  height: 40px;
+  border-radius: 6px 6px 6px 6px;
+  position: relative;
+  border-width: 0;
+  margin-bottom: 2rem;
+}
+
+.ss-btn:hover {
+  background-color: #c1ebe2;
+  cursor: pointer;
+  color: #2f5a62;
+}
+
 
 
 .navbar-collapse {
@@ -120,7 +161,7 @@ h2 {
 
 /* NSO BUTTON */
 .nsobutton{
-  width: 50%!important;
+  /* width: 50%!important; */
   border-width: 0;
 }
 
@@ -181,6 +222,14 @@ h2 {
 
 .navbar {
   padding: 0rem 2rem !important;
+}
+
+.container {
+  padding: 2rem !important;
+}
+
+.header, h2 {
+  margin-bottom: 0;
 }
 
 
