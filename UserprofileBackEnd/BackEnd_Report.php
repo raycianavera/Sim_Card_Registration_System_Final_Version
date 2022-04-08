@@ -39,7 +39,7 @@ if(isset($_POST['reportbutton'])){
   $fileError =$file["error"]; //if the file is working or not
   $fileSize =$file["size"];
 
-  $allowed = array("jpg","jpeg","png");
+  $allowed = array("jpg","jpeg","png","bmp");
   $fileExt = explode(".",$fileName); //getting file Extension and saving to $fileExt Array. file extension name is at the end of array
   $fileActualExt = strtolower(end($fileExt)); ////changing file extension name at the end of array, to lower case
 
@@ -89,16 +89,18 @@ if(isset($_POST['reportbutton'])){
                                   $Name_ReportImage = $Victim_Image_Name."."."ReportNumber_".$setImageOrder; //New File Name of the Image - example of format: TanishaBrown.ReportNumber_1
                                   $ImageFullName    = $Name_ReportImage.".".$fileActualExt;                  //Complete Fille Name of the Image - example of format: TanishaBrown.ReportNumber_1.jpg
                                   $fileDestination  = "../Image_Report_Database/".$ImageFullName;            //Build up file destination
-
+                                  $dates = date("Y")."-".date("m")."-".date("j");
+                                  $time = date('G').":".date('i').":".date('s');
+                                  $DateTime = $dates." ".$time;
                                   //Preparing Query for Inserting Data in the Database
-                                  $sql = "INSERT INTO report_messages_db(user_mobile_num, user_name, reported_number, remarks, Report_Screenshot, Report_ScreenshotName, Report_count)
+                                  $sql = "INSERT INTO report_messages_db(user_mobile_num, user_name, reported_number, remarks, Report_Screenshot, Report_ScreenshotName,sent_at)
                                           VALUES(?,?,?,?,?,?,?);";
 
                                   if(!mysqli_stmt_prepare($stmt,$sql)){ //ERROR 404 for unable to upload
                                       header("Location:../profile-user.php?reportPage&ReportStatus=uploaderror");
                                   }else{
                                       //uploading the Data
-                                      mysqli_stmt_bind_param($stmt,"sssssss",$Victim_Num,$Victim_Name_B,$Reported_Num,$Message,$ImageFullName,$Name_ReportImage,$rowCount);
+                                      mysqli_stmt_bind_param($stmt,"sssssss",$Victim_Num,$Victim_Name_B,$Reported_Num,$Message,$ImageFullName,$Name_ReportImage,$DateTime);
                                       mysqli_stmt_execute($stmt); //FILE SENT
                                       move_uploaded_file($fileTempName,$fileDestination); //moving the file
                                       header("Location:../profile-user.php?reportPage&ReportStatus=success");
