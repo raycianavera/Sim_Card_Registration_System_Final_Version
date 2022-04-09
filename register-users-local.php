@@ -139,6 +139,7 @@
             <input id="nsonum" type="text" name="nsonum" class="form-control"value="<?php
               if (isset($_GET['nsonum'])) {
                 echo $_GET['nsonum'];
+                $_SESSION['nsonumber'] = $_GET['nsonum'];
               }
              ?>" >
           </div>
@@ -155,20 +156,16 @@
 
         <!-- BUTTON ROW -->
         <div class="row srow nsobutton">
-          <div class="col-md-6 infodiv">
+          <div class="col-12 infodiv">
             <a href="register-users-local.php">
             <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php" >Search Database</button></a>
 
         </div>
 
-        <div class="col-md-6 infodiv">
-          <button type='submit' name='submit' class='ss-btn upload-btn-wrapper'>
-            <input type='file' name='file'>Register Fingerprint</button>
-        </div>
         </div>
         </form>
         <!-- END OF AUTOFILL -->
-        <form class="" action="" method="POST">
+        <form class="" action="includes/register_fingerprint.php" method="POST" enctype='multipart/form-data'>
           <!-- FOURTH ROW -->
           <div class="row">
             <div class="col-md-6">
@@ -203,97 +200,21 @@
           </div>
 
           <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
-        <div class="row srow">
-          <button type="submit" name="button" class="send-btn">Register User</button>
+          <div class="row srow">
+            <div class="col-6">
+              <button type='file' name='submit' class='ss-btn upload-btn-wrapper'>
+                <input type='file' name='file'>Register Fingerprint</button>
+            </div>
+
+            <div class="col-6">
+              <button type="submit" name="register" class="send-btn">Register User</button>
+        </div>
         </div>
 
         </form>
         <?php
         // DATA FROM AUTOFILL
-        if(isset($_POST['button'])){
-          $nso = $_GET['nsonum'];
-          $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso'; ";
-          $result = mysqli_query($conn,$query);
 
-          if (mysqli_num_rows($result) > 0) {
-            // if there is a result
-            foreach ($result as $row) {
-            $lastN = $row['lastname'];
-            $firstN = $row['firstname'];
-            $midN = $row['midname'];
-            $sfx = $row['suffix'];
-            $dob = $row['dateofbirth'];
-            $gndr = $row['gender'];
-            $passnum_nsonum = $row['nsonum'];
-            $address = $row['address'];
-            $nationality = 'Filipino';
-          }
-
-          // DATA FROM REGIS
-          $simcard = $_POST['simcard'];
-          $simnum = $_POST['simnum'];
-          $regisite = $_POST['regisite'];
-          $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis']));
-          $time  = date('G')."-".date('i')."-".date('s');
-          // fingerprint
-          $file = $_FILES['file'];  //etong 'file' na to. eto yung NAME/variable for DROPBOX.
-          //getting file details
-          $fileName       =$file["name"];
-          $fileType       =$file["type"];
-          $fileTempName   =$file["tmp_name"]; //temporary name = current name of the file when uploaded to a website
-          $fileError      =$file["error"]; //if the file is working or not
-          $fileSize       =$file["size"];
-
-          $allowed        = array("jpg","jpeg","png","bmp");//set what are the allowed extension file(MUST BE JPG,JPEG,PNG or BMP)
-          $fileExt        = explode(".",$fileName); //getting file Extension and saving to $fileExt Array. file extension name is at the end of array
-          $fileActualExt  = strtolower(end($fileExt)); ////changing file extension name at the end of array, to lower case
-
-
-
-          $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$time;  //name of fingerprint image(Ex: Keanufingerprint)
-          $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;          //name of full fingerprint image(Ex: Keanufingerprint.bmp)
-          $fileDestination = 'Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
-          // $fileDestination             = 'Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
-
-
-          // $fingerprint_File_Format = $_POST['fingerprint_File_Format'];
-          // $fingerprint_File_Name = $_POST['fingerprint_File_Name'];
-
-          $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = $simnum";
-          $result = mysqli_query($conn, $sqlnso);
-          $resultsCheck = mysqli_num_rows($result);
-          if($resultsCheck == 1){
-            echo "<script> window.location.href='register-users-local.php?error=simnum-already-exist'; </script>";
-             // window.location.href='http://localhost/Sim-Registration-Final-UI-main/register-users-local.php';
-            // echo "<h2>Error</h2>";
-            // header("Location: ../Sim-Registration-Final-UI-main/register-users-local.php?error=simnum-already-exist=nsonum='.$nso.'&button");
-            // header("Location ../register-users-local.php?simnum-already-exist");
-
-          }
-          else {
-            $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum, address,nationality,simcard, simnum,regisite,dateofregis,time,fingerprint_File_Format, fingerprint_File_Name)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-            // PREPARED STATEMENT
-            $stmt = mysqli_stmt_init($conn);
-            // PREPARE THE PREPARE STATEMENT
-            if(!mysqli_stmt_prepare($stmt, $sql)){
-              echo "SQL statement failed";
-            }else{
-              mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $address,$nationality,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
-              // RUN PARAMETER INDSIDE DATABASE
-              mysqli_stmt_execute($stmt);
-              $result = mysqli_stmt_get_result($stmt);
-              $fileDestination = 'Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
-              move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
-              echo "<script> window.location.href='register-users-local.php?signup=success'; </script>";
-              // header("Location: ../Sim-Registration-Final-UI-main/register-users-local.php?signup=success=nsonum='.$nso.'&button");
-               // header("Location: ../Sim-Registration-Final-UI-main/register-users-local.php?signup=success");
-             }
-           }
-           mysqli_stmt_close($stmt);
-           mysqli_close($conn);
-         }
-       }
        ?>
        <?php
    }
@@ -362,17 +283,14 @@
 
        <!-- BUTTON ROW -->
        <div class="row srow nsobutton">
-         <div class="col-md-6 infodiv">
+         <div class="col-12 infodiv">
          <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php">Search Database</button>
        </div>
-       <div class="col-md-6 infodiv">
-         <button type='submit' name='submit' class='ss-btn upload-btn-wrapper'>
-           <input type='file' name='screenshot-img'>Register Fingerprint</button>
-       </div>
+
        </div>
        </form>
 
-   <form class="" action="" method="post">
+   <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
        <!-- FOURTH ROW -->
 
        <div class="row">
@@ -408,8 +326,15 @@
        </div>
 
        <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
-     <div class="row srow">
-       <button type="submit" name="button" class="send-btn">Register User</button>
+       <div class="row srow">
+         <div class="col-6">
+           <button type='file' name='submit' class='ss-btn upload-btn-wrapper'>
+             <input type='file' name='file'>Register Fingerprint</button>
+         </div>
+
+         <div class="col-6">
+           <button type="submit" name="register" class="send-btn">Register User</button>
+     </div>
      </div>
 
      </form>
