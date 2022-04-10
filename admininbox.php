@@ -97,7 +97,7 @@ $AdminPass  = $_SESSION['AdminPassword'];
 
           <th scope="row"><?php echo $row['report_id']; ?></th>
           <td><?php echo $row['user_name']; ?></td>
-          <td><?php echo $row['remarks']; ?></td>
+          <td class="text-truncate"><?php echo $row['remarks']; ?></td>
           <td><?php echo $row['sent_at']; ?></td>
 
         </tr>

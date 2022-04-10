@@ -34,7 +34,7 @@
         <div class="logo">
           <div class="brand-part">
             <img src="images/logo.png" alt="logo" class="img-fluid logopic">
-            <p class="par mt-3">Sim Card Registration System</p>
+            <p class="par mt-3">SimCardRegistrationSystem</p>
           </div>
 
           <img src="images/login.svg" width="300px" class="svg-login">

@@ -61,13 +61,14 @@
             session_start();
             if($row = mysqli_fetch_assoc($result)){
 
-                $_SESSION['UserNumber']      = $row['simnum'];
+
                 $_SESSION['UserLast']        = $row['lastname'];
                 $_SESSION['UserFirst']       = $row['firstname'];
                 $_SESSION['UserMiddleName']  = $row['midname'];
                 $_SESSION['UserSuffix']      = $row['suffix'];
-                $_SESSION['UserGender']      = $row['gender'];
+
                 $_SESSION['UserBirthdate']   = $row['dateofbirth'];
+                $_SESSION['UserGender']      = $row['gender'];
                 $_SESSION['UserAddress']     = $row['address'];
                 $_SESSION['UserNationality'] = $row['nationality'];
 
@@ -76,10 +77,12 @@
                 }else{
                   $_SESSION['UserType']      = 'Foreign';
                 }
+                $_SESSION['UserSimCard']     = $row['simcard'];
+                $_SESSION['UserNumber']      = $row['simnum'];
+                $_SESSION['UserRegSite']     = $row['regisite'];
                 $_SESSION['UserDatReg']      = $row['dateofregis'];
                 $_SESSION['UserTimeReg']     = $row['time'];
-                $_SESSION['UserRegSite']     = $row['regisite'];
-                $_SESSION['UserSimCard']     = $row['simcard'];
+
 
             }
             header("location:../profile-user.php");

@@ -139,6 +139,7 @@
             <input id="nsonum" type="text" name="nsonum" class="form-control"value="<?php
               if (isset($_GET['nsonum'])) {
                 echo $_GET['nsonum'];
+                $_SESSION['nsonumber'] = $_GET['nsonum'];
               }
              ?>" >
           </div>
@@ -160,10 +161,11 @@
             <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php" >Search Database</button></a>
 
         </div>
+
         </div>
         </form>
         <!-- END OF AUTOFILL -->
-        <form class="" action="" method="POST">
+        <form class="" action="includes/register_fingerprint.php" method="POST" enctype='multipart/form-data'>
           <!-- FOURTH ROW -->
           <div class="row">
             <div class="col-md-6">
@@ -182,85 +184,39 @@
 
           <!-- FIFTH ROW -->
           <div class="row srow">
-            <div class="col-md-6 infodiv">
+            <div class="col-md-4 infodiv">
               <label class="labelings">Date of Registration</label>
               <input id="dateregis"type="date" name="dateofregis" class="form-control" required>
             </div>
 
-            <div class="col-md-6 infodiv">
+            <div class="col-md-4 infodiv">
               <label class="labelings">Registration Site</label>
               <input id="regisite" type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+            </div>
+            <div class="col-md-4 infodiv">
+              <label class="labelings">Time of Registration</label>
+              <input type="time" name="timeofregis" class="form-control" placeholder="Cavite" required>
             </div>
           </div>
 
           <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
-        <div class="row srow">
-          <button type="submit" name="button" class="send-btn">Proceed to Fingerprint Registration</button>
+          <div class="row srow">
+            <div class="col-6">
+              <button type='file' name='submit' class='ss-btn upload-btn-wrapper'>
+                <input type='file' name='file'>Register Fingerprint</button>
+            </div>
+
+            <div class="col-6">
+              <button type="submit" name="register" class="send-btn">Register User</button>
+        </div>
         </div>
 
         </form>
         <?php
         // DATA FROM AUTOFILL
-        if(isset($_POST['button'])){
-          $nso = $_GET['nsonum'];
-          $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso'; ";
-          $result = mysqli_query($conn,$query);
 
-          if (mysqli_num_rows($result) > 0) {
-            // if there is a result
-            foreach ($result as $row) {
-            $lastN = $row['lastname'];
-            $firstN = $row['firstname'];
-            $midN = $row['midname'];
-            $sfx = $row['suffix'];
-            $dob = $row['dateofbirth'];
-            $gndr = $row['gender'];
-            $passnum_nsonum = $row['nsonum'];
-            $address = $row['address'];
-            $nationality = 'Filipino';
-          }
-
-          // DATA FROM REGIS
-          $simcard = $_POST['simcard'];
-          $simnum = $_POST['simnum'];
-          $regisite = $_POST['regisite'];
-          $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis']));
-
-          $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = $simnum";
-          $result = mysqli_query($conn, $sqlnso);
-          $resultsCheck = mysqli_num_rows($result);
-          if($resultsCheck == 1){
-            echo "<script> window.location.href='register-users-local.php?error=simnum-already-exist'; </script>";
-             // window.location.href='http://localhost/Sim-Registration-Final-UI-main/register-users-local.php';
-            // echo "<h2>Error</h2>";
-            // header("Location: ../Sim-Registration-Final-UI-main/register-users-local.php?error=simnum-already-exist=nsonum='.$nso.'&button");
-            // header("Location ../register-users-local.php?simnum-already-exist");
-
-          }
-          else {
-          $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum, address,nationality,simcard, simnum,regisite,dateofregis)
-          VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
-          // PREPARED STATEMENT
-          $stmt = mysqli_stmt_init($conn);
-          // PREPARE THE PREPARE STATEMENT
-          if(!mysqli_stmt_prepare($stmt, $sql)){
-            echo "SQL statement failed";
-          }else{
-            mysqli_stmt_bind_param($stmt,"sssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $address,$nationality,$simcard, $simnum, $regisite, $dateofregis);
-            // RUN PARAMETER INDSIDE DATABASE
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-            echo "<script> window.location.href='register-users-local.php?signup=success'; </script>";
-            // header("Location: ../Sim-Registration-Final-UI-main/register-users-local.php?signup=success=nsonum='.$nso.'&button");
-             // header("Location: ../Sim-Registration-Final-UI-main/register-users-local.php?signup=success");
-           }
-         }
-         mysqli_stmt_close($stmt);
-         mysqli_close($conn);
-       }
-     }
-     ?>
-     <?php
+       ?>
+       <?php
    }
   } else {
     // header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
@@ -330,10 +286,11 @@
          <div class="col-12 infodiv">
          <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php">Search Database</button>
        </div>
+
        </div>
        </form>
 
-   <form class="" action="" method="post">
+   <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
        <!-- FOURTH ROW -->
 
        <div class="row">
@@ -353,20 +310,31 @@
 
        <!-- FIFTH ROW -->
        <div class="row srow">
-         <div class="col-md-6 infodiv">
+         <div class="col-md-4 infodiv">
            <label class="labelings">Date of Registration</label>
            <input id="dateregis"type="date" name="dateofregis" class="form-control" required>
          </div>
 
-         <div class="col-md-6 infodiv">
+         <div class="col-md-4 infodiv">
            <label class="labelings">Registration Site</label>
            <input id="regisite" type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+         </div>
+         <div class="col-md-4 infodiv">
+           <label class="labelings">Time of Registration</label>
+           <input type="time" name="timeofregis" class="form-control" placeholder="Cavite" required>
          </div>
        </div>
 
        <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
-     <div class="row srow">
-       <button type="submit" name="button" class="send-btn">Proceed to Fingerprint Registration</button>
+       <div class="row srow">
+         <div class="col-6">
+           <button type='file' name='submit' class='ss-btn upload-btn-wrapper'>
+             <input type='file' name='file'>Register Fingerprint</button>
+         </div>
+
+         <div class="col-6">
+           <button type="submit" name="register" class="send-btn">Register User</button>
+     </div>
      </div>
 
      </form>
