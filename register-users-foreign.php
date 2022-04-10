@@ -177,18 +177,15 @@
               </div>
             </div>
             <div class="row srow">
-              <div class="col-md-4 infodiv">
+              <div class="col-md-6 infodiv">
                 <label class="labelings">Date of Registration</label>
                 <input type="date" name="dateofregis" class="form-control" required>
               </div>
-              <div class="col-md-4 infodiv">
+              <div class="col-md-6 infodiv">
                 <label class="labelings">Registration Site</label>
                 <input type="text" name="regisite" class="form-control" placeholder="Cavite" required>
               </div>
-              <div class="col-md-4 infodiv">
-                <label class="labelings">Time of Registration</label>
-                <input type="time" name="timeofregis" class="form-control" placeholder="Cavite" required>
-              </div>
+
             </div>
 
             <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
@@ -206,7 +203,7 @@
           </form>
           <?php
            // DATA FROM AUTOFILL
-           
+
 
            ?>
            <?php
@@ -307,20 +304,16 @@
 
     </div>
     <div class="row srow">
-      <div class="col-md-4 infodiv">
+      <div class="col-md-6 infodiv">
         <label class="labelings">Date of Registration</label>
         <input type="date" name="dateofregis" class="form-control" required>
       </div>
 
-      <div class="col-md-4 infodiv">
+      <div class="col-md-6 infodiv">
         <label class="labelings">Registration Site</label>
         <input type="text" name="regisite" class="form-control" placeholder="Cavite" required>
       </div>
 
-      <div class="col-md-4 infodiv">
-        <label class="labelings">Time of Registration</label>
-        <input type="time" name="timeofregis" class="form-control" placeholder="Cavite" required>
-      </div>
     </div>
 
     <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->

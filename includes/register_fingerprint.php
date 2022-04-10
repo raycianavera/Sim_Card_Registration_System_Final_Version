@@ -29,7 +29,8 @@ if(isset($_POST['register'])){
   $simnum = $_POST['simnum'];
   $regisite = $_POST['regisite'];
   $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis']));
-  $time  = date('G')."-".date('i')."-".date('s');
+  date_default_timezone_set('Asia/Manila');
+  $time  = date('G').":".date('i').":".date('s');
 
   // fingerprint image
   $file = $_FILES['file'];
