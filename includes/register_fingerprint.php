@@ -83,3 +83,4 @@ if(isset($_POST['register'])){
  }
 } else {
     header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
+}
