@@ -81,4 +81,5 @@ if(isset($_POST['register'])){
    mysqli_stmt_close($stmt);
    mysqli_close($conn);
  }
-}
+} else {
+    header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
