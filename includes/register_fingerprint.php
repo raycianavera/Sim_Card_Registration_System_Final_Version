@@ -54,7 +54,7 @@ if(isset($_POST['register'])){
   $result = mysqli_query($conn, $sqlnso);
   $resultsCheck = mysqli_num_rows($result);
   if($resultsCheck == 1){
-    echo "<script> window.location.href='register-users-local.php?error=simnum-already-exist'; </script>";
+    echo "<script> window.location.href='../register-users-local.php?error=simnum-already-exist'; </script>";
 
   }
   else {
