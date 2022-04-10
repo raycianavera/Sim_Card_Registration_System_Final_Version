@@ -33,7 +33,6 @@ if(isset($_POST['register'])){
 
   // fingerprint image
   $file = $_FILES['file'];
-  print_r($file);
   // getting file details
   $fileName       =$file["name"];
   $fileType       =$file["type"];

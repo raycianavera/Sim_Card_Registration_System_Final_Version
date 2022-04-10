@@ -22,9 +22,6 @@ if(isset($_POST['register'])){
          $passnum_nsonum = $row['passnum'];
          $nationality = $row['nationality'];
 
-
-
-
        }
 
 
