@@ -31,6 +31,8 @@ if(isset($_POST['register'])){
   $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis']));
   date_default_timezone_set('Asia/Manila');
   $time  = date('G').":".date('i').":".date('s');
+  $timeImg  = date('G')."-".date('i')."-".date('s');
+
 
   // fingerprint image
   $file = $_FILES['file'];
@@ -47,7 +49,7 @@ if(isset($_POST['register'])){
 
 
 
-  $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$time;
+  $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$timeImg;
   $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
 
 
@@ -83,3 +85,4 @@ if(isset($_POST['register'])){
  }
 } else {
     header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
+}
