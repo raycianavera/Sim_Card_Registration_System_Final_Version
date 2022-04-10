@@ -74,25 +74,25 @@
     ";
     $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     if (strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=InvalidFormat") == true){
-        echo "<p class= 'errormessage' style='color:#FF0000'> Incorrect Phone Number Format. please use +63 format and enter phone number only</p>";
+        echo "<p class= 'errormessage' style='color:#ff5f56'> Incorrect Phone Number Format. please use +63 format and enter phone number only</p>";
     }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=InvalidFormat2") == true){
-        echo "<p class= 'errormessage' style='color:#FF0000'> Invalid characters detected. enter numbers only!</p>";
+        echo "<p class= 'errormessage' style='color:#ff5f56'> Invalid characters detected. enter numbers only!</p>";
     }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=imageempty") == true){
-        echo "<p class= 'errormessage' style='color:#FF0000'> No image detected. submit a screenshot of your conversation with the perpetrator to validate your report</p>";
+        echo "<p class= 'errormessage' style='color:#ff5f56'> No image detected. submit a screenshot of your conversation with the perpetrator to validate your report</p>";
     }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=imagedatabaseerror") == true){
-        echo "<p class= 'errormessage' style='color:#FF0000'> a problem encounter while trying to communicate with the server. try again later </p>";
+        echo "<p class= 'errormessage' style='color:#ff5f56'> a problem encounter while trying to communicate with the server. try again later </p>";
     }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=uploaderror") == true){
-        echo "<p class= 'errormessage' style='color:#FF0000'> unable to send the report to the server. please try again later.</p>";
+        echo "<p class= 'errormessage' style='color:#ff5f56'> unable to send the report to the server. please try again later.</p>";
     }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=imagelarge") == true){
-        echo "<p class= 'errormessage' style='color:#FF0000'> Error occur while initializing: size of the image is too large</p>";
+        echo "<p class= 'errormessage' style='color:#ff5f56'> Error occur while initializing: size of the image is too large</p>";
     }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=imageerror") == true){
-        echo "<p class= 'errormessage' style='color:#FF0000'> There is an error with your image. either the file is corrupted or distorted. please make another image</p>";
+        echo "<p class= 'errormessage' style='color:#ff5f56'> There is an error with your image. either the file is corrupted or distorted. please make another image</p>";
     }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=imageformaterror") == true){
-        echo "<p class= 'errormessage' style='color:#FF0000'> There is a problem with your image. use .Jpg, .Jpeg, or .Png only</p>";
+        echo "<p class= 'errormessage' style='color:#ff5f56'> There is a problem with your image. use .Jpg, .Jpeg, or .Png only</p>";
     }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=numberlength") == true){
-        echo "<p class= 'errormessage' style='color:#FF0000'> There is an error in the Mobile Number you want to report. make sure the digits are correct</p>";
+        echo "<p class= 'errormessage' style='color:#ff5f56'> There is an error in the Mobile Number you want to report. make sure the digits are correct</p>";
     }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=success") == true){
-        echo "<p class= 'errormessage' style='color:#008000'>your report has been sent to the server</p>";
+        echo "<p class= 'errormessage' style='color:#18CC5D'>Your report has been sent!</p>";
     };
   ;
   } else {
