@@ -139,12 +139,14 @@ h2 {
   text-align: center;
   font-weight: bold;
   color: #18CC5D;
+  margin-top: 20px;
 }
 /* PHP account already exist */
 .nsoexist{
   text-align: center;
   font-weight: bold;
   color: #ff5f56;
+  margin-top: 20px;
 }
 
 
@@ -189,6 +191,7 @@ h2 {
   cursor: pointer;
   color: #2f5a62;
 }
+
 
 
 /* MEDIA QUERY FOR NAV BAR */

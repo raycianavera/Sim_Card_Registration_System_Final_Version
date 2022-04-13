@@ -190,12 +190,14 @@
 
             <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
             <div class="row srow">
-              <div class="col-6">
-                <button type='file' name='submit' class='ss-btn upload-btn-wrapper'>
-                  <input type='file' name='file'>Register Fingerprint</button>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleFormControlFile1">Attach Fingerprint Image</label>
+                  <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
               </div>
 
-              <div class="col-6">
+              <div class="col-md-6">
                 <button type="submit" name="register" class="send-btn">Register User</button>
           </div>
           </div>
@@ -318,12 +320,14 @@
 
     <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
     <div class="row srow">
-      <div class="col-6">
-        <button type='file' name='submit' class='ss-btn upload-btn-wrapper'>
-          <input type='file' name='file'>Register Fingerprint</button>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Attach Fingerprint Image</label>
+          <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
       </div>
 
-      <div class="col-6">
+      <div class="col-md-6">
         <button type="submit" name="register" class="send-btn">Register User</button>
   </div>
   </div>

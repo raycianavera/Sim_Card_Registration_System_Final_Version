@@ -4,11 +4,10 @@ body {
   padding-bottom: 3rem;
 }
 
-
-
-.table {
-    table-layout: fixed;
+.inboxtable {
+  table-layout: fixed;
 }
+
 
 .navbar-collapse {
   justify-content: right;
@@ -131,30 +130,23 @@ body {
 }
 
 /* INBOX PART */
-.header {
-  background-color: white;
-}
+
 
 .row {
   margin-bottom: -2rem;
-  height: 56px;
+  /* height: 56px; */
   padding-top: 15px;
   /* margin-top: 2rem; */
 }
 
-.header h4 {
+.header {
   font-weight: bold !important;
   color: #2f5a62;
   font-size: 20px;
-  margin-left: 2rem;
 }
 
 .rep-message {
   margin-left: 3rem !important;
-}
-
-.header span {
-  margin-left: 1rem;
 }
 
 .table {
@@ -307,6 +299,10 @@ h2 {
   text-align: center;
   margin-top: 3rem;
 }
+
+.ad-title {
+
+}
 /* MEDIA QUERY FOR NAV BAR */
 @media only screen and (max-width: 1024px) {}
 
@@ -321,14 +317,17 @@ h2 {
     margin-bottom: 1rem;
   }
 
-  .header h4 {
-    font-size: 16px;
+  .header {
+  text-align: center!important;
   }
+
+
 }
 
 @media only screen and (max-width: 570px) {
   .brandname {
     font-size: 17px;
+    display: none!important;
   }
 
   .navbar {
@@ -340,9 +339,7 @@ h2 {
   .noResult {
     font-size: 18px !important;
 }
-  .header h4 {
-    font-size: 15px;
-  }
+
   .form-inline {
     margin-bottom: 5px !important;
 }
@@ -353,9 +350,6 @@ h2 {
     width: 40px;
   }
 
-  .header h4 {
-    font-size: 13px;
-  }
 
   .table thead th, .table td {
     font-size: 14px;
@@ -388,9 +382,6 @@ h2 {
 }
 
 @media only screen and (max-width: 320px) {
-  .header h4 {
-    font-size: 12px;
-  }
 
   .search-btn {
     height: 30px;
@@ -426,6 +417,10 @@ h2 {
 
   .table thead th, .table td {
     font-size: 12px;
+  }
+
+  .header {
+    font-size: 18px!important;
   }
 
 }
