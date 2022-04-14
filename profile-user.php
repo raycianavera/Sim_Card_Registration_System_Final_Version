@@ -32,7 +32,7 @@
       $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
       if (strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=InvalidFormat") == true){
           echo "<p class= 'errormessage'> Incorrect reported mobile number input format. Please use the +63 format and input digits only</p>";
-      }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=InvalidFormat2") == true){
+      }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=InvalidInput") == true){
           echo "<p class= 'errormessage'> Invalid characters detected. enter numbers only!</p>";
       }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=imageempty") == true){
           echo "<p class= 'errormessage'> No image uploaded. Please submit a screenshot of your reported conversation</p>";

@@ -23,7 +23,7 @@ if(isset($_POST['reportbutton'])){
   $SimCard       = $_SESSION['UserSimCard']  ;
   $UserMiddlename    = $_SESSION['UserMiddleName'];
   $UserSuffix        = $_SESSION['UserSuffix'];
-  $UserSuffix_B      =", ".$UserSuffix;
+  $UserSuffix_B      = ", ".$UserSuffix;
   $Middle            = substr($UserMiddlename,0,1);
   $Victim_Name       = $LastName.", ".$FirstName." ".$Middle.$UserSuffix_B;
   $Victim_Name_B     = $LastName.", ".$FirstName." ".$Middle.$UserSuffix;
@@ -46,33 +46,33 @@ if(isset($_POST['reportbutton'])){
 
  /////////////////////////////////////////////////// ERROR HANDLERS ////////////////////////////////////////
                              //////////////////////  TEXT ERRORS   /////////////////////
-          if(empty($Reported_Num)){  //ERROR 404 for empty number
+
+          if(empty($Reported_Num)){
             header("Location: ../profile-user.php?reportPage&ReportStatus=empty");
             exit();
-          }
-          if(!preg_match("/[a-zA-Z +-]/",$Reported_Num)){   //ERROR 404 for lack of + plus
-              header("Location:../profile-user.php?reportPage&ReportStatus=InvalidFormat");
-              exit();
           }else{
-              $zeroReported_Num = str_replace("+","",$Reported_Num); //remove "+"
-              if(preg_match("/^[a-zA-Z_ -]*$/", $zeroReported_Num)){ // ERROR 404 for not being number
-
-                  header("Location:../profile-user.php?reportPage&ReportStatus=InvalidFormat2");
-                  exit();
+            $zeroReported_Num2 = str_replace("+","",$Reported_Num);
+            if(preg_match("/^[a-zA-Z_ -]*$/",$zeroReported_Num2)){ //not number /invalid characters
+              header("Location:../profile-user.php?reportPage&ReportStatus=InvalidInput");
+              exit();
+            }else{
+              if(!preg_match("/[a-zA-Z +-]/",$Reported_Num)){ //invalid format/not number
+                header("Location:../profile-user.php?reportPage&ReportStatus=InvalidFormat");
+                exit();
               }else{
-                  $numbercount = strlen($zeroReported_Num);
-                  if($numbercount == 12){
-                            //////////////////////  IMAGE ERRORS  /////////////////////
-/*FOR */             if($fileSize==0){   //ERROR 404 for no file added
-/*IMAGES*/             header("Location:../profile-user.php?reportPage&ReportStatus=imageempty");
-                       exit();
-                     }else{
-                       if(in_array($fileActualExt,$allowed)){   //IF FILE IS JPG,PNG,JPEG
-                         if($fileError === 0){                  //IF FILE HAS A PROBLEM
-                           if($fileSize<20000000){              // IF FILE SIZE IS NOT LARGE
-
-//////////////////////////////////////// INITIALIZING THE INPUTS TO DATABASE  ////////////////////////////////////////
-                           //Check how many items are there in Database
+                $numbercount = strlen($zeroReported_Num2);
+                if($numbercount == 12){
+                  //enter image error handlers
+                  //////////////////////  IMAGE ERRORS  /////////////////////
+                  if($fileSize==0){   //ERROR 404 for no file added
+                    header("Location:../profile-user.php?reportPage&ReportStatus=imageempty");
+                    exit();
+                  }else{
+                    if(in_array($fileActualExt,$allowed)){   //IF FILE IS JPG,PNG,JPEG
+                          if($fileError === 0){                  //IF FILE HAS A PROBLEM
+                              if($fileSize<20000000){              // IF FILE SIZE IS NOT LARGE
+                  //////////////////////////////////////// INITIALIZING THE INPUTS TO DATABASE  ////////////////////////////////////////
+                  //Check how many items are there in Database
                               $sql  = "SELECT * FROM report_messages_db;";
                               $stmt = mysqli_stmt_init($conn);
                               if(!mysqli_stmt_prepare($stmt,$sql)){  //ERROR 404 for connection database error
@@ -89,6 +89,7 @@ if(isset($_POST['reportbutton'])){
                                   $Name_ReportImage = $Victim_Image_Name."."."ReportNumber_".$setImageOrder; //New File Name of the Image - example of format: TanishaBrown.ReportNumber_1
                                   $ImageFullName    = $Name_ReportImage.".".$fileActualExt;                  //Complete Fille Name of the Image - example of format: TanishaBrown.ReportNumber_1.jpg
                                   $fileDestination  = "../Image_Report_Database/".$ImageFullName;            //Build up file destination
+                                  date_default_timezone_set('Asia/Manila');
                                   $dates = date("Y")."-".date("m")."-".date("j");
                                   $time = date('G').":".date('i').":".date('s');
                                   $DateTime = $dates." ".$time;
@@ -104,31 +105,27 @@ if(isset($_POST['reportbutton'])){
                                       mysqli_stmt_execute($stmt); //FILE SENT
                                       move_uploaded_file($fileTempName,$fileDestination); //moving the file
                                       header("Location:../profile-user.php?reportPage&ReportStatus=success");
+                                    }
                                   }
+                                }else{
+                                  header("Location:../profile-user.php?reportPage&ReportStatus=imagelarge");
+                                  exit();
                                 }
+                              }else{
+                                header("Location:../profile-user.php?reportPage&ReportStatus=imageerror");
+                                exit();
+                              }
                             }else{
-                              header("Location:../profile-user.php?reportPage&ReportStatus=imagelarge");
+                              header("Location:../profile-user.php?reportPage&ReportStatus=imageformaterror");
                               exit();
                             }
-                          }else{
-                            header("Location:../profile-user.php?reportPage&ReportStatus=imageerror");
-                            exit();
                           }
-                     }else{
-                         header("Location:../profile-user.php?reportPage&ReportStatus=imageformaterror");
-                       exit();
-                     }
-                   }
-                  }else{
-                     header("Location:../profile-user.php?reportPage&ReportStatus=numberlength");
-                     exit();
-                   }
-                 } //line 58 end
-               } //line 52 end
-              } //line 51 end
-              //line 46 end
-            //line 42 end
-         //line 9 end
-
-
+                        }else{
+                          header("Location:../profile-user.php?reportPage&ReportStatus=numberlength");
+                          exit();
+                        } //line 123 end
+                      } //line 62 end
+                    } // line 58 end
+                  } // line 53 end
+        }  //line 4 end
 ?>
