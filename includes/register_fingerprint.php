@@ -57,7 +57,9 @@ if(isset($_POST['register'])){
   $result = mysqli_query($conn, $sqlnso);
   $resultsCheck = mysqli_num_rows($result);
   if($resultsCheck == 1){
-    echo "<script> window.location.href='../register-users-local.php?error=simnum-already-exist'; </script>";
+    header("Location: ../register-users-local.php?error=simnum-already-exist");
+    // header("Location: Sim_Card_Registration_System_Final_Version/register-users-local.php?error=simnum-already-exist");
+    // echo "<script> window.location.href='../register-users-local.php?error=simnum-already-exist'; </script>";
 
   }
   else {
@@ -75,8 +77,8 @@ if(isset($_POST['register'])){
       $result = mysqli_stmt_get_result($stmt);
       $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
       move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
-
-      echo "<script> window.location.href='../register-users-local.php?signup=success'; </script>";
+      header("Location: ../register-users-local.php?signup=success");
+      // echo "<script> window.location.href='../register-users-local.php?signup=success'; </script>";
 
      }
    }
@@ -84,5 +86,5 @@ if(isset($_POST['register'])){
    mysqli_close($conn);
  }
 } else {
-    header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
+    header("Location: Sim_Card_Registration_System_Final_Version/register-users-local.php?nsonum=.$nso.&button=no-result");
 }
