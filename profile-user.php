@@ -1,7 +1,10 @@
 <?php
   require "navbar.php";
   include_once 'dbh/EndUser.inc.php';
-
+  if (empty($_SESSION['UserNumber'])){
+    header("Location: index.php");
+    exit();
+  }
   $SimCardNumber = $_SESSION['UserNumber'] ;
   $LastName      = $_SESSION['UserLast']  ;
   $FirstName     = $_SESSION['UserFirst']  ;
@@ -51,6 +54,7 @@
       }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=success") == true){
           echo "<p class= 'successmsg'>Your report has been successfully sent</p>";
       };
+
       echo "
 
     <form class='' id='form' action='UserprofileBackEnd/BackEnd_Report.php' method='post' enctype='multipart/form-data'>

@@ -3,6 +3,10 @@ require 'includes/dbh.inc.php';
 $sql = "SELECT * FROM registered_simusers_db ORDER BY lastname ASC";
 $result = mysqli_query($conn, $sql);
 session_start();
+if (empty($_SESSION['AdminEmail'])){
+  header("Location: index.php");
+  exit();
+}
 $AdminLName = $_SESSION['AdminLastName'] ;
 $AdminFName = $_SESSION['AdminFirstName'];
 $AdminEmail = $_SESSION['AdminEmail'];

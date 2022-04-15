@@ -1,8 +1,13 @@
 <?php
   require 'includes/dbh.inc.php';
+
 ?>
 <?php
   session_start();
+  if (empty($_SESSION['SellerFirstName'])){
+    header("Location: index.php");
+    exit();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
