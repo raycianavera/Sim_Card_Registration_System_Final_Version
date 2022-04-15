@@ -79,7 +79,7 @@ if(isset($_POST['register'])){
          mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $address,$nationality,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
          // RUN PARAMETER INDSIDE DATABASE
          mysqli_stmt_execute($stmt);
-         $result = mysqli_stmt_get_result($s tmt);
+         $result = mysqli_stmt_get_result($stmt);
          $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
          move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
          // echo "<script> window.location.href='../register-users-foreign.php?signup=success'; </script>";
