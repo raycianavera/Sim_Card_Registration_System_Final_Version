@@ -86,5 +86,5 @@ if(isset($_POST['register'])){
    mysqli_close($conn);
  }
 } else {
-    header("Location: Sim_Card_Registration_System_Final_Version/register-users-local.php?nsonum=.$nso.&button=no-result");
+    header("Location: ../register-users-local.php?nsonum=.$nso.&button=no-result");
 }
