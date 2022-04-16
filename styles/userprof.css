@@ -105,6 +105,7 @@ h2 {
 .header {
   display: flex;
   justify-content: center;
+  height: 30px;
 }
 
 .infodiv1 {
@@ -176,6 +177,28 @@ textarea {
   cursor: pointer;
   color: #2f5a62;
 }
+
+.form-group {
+    position: relative;
+    bottom: 9px;
+}
+
+.successmsg {
+  text-align: center;
+  font-weight: bold;
+  color: #18CC5D;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.errormessage{
+  text-align: center;
+  font-weight: bold;
+  color: #ff5f56;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
 
 /* MEDIA QUERY FOR NAV BAR */
 @media only screen and (max-width: 1024px) {

@@ -61,17 +61,14 @@
             session_start();
             if($row = mysqli_fetch_assoc($result)){
 
-
                 $_SESSION['UserLast']        = $row['lastname'];
                 $_SESSION['UserFirst']       = $row['firstname'];
                 $_SESSION['UserMiddleName']  = $row['midname'];
                 $_SESSION['UserSuffix']      = $row['suffix'];
-
                 $_SESSION['UserBirthdate']   = $row['dateofbirth'];
                 $_SESSION['UserGender']      = $row['gender'];
                 $_SESSION['UserAddress']     = $row['address'];
                 $_SESSION['UserNationality'] = $row['nationality'];
-
                 if(($row['nationality']) == 'Filipino'||($row['nationality']) == 'filipino'){
                   $_SESSION['UserType']      = 'Local';
                 }else{
@@ -82,7 +79,6 @@
                 $_SESSION['UserRegSite']     = $row['regisite'];
                 $_SESSION['UserDatReg']      = $row['dateofregis'];
                 $_SESSION['UserTimeReg']     = $row['time'];
-
 
             }
             header("location:../profile-user.php");

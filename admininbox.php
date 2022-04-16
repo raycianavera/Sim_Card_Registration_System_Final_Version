@@ -3,6 +3,10 @@ require 'includes/dbh.inc.php';
 $sql = "SELECT * FROM report_messages_db";
 $result = mysqli_query($conn, $sql);
 session_start();
+if (empty($_SESSION['AdminEmail'])){
+  header("Location: index.php");
+  exit();
+}
 $AdminLName = $_SESSION['AdminLastName'] ;
 $AdminFName = $_SESSION['AdminFirstName'];
 $AdminEmail = $_SESSION['AdminEmail'];
@@ -51,6 +55,9 @@ $AdminPass  = $_SESSION['AdminPassword'];
 
             <ul class='navbar-nav'>
               <li class='nav-item'>
+                <a class='nav-link' href='registered_users_table_admin.php'>Users</a>
+              </li>
+              <li class='nav-item'>
                 <a class='nav-link selected' href='admininbox.php'>Inbox</a>
               </li>
 
@@ -74,17 +81,25 @@ $AdminPass  = $_SESSION['AdminPassword'];
 
 <!-- INBOX PART -->
 
-    <div class="row header">
-        <h4>Administrator: <?php echo "$AdminFName $AdminLName";?></h4>
-        <h4 class="rep-message">Reported messages</h4>
-    </div>
-    <table class="table table-striped">
+<div class="row admin-row" style="background-color: white;">
+  <div class="col-md-6" style="padding-left: 2rem;">
+    <p class="header text-truncate">Administrator: <?php echo "$AdminFName $AdminLName";?></p>
+  </div>
+
+  <div class="col-md-6" style="padding-left: 2rem;">
+    <p class="header text-truncate">Reported Messages</p>
+
+  </div>
+
+</div>
+<!-- <div class="table-responsive"> -->
+    <table class="table table-striped inboxtable">
       <thead>
         <tr>
-          <th class="f-column" scope="col">#</th>
-          <th class="f-column" scope="col">Recepient</th>
-          <th class="f-column" scope="col">Message</th>
-          <th class="f-column" scope="col">Date</th>
+          <th class="f-column text-truncate" scope="col">#</th>
+          <th class="f-column text-truncate" scope="col">Recepient</th>
+          <th class="f-column text-truncate" scope="col">Message</th>
+          <th class="f-column text-truncate" scope="col">Date</th>
         </tr>
       </thead>
       <tbody>
@@ -95,10 +110,10 @@ $AdminPass  = $_SESSION['AdminPassword'];
 
         <tr class="canHov" onclick="window.location='<?php echo "reported-message-content.php?id=".$row['report_id']."&sent=".$row['sent_at']."&user=".$row['user_name']."";?>';">
 
-          <th scope="row"><?php echo $row['report_id']; ?></th>
-          <td><?php echo $row['user_name']; ?></td>
+          <th scope="row" class="text-truncate"><?php echo $row['report_id']; ?></th>
+          <td class="text-truncate"><?php echo $row['user_name']; ?></td>
           <td class="text-truncate"><?php echo $row['remarks']; ?></td>
-          <td><?php echo $row['sent_at']; ?></td>
+          <td class="text-truncate"><?php echo $row['sent_at']; ?></td>
 
         </tr>
 
@@ -107,6 +122,7 @@ $AdminPass  = $_SESSION['AdminPassword'];
 
       </tbody>
     </table>
+    <!-- </div> -->
 
 
 </body>

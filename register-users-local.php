@@ -1,8 +1,13 @@
 <?php
   require 'includes/dbh.inc.php';
+
 ?>
 <?php
   session_start();
+  if (empty($_SESSION['SellerFirstName'])){
+    header("Location: index.php");
+    exit();
+  }
 ?>
 <!-- register-users-local.php?nsonum=3864&button= -->
 <!-- onclick="resetForm()" -->
@@ -184,29 +189,28 @@
 
           <!-- FIFTH ROW -->
           <div class="row srow">
-            <div class="col-md-4 infodiv">
+            <div class="col-md-6 infodiv">
               <label class="labelings">Date of Registration</label>
               <input id="dateregis"type="date" name="dateofregis" class="form-control" required>
             </div>
 
-            <div class="col-md-4 infodiv">
+            <div class="col-md-6 infodiv">
               <label class="labelings">Registration Site</label>
               <input id="regisite" type="text" name="regisite" class="form-control" placeholder="Cavite" required>
             </div>
-            <div class="col-md-4 infodiv">
-              <label class="labelings">Time of Registration</label>
-              <input type="time" name="timeofregis" class="form-control" placeholder="Cavite" required>
-            </div>
+
           </div>
 
           <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
           <div class="row srow">
-            <div class="col-6">
-              <button type='file' name='submit' class='ss-btn upload-btn-wrapper'>
-                <input type='file' name='file'>Register Fingerprint</button>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleFormControlFile1">Attach Fingerprint Image</label>
+                <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
+              </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-md-6">
               <button type="submit" name="register" class="send-btn">Register User</button>
         </div>
         </div>
@@ -310,29 +314,28 @@
 
        <!-- FIFTH ROW -->
        <div class="row srow">
-         <div class="col-md-4 infodiv">
+         <div class="col-md-6 infodiv">
            <label class="labelings">Date of Registration</label>
            <input id="dateregis"type="date" name="dateofregis" class="form-control" required>
          </div>
 
-         <div class="col-md-4 infodiv">
+         <div class="col-md-6 infodiv">
            <label class="labelings">Registration Site</label>
            <input id="regisite" type="text" name="regisite" class="form-control" placeholder="Cavite" required>
          </div>
-         <div class="col-md-4 infodiv">
-           <label class="labelings">Time of Registration</label>
-           <input type="time" name="timeofregis" class="form-control" placeholder="Cavite" required>
-         </div>
+
        </div>
 
        <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
        <div class="row srow">
-         <div class="col-6">
-           <button type='file' name='submit' class='ss-btn upload-btn-wrapper'>
-             <input type='file' name='file'>Register Fingerprint</button>
+         <div class="col-md-6">
+           <div class="form-group">
+             <label for="exampleFormControlFile1">Attach Fingerprint Image</label>
+             <input type="file" name='file' class="form-control-file" id="exampleFormControlFile1">
+           </div>
          </div>
 
-         <div class="col-6">
+         <div class="col-md-6">
            <button type="submit" name="register" class="send-btn">Register User</button>
      </div>
      </div>

@@ -22,9 +22,6 @@ if(isset($_POST['register'])){
          $passnum_nsonum = $row['passnum'];
          $nationality = $row['nationality'];
 
-
-
-
        }
 
 
@@ -35,7 +32,10 @@ if(isset($_POST['register'])){
      $simnum = $_POST['simnum'];
      $regisite = $_POST['regisite'];
      $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis']));
-     $time  = date('G')."-".date('i')."-".date('s');
+     date_default_timezone_set('Asia/Manila');
+     $time  = date('G').":".date('i').":".date('s');
+     $timeImg  = date('G')."-".date('i')."-".date('s');
+
 
 
        // fingerprint image
@@ -54,7 +54,7 @@ if(isset($_POST['register'])){
 
 
 
-       $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$time;
+       $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$timeImg;
        $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
 
 
@@ -62,8 +62,8 @@ if(isset($_POST['register'])){
          $result = mysqli_query($conn, $sqlnso);
          $resultsCheck = mysqli_num_rows($result);
          if($resultsCheck == 1){
-       echo "<script> window.location.href='register-users-foreign.php?error=simnum-already-exist'; </script>";
-       // header("Location: ../seller-register-foreign.html?error=simnum-already-exist");
+       header("Location: ../register-users-foreign.php?error=simnum-already-exist");
+       // echo "<script> window.location.href='../register-users-foreign.php?error=simnum-already-exist'; </script>";
        // echo "<h2>Error</h2>";
      }
 
@@ -82,11 +82,13 @@ if(isset($_POST['register'])){
          $result = mysqli_stmt_get_result($stmt);
          $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
          move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
-         echo "<script> window.location.href='../register-users-foreign.php?signup=success'; </script>";
-         // header("Location: register-users.php?signup=success");
+         // echo "<script> window.location.href='../register-users-foreign.php?signup=success'; </script>";
+         header("Location: ../register-users-foreign.php?signup=success");
        }
      }
      mysqli_stmt_close($stmt);
      mysqli_close($conn);
    }
- }
+ } else {
+    header("Location: Sim_Card_Registration_System_Final_Version/register-users-foreign.php?nsonum=.$nso.&button=no-result");
+}

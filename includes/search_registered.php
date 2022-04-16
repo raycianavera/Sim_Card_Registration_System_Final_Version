@@ -49,10 +49,11 @@
 
             <ul class='navbar-nav'>
               <li class='nav-item'>
-                <a class='nav-link' href='../registered_users_table_admin.php'>Users</a>
+                <a class='nav-link selected' href='../registered_users_table_admin.php'>Users</a>
               </li>
+
               <li class='nav-item'>
-                <a class='nav-link selected' href='../admininbox.php'>Inbox</a>
+                <a class='nav-link' href='../admininbox.php'>Inbox</a>
               </li>
 
               <li class="nav-item">
@@ -64,7 +65,7 @@
 
 
 
-          <form class="form-inline" action="search.php" method="POST">
+          <form class="form-inline" action="search_registered.php" method="POST">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="input-search">
             <button class="log-button search-btn my-2 my-sm-0" type="submit" name="submit-search">Search</button>
           </form>
@@ -74,7 +75,6 @@
     </header>
 
 <!-- INBOX PART -->
-<!-- INBOX PART -->
 
 <div class="row admin-row" style="background-color: white;">
   <div class="col-md-6" style="padding-left: 2rem;">
@@ -82,26 +82,38 @@
   </div>
 
   <div class="col-md-6" style="padding-left: 2rem;">
-    <p class="header text-truncate">Reported Messages</p>
+    <p class="header text-truncate">Registered SIM Card Users</p>
 
   </div>
 
 </div>
-    <table class="table table-striped" style="table-layout: fixed;">
+
+<div class="table-responsive">
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th class="f-column text-truncate" scope="col">#</th>
-          <th class="f-column text-truncate" scope="col">Recepient</th>
-          <th class="f-column text-truncate" scope="col">Message</th>
-          <th class="f-column text-truncate" scope="col">Date</th>
-        </tr>
+          <th class="f-column text-truncate" scope="col" >Last Name</th>
+          <th class="f-column text-truncate" scope="col" >First Name</th>
+          <th class="f-column text-truncate" scope="col" >Middle Name</th>
+          <th class="f-column text-truncate" scope="col" >Suffix</th>
+          <th class="f-column text-truncate" scope="col" >Birthdate</th>
+          <th class="f-column text-truncate" scope="col" >Gender</th>
+          <th class="f-column text-truncate" scope="col" >NSO or Passport #</th>
+          <th class="f-column text-truncate" scope="col" >Address</th>
+          <th class="f-column text-truncate" scope="col" >Nationality</th>
+          <th class="f-column text-truncate" scope="col" >SIM User Type</th>
+          <th class="f-column text-truncate" scope="col" >SIM Card #</th>
+          <th class="f-column text-truncate" scope="col" >Registration Site</th>
+          <th class="f-column text-truncate" scope="col" >Registration Date</th>
+          <th class="f-column text-truncate" scope="col" >Registration Time</th>
+    </tr>
       </thead>
       <tbody>
 
         <?php
         if (isset($_POST['submit-search'])) :
           $searchInput = mysqli_real_escape_string($conn, $_POST['input-search']);
-          $sql = "SELECT * FROM report_messages_db WHERE user_name LIKE '%$searchInput%' OR user_mobile_num LIKE '%$searchInput%' OR remarks LIKE '%$searchInput%' OR sent_at LIKE '%$searchInput%'; ";
+          $sql = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%'; ";
           $result = mysqli_query($conn, $sql);
           $queryResult = mysqli_num_rows($result);
           if ($queryResult > 0):
@@ -110,11 +122,22 @@
 
         <!-- <tr class="canHov" onclick="window.location='reported-message-content.php';"> -->
 
-      <tr class="canHov" onclick="window.location='<?php echo "../reported-message-content.php?id=".$row['report_id']."&sent=".$row['sent_at']."&user=".$row['user_name']."";?>';">
-          <th scope="row" class="text-truncate"><?php echo $row['report_id']; ?></th>
-          <td class="text-truncate"><?php echo $row['user_name']; ?></td>
-          <td class="text-truncate"><?php echo $row['remarks']; ?></td>
-          <td class="text-truncate"><?php echo $row['sent_at']; ?></td>
+      <tr class="canHov">
+
+                  <th scope="row" class="text-truncate"><?php echo $row['lastname']; ?></th>
+                  <td class="text-truncate"><?php echo $row['firstname']; ?></td>
+                  <td class="text-truncate"><?php echo $row['midname']; ?></td>
+                  <td class="text-truncate"><?php echo $row['suffix']; ?></td>
+                  <td class="text-truncate"><?php echo $row['dateofbirth']; ?></td>
+                  <td class="text-truncate"><?php echo $row['gender']; ?></td>
+                  <td class="text-truncate"><?php echo $row['passnum_nsonum']; ?></td>
+                  <td class="text-truncate"><?php echo $row['address']; ?></td>
+                  <td class="text-truncate"><?php echo $row['nationality']; ?></td>
+                  <td class="text-truncate"><?php echo $row['simcard']; ?></td>
+                  <td class="text-truncate"><?php echo $row['simnum']; ?></td>
+                  <td class="text-truncate"><?php echo $row['regisite']; ?></td>
+                  <td class="text-truncate"><?php echo $row['dateofregis']; ?></td>
+                  <td class="text-truncate"><?php echo $row['time']; ?></td>
 
         </tr>
 
@@ -122,6 +145,7 @@
       else :
         echo "      </tbody>
             </table>
+              </div>
             <div class='row noResCon'>
                 <h2 class='noResult'>No results found for your search!</h2>
             </div>
@@ -135,6 +159,10 @@
 
       </tbody>
     </table>
+
+  </div>
+
+
 
 
 </body>

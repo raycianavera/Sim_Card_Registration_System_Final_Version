@@ -1,5 +1,13 @@
 <?php
   session_start();
+  if (empty($_SESSION['AdminEmail'])){
+    header("Location: index.php");
+    exit();
+  }
+  $AdminLName = $_SESSION['AdminLastName'] ;
+  $AdminFName = $_SESSION['AdminFirstName'];
+  $AdminEmail = $_SESSION['AdminEmail'];
+  $AdminPass  = $_SESSION['AdminPassword'];
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +57,9 @@
 
           <ul class='navbar-nav'>
             <li class='nav-item'>
+              <a class='nav-link' href='registered_users_table_admin.php'>Users</a>
+            </li>
+            <li class='nav-item'>
               <a class='nav-link selected' href='admininbox.php'>Inbox</a>
             </li>
 
@@ -79,14 +90,44 @@
         $result = mysqli_query($conn, $sql);
         $queryResults = mysqli_num_rows($result);  //checks how many rows are the results
 
+
         if($queryResults > 0 ):
           while($row = mysqli_fetch_assoc($result)):
+            $repNum = $row['reported_number'];
+            $_GET['reportt'] = $repNum;
+
+            // SELECT STATEMENT
+            $varReport = $_GET['reportt'];
+            // echo $varReport;
+            $sqlfind = "SELECT * FROM registered_simusers_db WHERE simnum = '$varReport';";
+            $resultfind = mysqli_query($conn, $sqlfind);
+            $queryResultsfind = mysqli_num_rows($resultfind);  //checks how many rows are the results
+
+            if($queryResultsfind > 0 ){
+              while($rowfind = mysqli_fetch_assoc($resultfind)){
+                $repName = $rowfind['lastname'];
+                $_GET['repLastname'] = $repName;
+                $repFName = $rowfind['firstname'];
+                $_GET['repFname'] = $repFName;
+                $repgetNum = $rowfind['simnum'];
+                $_GET['repNMBR'] = $repgetNum;
+
+                $_GET['repLname'] = $repName.' '.$repFName;
+
+
+              }
+            }else {
+              $_GET['repLname']='Nobody. This number is either not registered or does not exist.';
+
+            }
+
 
         ?>
 
 
 
         <!-- COLUMN 1 NAME AND USER'S CELLPHONE NUMBER -->
+
         <div class="col-12">
           <div class="infolabels">
             <p class="nameLabel">From: <span class="lightColFont"><?php echo $row['user_name'] ?></span></p>
@@ -94,8 +135,15 @@
           <div class="infolabels">
             <p class="nameLabel">User's Mobile number: <span class="lightColFont"><?php echo $row['user_mobile_num'] ?></span></p>
           </div>
-          <div class="infolabels mb-5">
+          <div class="infolabels">
             <p class="nameLabel">Reported Number: <span class="RedColFont"><?php echo $row['reported_number'] ?></span></p>
+          </div>
+          <div class="infolabels mb-5">
+            <p class="nameLabel">According to the database, this reported number belongs to: <span class="RedColFont"> <?php
+
+              echo $_GET['repLname'];
+
+             ?></span></p>
           </div>
           <div class="infolabels">
             <p class="nameLabel">User Remarks</p>
@@ -135,11 +183,16 @@
           </div>
         </div>
 <?php
-
-endwhile; endif;
+endwhile;
+else :
+  header("Location: Sim_Card_Registration_System_Final_Version/reported-message-content.php?error=noUser");
+ endif;
         ?>
       </div>
+
     </div>
+
+
 
 
 </body>
