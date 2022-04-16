@@ -4,6 +4,16 @@ body {
   padding: 5% 5rem;
 }
 
+
+
+.errormessage{
+  text-align: center;
+  font-weight: bold;
+  color: #ff5f56;
+  /* margin-top: 20px; */
+  text-transform: uppercase;
+}
+
 /* FIRST COLUMN */
 .firstcol {
   background-color: #2f5a62;
@@ -426,6 +436,7 @@ p {
 }
 
 @media only screen and (max-width: 320px) {
+
   body {
 
     padding: 4rem 3rem;
