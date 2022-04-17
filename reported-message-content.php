@@ -62,13 +62,13 @@
             <li class='nav-item'>
               <a class='nav-link selected' href='admininbox.php'>Inbox</a>
             </li>
+            </ul>
 
-            <li class="nav-item">
+  
               <form class="form-btnn" action="Logout/logoutprocess_Admin.php" method="POST">
-                <button type="submit" name="btn-primary" class="nav-link logbtn">Logout</button>
+                <button type="submit" name="btn-primary" class="log-button">Logout</button>
               </form>
-            </li>
-          </ul>
+
       </div>
     </nav>
   </header>

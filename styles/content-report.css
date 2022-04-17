@@ -159,9 +159,9 @@ textarea {
 }
 
 .nav-link {
-  margin-right: 1rem;
+  margin-right: 5rem;
   font-weight: bold;
-  color: white;
+  color: #c1ebe2;
 }
 
 .brandname {
@@ -173,9 +173,7 @@ textarea {
 
 
 .selected {
-  color: #2f5a62 !important;
-  background-color: white;
-  border-radius: 8px;
+  color: white !important;
 }
 
 .div1 {
@@ -184,24 +182,22 @@ textarea {
 }
 
 .log-button {
-  /* padding: 0; */
-  border: none;
-  background: none;
-  font-weight: bold;
-  color: white;
-  position: relative;
-  right: 0px;
-  margin-top: 5px;
-  margin-right: 3rem;
-  margin-left: 3rem;
+    /* padding: 0; */
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: #C1EBE3;
+    position: relative;
+    right: 6px;
+    margin-top: 5px;
 }
 
-.logbtn {
+/* .logbtn {
   border: none;
   background: none;
   font-weight: bold;
-  color: white;
-}
+  color: #c1ebe2;
+} */
 
 .search-btn {
   border: solid 2px white !important;
@@ -213,23 +209,16 @@ textarea {
 }
 
 .nav-link:hover {
-  color: #2f5a62 !important;
-  background-color: white;
-  border-radius: 8px;
+  color: white !important;
+
 }
 
 .log-button:hover {
-  color: #2f5a62 !important;
-  background-color: white;
-  height: 40px;
-  border-radius: 8px;
+  color: white !important;
+
 }
 
-.selected {
-  color: #2f5a62 !important;
-  background-color: white;
-  border-radius: 8px;
-}
+
 .btn {
   background-color: #2f5a62;
   color: white;
@@ -275,6 +264,12 @@ textarea {
   }
 }
 
+@media only screen and (max-width: 991.5px){
+  .log-button {
+    margin-bottom: 1rem!important;
+}
+}
+
 @media only screen and (max-width: 768px) {
   .pl-5, .px-5 {
     padding-left: 0rem !important;
@@ -293,13 +288,17 @@ textarea {
     padding: 5rem 3rem 3rem 3rem;
   }
 
+  .navbar {
+    padding: 0rem 4rem !important;
+  }
+
 
 
 }
 
 @media only screen and (max-width: 570px) {
   .brandname {
-    font-size: 17px;
+    font-size: 14px;
   }
 
   .navbar {
@@ -349,8 +348,8 @@ textarea {
     }
 
 
-      .nav-link, .search-btn {
-        font-size: 14px !important;
+      .search-btn {
+        font-size: 16px !important;
       }
 
       .search-btn {
@@ -374,6 +373,11 @@ textarea {
 
 }
 
+@media only screen and (max-width: 345px) {
+.brandname {
+  font-size: 12px;
+}
+
 @media only screen and (max-width: 320px) {
   .btn {
     left: 0;
@@ -382,28 +386,28 @@ textarea {
   }
 
 
-  .ss-btn, .replybtn, .send-btn, .labelings, .nav-link {
+  .ss-btn, .replybtn, .send-btn, .labelings{
     font-size: 12px;
   }
 
   h2 {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .infodiv {
     margin-bottom: 1rem;
   }
 
-    .nav-link {
+    /* .nav-link {
       padding: 3px;
-    }
+    } */
 
     .brandname {
       font-size: 0px;
     }
 
     .navbar-nav .nav-link, .log-button {
-      font-size: 13px;
+      font-size: 16px!important;
     }
 
     .send-btn {

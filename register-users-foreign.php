@@ -160,7 +160,7 @@
 
             <!-- FOURTH ROW -->
 
-            <div class="row srow">
+            <div class="row">
               <div class="col-md-12 ">
                 <label class="">Address</label>
                 <input type="text" name="address" class="form-control" value="" required>
@@ -289,7 +289,7 @@
 
 
     <!-- FOURTH ROW -->
-    <div class="row srow">
+    <div class="row">
       <div class="col-md-12 ">
         <label class="">Address</label>
         <input type="text" name="address" class="form-control" value="" required>

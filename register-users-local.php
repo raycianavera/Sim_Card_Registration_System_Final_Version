@@ -151,13 +151,6 @@
 
         </div>
 
-        <!-- THIRD ROW -->
-        <div class="row srow">
-          <div class="col-12 infodiv">
-            <label class="Bday">Address</label>
-            <input id="address" type="text" name="address" class="form-control" value="<?= $row['address'] ?>">
-          </div>
-        </div>
 
         <!-- BUTTON ROW -->
         <div class="row srow nsobutton">
@@ -172,6 +165,14 @@
         <!-- END OF AUTOFILL -->
         <form class="" action="includes/register_fingerprint.php" method="POST" enctype='multipart/form-data'>
           <!-- FOURTH ROW -->
+
+          <div class="row">
+            <div class="col-12 infodiv">
+              <label class="Bday">Address</label>
+              <input id="address" type="text" name="address" class="form-control">
+            </div>
+          </div>
+
           <div class="row">
             <div class="col-md-6">
               <label class="labelings">Type of Sim Card user</label>
@@ -277,13 +278,7 @@
 
        </div>
 
-       <!-- THIRD ROW -->
-       <div class="row srow">
-         <div class="col-12 infodiv">
-           <label class="Bday">Address</label>
-           <input id="address" type="text" name="address" class="form-control" disabled>
-         </div>
-       </div>
+
 
        <!-- BUTTON ROW -->
        <div class="row srow nsobutton">
@@ -296,6 +291,13 @@
 
    <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
        <!-- FOURTH ROW -->
+
+       <div class="row">
+         <div class="col-12 infodiv">
+           <label class="Bday">Address</label>
+           <input id="address" type="text" name="address" class="form-control">
+         </div>
+       </div>
 
        <div class="row">
          <div class="col-md-6">
