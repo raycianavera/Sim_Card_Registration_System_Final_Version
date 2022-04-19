@@ -225,7 +225,7 @@
    }
   } else {
     // header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
-    header("Location: ../Sim_Card_Registration_System_Final_Version/register-users-local.php?no-result=nsonum='.$nso.'&button");
+    header("Location: ../register-users-local.php?no-result=nsonum='.$nso.'&button");
     // echo "NO RESULT";
 
   }
