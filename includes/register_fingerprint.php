@@ -87,5 +87,5 @@ if(isset($_POST['register'])){
    mysqli_close($conn);
  }
 } else {
-    header("Location: ../register-users-local.php?nsonum=.$nso.&button=no-result");
+    header("Location:../register-users-local.php?nsonum=.$nso.&button=no-result");
 }
