@@ -20,11 +20,12 @@ if(isset($_POST['register'])){
     $dob = $row['dateofbirth'];
     $gndr = $row['gender'];
     $passnum_nsonum = $row['nsonum'];
-    $address = $row['address'];
+    // $address = $row['address'];
     $nationality = 'Filipino';
   }
 
   // DATA FROM REGIS
+  $address = $_POST['address'];
   $simcard = $_POST['simcard'];
   $simnum = $_POST['simnum'];
   $regisite = $_POST['regisite'];
@@ -63,7 +64,7 @@ if(isset($_POST['register'])){
 
   }
   else {
-    $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum, address,nationality,simcard, simnum,regisite,dateofregis,time,fingerprint_File_Format, fingerprint_File_Name)
+    $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,nationality,address,simcard, simnum,regisite,dateofregis,time,fingerprint_File_Format, fingerprint_File_Name)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
     // PREPARED STATEMENT
     $stmt = mysqli_stmt_init($conn);
@@ -71,7 +72,7 @@ if(isset($_POST['register'])){
     if(!mysqli_stmt_prepare($stmt, $sql)){
       echo "SQL statement failed";
     }else{
-      mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $address,$nationality,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
+      mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$nationality,$address,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
       // RUN PARAMETER INDSIDE DATABASE
       mysqli_stmt_execute($stmt);
       $result = mysqli_stmt_get_result($stmt);
