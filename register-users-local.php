@@ -91,6 +91,13 @@
           echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
         }
 
+      }elseif(strpos($fulUrl, "incorrectNum")==true){
+        echo "<p class= 'nsoexist'>There is an error in the Mobile Number you want to register. make sure the digits are correct</p>";
+      }elseif(strpos($fulUrl, "missplus")==true){
+        echo "<p class= 'nsoexist'>Incorrect Phone Number Format. please use +63 format and enter phone number only</p>";
+      }elseif(strpos($fulUrl, "wrongchars")==true){
+        echo "<p class= 'nsoexist'>Invalid characters detected. enter numbers only!</p>";
+      }
 
 ?>
 <?php
