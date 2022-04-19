@@ -9,7 +9,7 @@ body {
 }
 
 .navbar {
-    padding: 0rem 7rem !important;
+    padding: 0rem 2rem !important;
     background-color: #2f5a62;
 
 }
@@ -17,7 +17,7 @@ body {
 .nav-link {
   margin-right: 5rem;
   font-weight: bold;
-  color: white;
+  color: #c1ebe2;
 }
 
 .brandname {
@@ -32,38 +32,29 @@ body {
   border-radius: 0 0 5px 5px;
 }
 
-.selected{
-  color: white !important;
-}
 
 .log-button {
     /* padding: 0; */
     border: none;
     background: none;
     font-weight: bold;
-    color: white;
+    color: #c1ebe2;
     position: relative;
     right: 6px;
     margin-top: 5px;
 }
 
 .nav-link:hover{
-  color: #2f5a62 !important;
-  background-color: white;
-  border-radius: 8px;
+  color: white !important;
 }
 
 .log-button:hover{
-  color: #2f5a62 !important;
-  background-color: white;
-  height: 40px;
-  border-radius: 8px;
+  color: white !important;
+
 }
 
 .selected {
-  color: #2f5a62 !important;
-  background-color: white;
-  border-radius: 8px;
+  color: white !important;
 }
 
 /* minimized navbar button collapse */
@@ -201,8 +192,10 @@ textarea {
 
 
 /* MEDIA QUERY FOR NAV BAR */
-@media only screen and (max-width: 1024px) {
-
+@media only screen and (max-width: 991.5px) {
+.log-button {
+  margin-bottom: 1rem!important;
+}
 }
 
 @media only screen and (max-width: 768px) {
@@ -214,20 +207,13 @@ textarea {
   padding: 0rem 4rem !important;
 }
 
-.navbar-nav {
-  padding-left: 20px;
-}
-
-.form-btnn {
-  padding-left: 20px;
-}
 
 }
 
 @media only screen and (max-width: 570px) {
-.brandname {
-  font-size: 17px;
-}
+  .brandname {
+    font-size: 14px;
+  }
 
 .navbar {
   padding: 0rem 2rem !important;
@@ -266,6 +252,11 @@ textarea {
 
 }
 
+@media only screen and (max-width: 345px) {
+.brandname {
+  font-size: 12px;
+}
+
 @media only screen and (max-width: 320px) {
 
   h2 {
@@ -275,7 +266,7 @@ textarea {
   font-size: 0px;
 }
 .navbar-nav .nav-link, .log-button {
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .ss-btn {

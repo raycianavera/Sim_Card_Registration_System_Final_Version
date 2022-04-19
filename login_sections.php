@@ -52,7 +52,7 @@
              //BACKEND OF SIM RETAILER LOGIN
              $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
              if (strpos($fulUrl,"login_sections.php?simRetailer=invalidpassoremail") == true){
-               echo "<p class= 'errormessage' style='color:#FF0000'> Incorrect Email or Password  </p>";
+               echo "<p class= 'errormessage'> Incorrect Email or Password</p>";
              };
 
              echo"
@@ -80,7 +80,7 @@
 //SELLER LOGIN
                   $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                   if (strpos($fulUrl,"login_sections.php?adminLogin=invalidpassoremail") == true){
-                    echo "<p class= 'errormessage' style='color:#FF0000'> Incorrect Email or Password  </p>";
+                    echo "<p class= 'errormessage' style=''> Incorrect Email or Password</p>";
                   };
 
 
@@ -109,26 +109,27 @@
 
           <form name='otpForm' action='UserprofileBackEnd/index.inc.php' method='post' class='form-retail'>
 
-          <p class='userlogtext'>USER LOGIN</p>
-          <input type='tel' name='IndexNumber' id='userMobileNum' class='input-retail' placeholder='Mobile Number ex: +639176578905' required>
-          <button type='Submit' name='indexButton' class='btn'>Submit</button>";
-          //^first half of login page
+          <p class='userlogtext'>USER LOGIN</p>";
+
           //ERROR MESSAGES
           $fulUrl="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
           if (strpos($fulUrl,"errornumber=notexist") == true){
-            echo "<p class= 'errormessage' style='color:red'> This number is not registered </p>";
+            echo "<p class= 'errormessage'>This number is not registered</p>";
           }else if(strpos($fulUrl,"errornumber=invalid") == true){
-              echo "<p class= 'errormessage' style='color:red'>Enter Numbers only</p>";
+              echo "<p class= 'errormessage'>Please enter digits only</p>";
           }else if(strpos($fulUrl,"errornumber=empty") == true){
-              echo "<p class= 'errormessage' style='color:red'>You did not fill up the field!</p>";
+              echo "<p class= 'errormessage'>Please fill up the input field</p>";
           }else if(strpos($fulUrl,"errornumber=stmtfailed") == true){
-              echo "<p class= 'errormessage' style='color:red'>Connection error. please try again later</p>";
+              echo "<p class= 'errormessage'>Connection error. Try again</p>";
           }else if(strpos($fulUrl,"errornumber=noplus") == true){
-              echo "<p class= 'errormessage' style='color:red'>Incorrect Input. enter phone number only and use '+63' format</p>";
+              echo "<p class= 'errormessage'>Incorrect input detected</p>";
           };
 
           //Second half of login page
           echo "
+          <input type='tel' name='IndexNumber' id='userMobileNum' class='input-retail' placeholder='Mobile Number ex: +639176578905' required>
+          <button type='Submit' name='indexButton' class='btn'>Submit</button>
+        
           <div class='edit-margin links-users'>
           <a href='login_sections.php' class='aF'>
           <p class='simuser-type'>Sim User</p>

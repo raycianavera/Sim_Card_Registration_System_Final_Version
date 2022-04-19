@@ -52,15 +52,14 @@ body {
 }
 
 .navbar {
-    padding: 0rem 7rem !important;
+    padding: 0rem 2rem !important;
     background-color: #2f5a62;
-
 }
 
 .nav-link {
   margin-right: 5rem;
   font-weight: bold;
-  color: white;
+  color: #C1EBE3;
 }
 
 .brandname {
@@ -81,29 +80,29 @@ body {
     border: none;
     background: none;
     font-weight: bold;
-    color: white;
+    color: #C1EBE3;
     position: relative;
     right: 6px;
     margin-top: 5px;
 }
 
 .nav-link:hover{
-  color: #2f5a62 !important;
-  background-color: white;
-  border-radius: 8px;
+  color: white !important;
+  /* background-color: white;
+  border-radius: 8px; */
 }
 
 .log-button:hover{
-  color: #2f5a62 !important;
-  background-color: white;
+  color: white !important;
+  /* background-color: white;
   height: 40px;
-  border-radius: 8px;
+  border-radius: 8px; */
 }
 
 .selected {
-  color: #2f5a62 !important;
-  background-color: white;
-  border-radius: 8px;
+  color: white !important;
+  /* background-color: white;
+  border-radius: 8px; */
 }
 
 /* minimized navbar button collapse */
@@ -195,8 +194,10 @@ h2 {
 
 
 /* MEDIA QUERY FOR NAV BAR */
-@media only screen and (max-width: 1024px) {
-
+@media only screen and (max-width: 991.5px) {
+.log-button {
+  margin-bottom: 1rem!important;
+}
 }
 
 @media only screen and (max-width: 768px) {
@@ -208,19 +209,19 @@ h2 {
   padding: 0rem 4rem !important;
 }
 
-.navbar-nav {
+/* .navbar-nav {
   padding-left: 20px;
 }
 
 .form-btnn {
   padding-left: 20px;
-}
+} */
 
 }
 
 @media only screen and (max-width: 570px) {
 .brandname {
-  font-size: 17px;
+  font-size: 14px;
 }
 
 .navbar {
@@ -269,13 +270,18 @@ h2 {
 
 }
 
+@media only screen and (max-width: 345px) {
+.brandname {
+  font-size: 12px;
+}
+
 @media only screen and (max-width: 320px) {
 
 .brandname {
   font-size: 0px;
 }
 .navbar-nav .nav-link, .log-button {
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .ss-btn {
