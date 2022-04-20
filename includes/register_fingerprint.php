@@ -53,7 +53,6 @@ if(isset($_POST['register'])){
   $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$timeImg;
   $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
 
-
   $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = $simnum";
   $result = mysqli_query($conn, $sqlnso);
   $resultsCheck = mysqli_num_rows($result);
@@ -62,8 +61,7 @@ if(isset($_POST['register'])){
     // header("Location: Sim_Card_Registration_System_Final_Version/register-users-local.php?error=simnum-already-exist");
     // echo "<script> window.location.href='../register-users-local.php?error=simnum-already-exist'; </script>";
 
-  }
-  else {
+  }else {
     $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,nationality,address,simcard, simnum,regisite,dateofregis,time,fingerprint_File_Format, fingerprint_File_Name)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
     // PREPARED STATEMENT
@@ -72,36 +70,56 @@ if(isset($_POST['register'])){
     if(!mysqli_stmt_prepare($stmt, $sql)){
       echo "SQL statement failed";
     }else{
-      $countnumber = strlen($simnum);
-      if($countnumber != 13){
-          header("Location: ../register-users-local.php?error=incorrectNum"); //error for wrong count
+        if($fileSize==0){   //ERROR 404 for no file added
+          header("Location: ../register-users-local.php?imageempty");
           exit();
-      }else{
-        if(!preg_match("/[a-zA-Z +-]/",$simnum)){   //ERROR 404 for lack of + plus
-            header("Location: ../register-users-local.php?error=missplus");
-            exit();
         }else{
-          $noplusnum = str_replace("+","",$simnum); //remove "+"
-          if(preg_match("/^[a-zA-Z_ -]*$/", $noplusnum)){ // ERROR 404 for not being number
-              header("Location: ../register-users-local.php?error=wrongchars");
-              exit();
-          }else{
-            mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$nationality,$address,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
-            // RUN PARAMETER INDSIDE DATABASE
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-            $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
-            move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
-            header("Location: ../register-users-local.php?signup=success");
-            // echo "<script> window.location.href='../register-users-local.php?signup=success'; </script>";
+          if(in_array($fileActualExt,$allowed)){   //IF FILE IS JPG,PNG,JPEG
+                if($fileError === 0){                  //IF FILE HAS A PROBLEM
+                    if($fileSize<20000000){
+                    }else{
+                      header("Location: ../register-users-local.php?imagelarge");
+                      exit();
+                    }
+                  }else{
+                    header("Location: ../register-users-local.php?imageerror");
+                    exit();
+                  }
+                }else{
+                  header("Location: ../register-users-local.php?imageformaterror");
+                  exit();
+                }
+                $countnumber = strlen($simnum);
+                if($countnumber != 13){
+                    header("Location: ../register-users-local.php?error=incorrectNum"); //error for wrong count
+                    exit();
+                }else{
+                if(!preg_match("/[a-zA-Z +-]/",$simnum)){   //ERROR 404 for lack of + plus
+                  header("Location: ../register-users-local.php?error=missplus");
+                  exit();
+              }else{
+                $noplusnum = str_replace("+","",$simnum); //remove "+"
+                if(preg_match("/^[a-zA-Z_ -]*$/", $noplusnum)){ // ERROR 404 for not being number
+                    header("Location: ../register-users-local.php?error=wrongchars");
+                    exit();
+                }else{
+                  mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$nationality,$address,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
+                  // RUN PARAMETER INDSIDE DATABASE
+                  mysqli_stmt_execute($stmt);
+                  $result = mysqli_stmt_get_result($stmt);
+                  $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
+                  move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
+                  header("Location: ../register-users-local.php?signup=success");
+                  // echo "<script> window.location.href='../register-users-local.php?signup=success'; </script>";
+                }
+              }
+            }
           }
         }
       }
-     }
-   }
-   mysqli_stmt_close($stmt);
-   mysqli_close($conn);
- }
-} else {
+      mysqli_stmt_close($stmt);
+      mysqli_close($conn);
+    }
+  }else{
     header("Location: ../register-users-local.php?nsonum=.$nso.&button=no-result");
-}
+  }
