@@ -5,9 +5,10 @@ session_start();
 
 
 if(isset($_POST['register'])){
+  // $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
 
   $nso = $_SESSION['nsonumber'];
-  $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso'; ";
+  $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso';";
   $result = mysqli_query($conn,$query);
 
   if (mysqli_num_rows($result) > 0) {
@@ -49,11 +50,10 @@ if(isset($_POST['register'])){
   $fileActualExt  = strtolower(end($fileExt));
 
 
-
   $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$timeImg;
   $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
 
-  $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = $simnum";
+  $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnum';";
   $result = mysqli_query($conn, $sqlnso);
   $resultsCheck = mysqli_num_rows($result);
   if($resultsCheck == 1){
@@ -70,6 +70,8 @@ if(isset($_POST['register'])){
     if(!mysqli_stmt_prepare($stmt, $sql)){
       echo "SQL statement failed";
     }else{
+      //enter image error handlers
+      //////////////////////  IMAGE ERRORS  /////////////////////
         if($fileSize==0){   //ERROR 404 for no file added
           header("Location: ../register-users-local.php?imageempty");
           exit();
@@ -89,19 +91,21 @@ if(isset($_POST['register'])){
                   header("Location: ../register-users-local.php?imageformaterror");
                   exit();
                 }
+                //enter mobile number error handlers
+                //////////////////////  MOBILE NUMBER ERRORS  /////////////////////
                 $countnumber = strlen($simnum);
                 if($countnumber != 13){
                     header("Location: ../register-users-local.php?error=incorrectNum"); //error for wrong count
                     exit();
                 }else{
-                if(!preg_match("/[a-zA-Z +-]/",$simnum)){   //ERROR 404 for lack of + plus
+                  $noplusnum = str_replace("+","",$simnum); //remove "+"
+                  if(preg_match("/^[a-zA-Z_ -]*$/", $noplusnum)){ // ERROR 404 for not being number
+                      header("Location: ../register-users-local.php?error=wrongchars");
+                      exit();
+                }else{
+                  if(!preg_match("/[a-zA-Z +]/",$simnum)){   //ERROR 404 for lack of + plus
                   header("Location: ../register-users-local.php?error=missplus");
                   exit();
-              }else{
-                $noplusnum = str_replace("+","",$simnum); //remove "+"
-                if(preg_match("/^[a-zA-Z_ -]*$/", $noplusnum)){ // ERROR 404 for not being number
-                    header("Location: ../register-users-local.php?error=wrongchars");
-                    exit();
                 }else{
                   mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$nationality,$address,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
                   // RUN PARAMETER INDSIDE DATABASE
