@@ -88,13 +88,13 @@
         }
           // error message for mobile number
           elseif(strpos($fulUrl, "incorrectNum")==true){
-          echo "<p class= 'nsoexist'>There is an error in the Mobile Number you want to register. Make sure the digits are correct</p>";
+          echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
           }
         elseif(strpos($fulUrl, "missplus")==true){
-          echo "<p class= 'nsoexist'>Incorrect Mobile Number Format. Please use +63 format and enter phone number only</p>";
+          echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please use the +63 format and input digits only</p>";
           }
         elseif(strpos($fulUrl, "wrongchars")==true){
-          echo "<p class= 'nsoexist'>Invalid Characters Detected. Enter Numbers only!</p>";
+          echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
           }
 
           // error message for fingerprint image
@@ -105,10 +105,10 @@
             echo "<p class= 'nsoexist'>FINGERPRINT IMAGE SIZE IS TOO LARGE</p>";
           }
           elseif(strpos($fulUrl, "imageerror") == true){
-            echo "<p class= 'nsoexist'>There was an error that occurred while processing your fingerprint image. Please re-upload the fingerprint image</p>";
+            echo "<p class= 'nsoexist'>There was an error that occurred while processing the fingerprint image. Please re-upload the fingerprint image</p>";
           }
           elseif(strpos($fulUrl, "imageformaterror") == true){
-            echo "<p class= 'nsoexist'>Please upload your fingerprint image in .jpg, .jpeg, or .png only</p>";
+            echo "<p class= 'nsoexist'>Please upload the fingerprint image in .jpg, .jpeg, .png, or .bmp only</p>";
           }
 
 ?>

@@ -104,6 +104,15 @@ if(isset($_POST['reportbutton'])){
                                       mysqli_stmt_bind_param($stmt,"sssssss",$Victim_Num,$Victim_Name_B,$Reported_Num,$Message,$ImageFullName,$Name_ReportImage,$DateTime);
                                       mysqli_stmt_execute($stmt); //FILE SENT
                                       move_uploaded_file($fileTempName,$fileDestination); //moving the file
+                                      // UPDATE ID INCREMENT
+                                      $update = "SET @num :=0;";
+                                      $resultup = mysqli_query($conn, $update);
+                                      $update = "UPDATE report_messages_db SET report_id = @num := (@num+1);";
+                                      $resultup = mysqli_query($conn, $update);
+                                      $update = "ALTER TABLE report_messages_db AUTO_INCREMENT = 1;";
+                                      $resultup = mysqli_query($conn, $update);
+
+
                                       header("Location:../profile-user.php?reportPage&ReportStatus=success");
                                     }
                                   }
