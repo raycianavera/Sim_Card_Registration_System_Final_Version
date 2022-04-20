@@ -99,7 +99,7 @@
         echo "<p class= 'nsoexist'>Incorrect Mobile Format. Please use +63 format and enter phone number only</p>";
         }
       elseif(strpos($fulUrl, "wrongchars")==true){
-        echo "<p class= 'nsoexist'>Invalid characters detected. Enter numbers only!</p>";
+        echo "<p class= 'nsoexist'>Invalid Characters Detected. Enter Numbers only!</p>";
         }
 
         // error message for fingerprint image
