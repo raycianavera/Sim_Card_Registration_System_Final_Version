@@ -2,7 +2,7 @@
   require 'dbh.inc.php';
   session_start();
   if (empty($_SESSION['AdminEmail'])){
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit();
   }
   $AdminLName = $_SESSION['AdminLastName'] ;

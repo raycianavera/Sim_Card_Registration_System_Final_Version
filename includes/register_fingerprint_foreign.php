@@ -58,7 +58,7 @@ if(isset($_POST['register'])){
        $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
 
 
-         $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = $simnum";
+         $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnum';";
          $result = mysqli_query($conn, $sqlnso);
          $resultsCheck = mysqli_num_rows($result);
          if($resultsCheck == 1){
@@ -76,19 +76,60 @@ if(isset($_POST['register'])){
        if(!mysqli_stmt_prepare($stmt, $sql)){
          echo "SQL statement failed";
        }else{
-         mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $address,$nationality,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
-         // RUN PARAMETER INDSIDE DATABASE
-         mysqli_stmt_execute($stmt);
-         $result = mysqli_stmt_get_result($stmt);
-         $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
-         move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
-         // echo "<script> window.location.href='../register-users-foreign.php?signup=success'; </script>";
-         header("Location: ../register-users-foreign.php?signup=success");
+         //enter image error handlers
+         //////////////////////  IMAGE ERRORS  /////////////////////
+           if($fileSize==0){   //ERROR 404 for no file added
+             header("Location: ../register-users-foreign.php?imageempty");
+             exit();
+           }else{
+             if(in_array($fileActualExt,$allowed)){   //IF FILE IS JPG,PNG,JPEG
+                   if($fileError === 0){                  //IF FILE HAS A PROBLEM
+                       if($fileSize<20000000){
+                       }else{
+                         header("Location: ../register-users-foreign.php?imagelarge");
+                         exit();
+                       }
+                     }else{
+                       header("Location: ../register-users-foreign.php?imageerror");
+                       exit();
+                     }
+                   }else{
+                     header("Location: ../register-users-foreign.php?imageformaterror");
+                     exit();
+                   }
+                   //enter mobile number error handlers
+                   //////////////////////  MOBILE NUMBER ERRORS  /////////////////////
+                     $noplusnum = str_replace("+","",$simnum); //remove "+"
+                     if(preg_match("/^[a-zA-Z_ -]*$/", $noplusnum)){ // ERROR 404 for not being number
+                         header("Location: ../register-users-foreign.php?error=wrongchars");
+                         exit();
+                 }else{
+                   if(!preg_match("/[a-zA-Z +]/",$simnum)){   //ERROR 404 for lack of + plus
+                     header("Location: ../register-users-foreign.php?error=missplus");
+                     exit();
+                  }else{
+                     $countnumber = strlen($simnum);
+                     if($countnumber != 13){
+                         header("Location: ../register-users-foreign.php?error=incorrectNum"); //error for wrong count
+                         exit();
+                   }else{
+                     mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $address,$nationality,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
+                     // RUN PARAMETER INDSIDE DATABASE
+                     mysqli_stmt_execute($stmt);
+                     $result = mysqli_stmt_get_result($stmt);
+                     $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
+                     move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
+                     // echo "<script> window.location.href='../register-users-foreign.php?signup=success'; </script>";
+                     header("Location: ../register-users-foreign.php?signup=success");
+                   }
+                 }
+               }
+             }
+           }
+         }
+         mysqli_stmt_close($stmt);
+         mysqli_close($conn);
        }
-     }
-     mysqli_stmt_close($stmt);
-     mysqli_close($conn);
-   }
- } else {
-    header("Location: ../register-users-foreign.php?nsonum=.$nso.&button=no-result");
-}
+     }else{
+      header("Location: ../register-users-foreign.php?nsonum=.$nso.&button=no-result");
+  }

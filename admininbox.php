@@ -124,6 +124,18 @@ $AdminPass  = $_SESSION['AdminPassword'];
     </table>
     <!-- </div> -->
 
+    <?php
+    // UPDATE ID INCREMENT
+  	$update = "SET @num :=0;";
+    $resultup = mysqli_query($conn, $update);
+    $update = "UPDATE report_messages_db SET report_id = @num := (@num+1);";
+    $resultup = mysqli_query($conn, $update);
+    $update = "ALTER TABLE report_messages_db AUTO_INCREMENT = 1;";
+    $resultup = mysqli_query($conn, $update);
+
+
+     ?>
+
 
 </body>
 
