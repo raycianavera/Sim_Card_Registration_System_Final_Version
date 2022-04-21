@@ -2,6 +2,12 @@ const loginForm = document.querySelector('form[name=otpForm]')
 
 loginForm.addEventListener('submit', e => {
   console.log(loginForm)
+  var submitButton = loginForm.querySelector("button")
+  submitButton.disabled = true
+  const errorMessage = loginForm.querySelector('p[class=errormessage]')
+  if (errorMessage) {
+    errorMessage.remove()
+  }
   e.preventDefault()
 
   const userMobileNoField = loginForm.querySelector('input[name=IndexNumber]')
@@ -26,6 +32,7 @@ loginForm.addEventListener('submit', e => {
     if (responseForm) {
       const errorMessage = responseForm.querySelector('p[class=errormessage]')
       const buttonNode = loginForm.querySelector('button')
+      buttonNode.disabled = false
       if (errorMessage) { 
         loginForm.insertBefore(errorMessage, buttonNode) 
       }
