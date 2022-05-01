@@ -34,7 +34,7 @@
 
 </head>
   <body>
-    <!-- NAVBAR PART -->
+
     <header>
 
       <nav class="navbar navbar-expand-lg">
@@ -65,7 +65,6 @@
       </nav>
     </header>
 
-    <!-- BODY PART -->
     <div class="container">
       <div class="row header">
         <h2>Foreign User Sim Card Registration Form</h2>
@@ -86,7 +85,7 @@
         elseif(strpos($fulUrl, "no-result") == true){
           echo "<p class= 'nsoexist'>USER NOT FOUND ON DATABASE</p>";
         }
-          // error message for mobile number
+
           elseif(strpos($fulUrl, "incorrectNum")==true){
           echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
           }
@@ -97,7 +96,7 @@
           echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
           }
 
-          // error message for fingerprint image
+
           elseif(strpos($fulUrl, "imageempty") == true){
             echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
           }
@@ -113,14 +112,14 @@
 
 ?>
 <?php
-// BUTTON CLICKED : WITH RESULTS
+
   if(isset($_GET['passnum'])){
     $passport = $_GET['passnum'];
     $query = "SELECT * FROM foreign_passport_db WHERE passnum =  '$passport'; ";
     $result = mysqli_query($conn,$query);
 
       if (mysqli_num_rows($result) > 0) {
-        // if there is a result
+
         foreach ($result as $row) {
         ?>
         <div class="row">
@@ -142,7 +141,7 @@
           </div>
         </div>
 
-        <!-- SECOND ROW -->
+
         <div class="row srow">
           <div class="col-md-3">
             <label class="labelings">Date of Birth</label>
@@ -158,7 +157,7 @@
          </div>
        </div>
 
-       <!-- THIRD ROW -->
+
        <div class="row srow">
          <div class="col-md-12 ">
            <label class="">Passport Number</label>
@@ -171,7 +170,7 @@
          </div>
        </div>
 
-       <!-- BUTTON ROW -->
+
        <div class="row srow nsobutton">
          <div class="col-12 infodiv">
          <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php">Search Database</button>
@@ -180,10 +179,10 @@
        </div>
 
          </form>
-          <!-- END OF AUTOFILL -->
+
           <form class="" action="includes/register_fingerprint_foreign.php" method="post" enctype="multipart/form-data">
 
-            <!-- FOURTH ROW -->
+
 
             <div class="row">
               <div class="col-md-12 ">
@@ -218,7 +217,7 @@
 
             </div>
 
-            <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
+
             <div class="row srow">
               <div class="col-md-6">
                 <div class="form-group">
@@ -233,19 +232,15 @@
           </div>
 
           </form>
-          <?php
-           // DATA FROM AUTOFILL
 
-
-           ?>
            <?php
          }
        } else {
          header("Location: ../Sim_Card_Registration_System_Final_Version/register-users-foreign.php?no-result=nsonum='.$passport.'&button");
-         // echo "No results !";
+
        }
 } else {
-// INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD
+
 ?>
 <form class="" action="register-users-foreign.php" method="GET">
   <div class="row">
@@ -271,7 +266,6 @@
 
     </div>
 
-    <!-- SECOND ROW -->
     <div class="row srow">
       <div class="col-md-3">
         <label class="labelings">Date of Birth</label>
@@ -287,7 +281,7 @@
       </div>
 
     </div>
-    <!-- THIRD ROW -->
+
     <div class="row srow">
       <div class="col-md-12 infodiv ">
         <label class="">Passport Number</label>
@@ -299,7 +293,7 @@
       </div>
     </div>
 
-    <!-- BUTTON ROW -->
+
     <div class="row srow nsobutton">
       <div class="col-12 infodiv">
       <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php">Search Database</button>
@@ -308,12 +302,8 @@
     </div>
   </form>
 
-  <!-- END OF AUTOFILL -->
   <form class="" action="includes/register_fingerprint_foreign.php" method="post" enctype="multipart/form-data">
 
-
-
-    <!-- FOURTH ROW -->
     <div class="row">
       <div class="col-md-12 ">
         <label class="">Address</label>
@@ -348,7 +338,7 @@
 
     </div>
 
-    <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
+
     <div class="row srow">
       <div class="col-md-6">
         <div class="form-group">
@@ -369,8 +359,6 @@
 
 </div>
 
-
-<!-- end of body -->
 
   </body>
 </html>
