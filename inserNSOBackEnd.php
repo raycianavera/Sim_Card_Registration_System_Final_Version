@@ -1,5 +1,6 @@
 <?php
 
+include_once "dbh.inc.php";
 if(isset($_POST['indexButton'])){
   $LastN = $_POST['Last'];
   $FirstN = $_POST['First'];
