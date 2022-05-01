@@ -23,7 +23,7 @@ if(isset($_POST['indexButton'])){
 }
 
 
-if(isset($_POST['indexButton'])){
+if(isset($_POST['SubmitInputFor'])){
   $FLastN = $_POST['ForLast'];
   $FFirstN = $_POST['ForFirst'];
   $FMidN = $_POST['ForMid'];
