@@ -5,7 +5,7 @@ session_start();
 
 
 if(isset($_POST['register'])){
-  // $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
+
 
   $nso = $_SESSION['nsonumber'];
   $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso';";
@@ -21,7 +21,6 @@ if(isset($_POST['register'])){
     $dob = $row['dateofbirth'];
     $gndr = $row['gender'];
     $passnum_nsonum = $row['nsonum'];
-    // $address = $row['address'];
     $nationality = 'Filipino';
   }
 
@@ -58,8 +57,6 @@ if(isset($_POST['register'])){
   $resultsCheck = mysqli_num_rows($result);
   if($resultsCheck == 1){
     header("Location: ../register-users-local.php?error=simnum-already-exist");
-    // header("Location: Sim_Card_Registration_System_Final_Version/register-users-local.php?error=simnum-already-exist");
-    // echo "<script> window.location.href='../register-users-local.php?error=simnum-already-exist'; </script>";
 
   }else {
     $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,nationality,address,simcard, simnum,regisite,dateofregis,time,fingerprint_File_Format, fingerprint_File_Name)
@@ -71,7 +68,6 @@ if(isset($_POST['register'])){
       echo "SQL statement failed";
     }else{
       //enter image error handlers
-      //////////////////////  IMAGE ERRORS  /////////////////////
         if($fileSize==0){   //ERROR 404 for no file added
           header("Location: ../register-users-local.php?imageempty");
           exit();
@@ -92,7 +88,6 @@ if(isset($_POST['register'])){
                   exit();
                 }
                 //enter mobile number error handlers
-                //////////////////////  MOBILE NUMBER ERRORS  /////////////////////
                   $noplusnum = str_replace("+","",$simnum); //remove "+"
                   if(preg_match("/^[a-zA-Z_ -]*$/", $noplusnum)){ // ERROR 404 for not being number
                       header("Location: ../register-users-local.php?error=wrongchars");
@@ -111,10 +106,10 @@ if(isset($_POST['register'])){
                   // RUN PARAMETER INDSIDE DATABASE
                   mysqli_stmt_execute($stmt);
                   $result = mysqli_stmt_get_result($stmt);
-                  $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
-                  move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
+                  $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName;
+                  move_uploaded_file($fileTempName,$fileDestination);
                   header("Location: ../register-users-local.php?signup=success");
-                  // echo "<script> window.location.href='../register-users-local.php?signup=success'; </script>";
+
                 }
               }
             }
