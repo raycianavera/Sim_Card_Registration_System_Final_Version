@@ -9,8 +9,7 @@
     exit();
   }
 ?>
-<!-- register-users-local.php?nsonum=3864&button= -->
-<!-- onclick="resetForm()" -->
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -36,7 +35,7 @@
 
 </head>
   <body>
-    <!-- NAVBAR PART -->
+
     <header>
 
       <nav class="navbar navbar-expand-lg">
@@ -62,8 +61,6 @@
 
             </ul>
 
-
-
           <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">
             <button type="submit" name="btn-primary" class="log-button">Logout</button>
           </form>
@@ -71,7 +68,6 @@
       </nav>
     </header>
 
-    <!-- BODY PART -->
     <div class="container">
       <div class="row header">
             <h2>Local User Sim Card Registration Form</h2>
@@ -91,7 +87,7 @@
           echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
         }
 
-        // error message for mobile number
+
         elseif(strpos($fulUrl, "incorrectNum")==true){
         echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
         }
@@ -102,7 +98,7 @@
         echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
         }
 
-        // error message for fingerprint image
+
         elseif(strpos($fulUrl, "imageempty") == true){
           echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
         }
@@ -121,17 +117,17 @@
 
 ?>
 <?php
-// BUTTON CLICKED : WITH RESULTS
+
   if(isset($_GET['nsonum'])){
     $nso = $_GET['nsonum'];
     $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso'; ";
     $result = mysqli_query($conn,$query);
 
       if (mysqli_num_rows($result) > 0) {
-        // if there is a result
+
         foreach ($result as $row) {
           ?>
-        <!-- FIRST ROW -->
+
         <div class="row">
 
           <div class="col-md-3 infodiv">
@@ -156,7 +152,7 @@
 
         </div>
 
-        <!-- SECOND ROW -->
+
         <div class="row srow">
           <div class="col-md-3 infodiv">
             <label class="labelings">Date of Birth</label>
@@ -179,7 +175,6 @@
         </div>
 
 
-        <!-- BUTTON ROW -->
         <div class="row srow nsobutton">
           <div class="col-12 infodiv">
             <a href="register-users-local.php">
@@ -189,9 +184,8 @@
 
         </div>
         </form>
-        <!-- END OF AUTOFILL -->
+
         <form class="" action="includes/register_fingerprint.php" method="POST" enctype='multipart/form-data'>
-          <!-- FOURTH ROW -->
 
           <div class="row">
             <div class="col-12 infodiv">
@@ -215,7 +209,6 @@
             </div>
           </div>
 
-          <!-- FIFTH ROW -->
           <div class="row srow">
             <div class="col-md-6 infodiv">
               <label class="labelings">Date of Registration</label>
@@ -229,7 +222,6 @@
 
           </div>
 
-          <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
           <div class="row srow">
             <div class="col-md-6">
               <div class="form-group">
@@ -244,20 +236,14 @@
         </div>
 
         </form>
-        <?php
-        // DATA FROM AUTOFILL
 
-       ?>
        <?php
    }
   } else {
-    // header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
-    header("Location: ../register-users-local.php?no-result=nsonum='.$nso.'&button");
-    // echo "NO RESULT";
+    header("Location: ../Sim_Card_Registration_System_Final_Version/register-users-local.php?no-result=nsonum='.$nso.'&button");
 
   }
   }else {
-    // INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD
   ?>
   <form class="" action="register-users-local.php" method="GET">
    <div class="row">
@@ -284,7 +270,6 @@
 
        </div>
 
-       <!-- SECOND ROW -->
        <div class="row srow">
          <div class="col-md-3 infodiv">
            <label class="labelings">Date of Birth</label>
@@ -306,8 +291,6 @@
        </div>
 
 
-
-       <!-- BUTTON ROW -->
        <div class="row srow nsobutton">
          <div class="col-12 infodiv">
          <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php">Search Database</button>
@@ -317,8 +300,6 @@
        </form>
 
    <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
-       <!-- FOURTH ROW -->
-
        <div class="row">
          <div class="col-12 infodiv">
            <label class="Bday">Address</label>
@@ -341,7 +322,6 @@
          </div>
        </div>
 
-       <!-- FIFTH ROW -->
        <div class="row srow">
          <div class="col-md-6 infodiv">
            <label class="labelings">Date of Registration</label>
@@ -355,7 +335,6 @@
 
        </div>
 
-       <!-- PROCEED TO FINGERPRINT REGISTRATION BUTTON -->
        <div class="row srow">
          <div class="col-md-6">
            <div class="form-group">
@@ -370,19 +349,10 @@
      </div>
 
      </form>
-
-
       <?php
 
   }
   ?>
-
-
-
 </div>
-
-
-<!-- end of body -->
-
  </body>
 </html>

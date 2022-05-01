@@ -24,7 +24,6 @@
 ?>
 
 
-<!-- BODY PART -->
 <div class="container">
   <?php
     if (isset($_GET['reportPage'])) {
@@ -110,9 +109,12 @@
     </div>
       </form>
     ";
+
+
+
   } else {
 
-//REPORT PAGE
+
     echo "
     <form class='' id='form' action='UserprofileBackEnd/Back_End_User_Profile.php' method='POST'>
     <div class='row'>
