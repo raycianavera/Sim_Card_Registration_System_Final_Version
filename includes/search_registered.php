@@ -35,7 +35,6 @@
 
 </head>
   <body>
-    <!-- NAVBAR PART -->
     <header>
 
       <nav class="navbar navbar-expand-lg">
@@ -77,8 +76,6 @@
         </div>
       </nav>
     </header>
-
-<!-- INBOX PART -->
 
 <div class="row admin-row" style="background-color: white;">
   <div class="col-md-6" style="padding-left: 2rem;">
@@ -124,8 +121,6 @@
               while($row = mysqli_fetch_assoc($result)):
         ?>
 
-        <!-- <tr class="canHov" onclick="window.location='reported-message-content.php';"> -->
-
       <tr class="canHov">
 
                   <th scope="row" class="text-truncate"><?php echo $row['lastname']; ?></th>
@@ -159,15 +154,10 @@
 
     endif; ?>
 
-
-
       </tbody>
     </table>
 
   </div>
-
-
-
 
 </body>
 
