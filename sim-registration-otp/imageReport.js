@@ -1,4 +1,4 @@
-const reportForm = document.querySelector('form')
+const reportForm = document.querySelector('form#form')
 
 reportForm.addEventListener('submit', e => {
   e.preventDefault()
