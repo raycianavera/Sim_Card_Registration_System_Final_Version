@@ -33,8 +33,7 @@ reportForm.addEventListener('submit', e => {
       } 
     })
     .catch(reason => {
-        alert('Invalid OTP : ' + reason.message)
-        console.log(reason)
+        alert(reason.response.data.error)
     })
 })
 
