@@ -116,7 +116,7 @@
 
 
     echo "
-    <form class='' id='form' action='UserprofileBackEnd/Back_End_User_Profile.php' method='POST'>
+    <form class='' id='form'>
     <div class='row'>
 
       <div class='col-md-4 infocol1'>
