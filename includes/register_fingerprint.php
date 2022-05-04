@@ -6,7 +6,6 @@ session_start();
 
 if(isset($_POST['register'])){
 
-
   $nso = $_SESSION['nsonumber'];
   $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso';";
   $result = mysqli_query($conn,$query);
@@ -47,7 +46,6 @@ if(isset($_POST['register'])){
   $allowed        = array("jpg","jpeg","png","bmp");
   $fileExt        = explode(".",$fileName);
   $fileActualExt  = strtolower(end($fileExt));
-
 
   $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$timeImg;
   $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
@@ -109,7 +107,6 @@ if(isset($_POST['register'])){
                   $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName;
                   move_uploaded_file($fileTempName,$fileDestination);
                   header("Location: ../register-users-local.php?signup=success");
-
                 }
               }
             }

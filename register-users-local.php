@@ -196,7 +196,7 @@
           <div class="row">
             <div class="col-12 infodiv">
               <label class="Bday">Address</label>
-              <input id="address" type="text" name="address" class="form-control">
+              <input id="address" type="text" name="address" class="form-control" required>
             </div>
           </div>
 
@@ -224,7 +224,7 @@
 
             <div class="col-md-6 infodiv">
               <label class="labelings">Registration Site</label>
-              <input id="regisite" type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+              <input id="regisite" type="text" name="regisite" class="form-control" placeholder="e.g: Cavite" required>
             </div>
 
           </div>
@@ -322,7 +322,7 @@
        <div class="row">
          <div class="col-12 infodiv">
            <label class="Bday">Address</label>
-           <input id="address" type="text" name="address" class="form-control">
+           <input id="address" type="text" name="address" class="form-control" required>
          </div>
        </div>
 
@@ -350,7 +350,7 @@
 
          <div class="col-md-6 infodiv">
            <label class="labelings">Registration Site</label>
-           <input id="regisite" type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+           <input id="regisite" type="text" name="regisite" class="form-control" placeholder="e.g: Cavite" required>
          </div>
 
        </div>

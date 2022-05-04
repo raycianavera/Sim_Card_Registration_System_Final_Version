@@ -24,8 +24,6 @@ if(isset($_POST['register'])){
 
        }
 
-
-
      // DATA FROM REGIS
      $address = $_POST['address'];
      $simcard = $_POST['simcard'];
@@ -36,11 +34,8 @@ if(isset($_POST['register'])){
      $time  = date('G').":".date('i').":".date('s');
      $timeImg  = date('G')."-".date('i')."-".date('s');
 
-
-
        // fingerprint image
        $file = $_FILES['file'];
-
        // getting file details
        $fileName       =$file["name"];
        $fileType       =$file["type"];
@@ -51,8 +46,6 @@ if(isset($_POST['register'])){
        $allowed        = array("jpg","jpeg","png","bmp");
        $fileExt        = explode(".",$fileName);
        $fileActualExt  = strtolower(end($fileExt));
-
-
 
        $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$timeImg;
        $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
@@ -94,8 +87,8 @@ if(isset($_POST['register'])){
                      header("Location: ../register-users-foreign.php?imageformaterror");
                      exit();
                    }
-                   //enter mobile number error handlers
 
+                   //enter mobile number error handlers
                      $noplusnum = str_replace("+","",$simnum); //remove "+"
                      if(preg_match("/^[a-zA-Z_ -]*$/", $noplusnum)){ // ERROR 404 for not being number
                          header("Location: ../register-users-foreign.php?error=wrongchars");
@@ -116,7 +109,6 @@ if(isset($_POST['register'])){
                      $result = mysqli_stmt_get_result($stmt);
                      $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName;
                      move_uploaded_file($fileTempName,$fileDestination);
-
                      header("Location: ../register-users-foreign.php?signup=success");
                    }
                  }

@@ -188,7 +188,7 @@
             <div class="row">
               <div class="col-md-12 ">
                 <label class="">Address</label>
-                <input type="text" name="address" class="form-control" value="" required>
+                <input type="text" name="address" class="form-control" placeholder="N/A if not applicable" value="" required>
               </div>
             </div>
 
@@ -213,7 +213,7 @@
               </div>
               <div class="col-md-6 infodiv">
                 <label class="labelings">Registration Site</label>
-                <input type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+                <input type="text" name="regisite" class="form-control" placeholder="e.g: Cavite" required>
               </div>
 
             </div>
@@ -317,7 +317,7 @@
     <div class="row">
       <div class="col-md-12 ">
         <label class="">Address</label>
-        <input type="text" name="address" class="form-control" value="" required>
+        <input type="text" name="address" class="form-control" placeholder="N/A if not applicable" value="" required>
       </div>
     </div>
     <div class="row">
@@ -343,7 +343,7 @@
 
       <div class="col-md-6 infodiv">
         <label class="labelings">Registration Site</label>
-        <input type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+        <input type="text" name="regisite" class="form-control" placeholder="e.g: Cavite" required>
       </div>
 
     </div>
