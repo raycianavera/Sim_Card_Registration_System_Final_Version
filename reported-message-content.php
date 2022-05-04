@@ -162,7 +162,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <img class="screenshot-img" src="<?php echo "Image_Report_Database/".$row['Report_Screenshot'].""    ?>" alt="">
+                        <img class="screenshot-img" src="<?php echo $row['Report_Screenshot'].""    ?>" alt="">
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
