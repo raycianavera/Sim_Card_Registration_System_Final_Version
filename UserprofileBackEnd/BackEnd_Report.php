@@ -66,13 +66,13 @@ if(isset($_POST['reportbutton'])){
                 if($numbercount == 12){
                   //enter image error handlers
                   //////////////////////  IMAGE ERRORS  /////////////////////
-                  if($fileSize==0){   //ERROR 404 for no file added
+                  if(0){   //ERROR 404 for no file added
                     header("Location:../profile-user.php?reportPage&ReportStatus=imageempty");
                     exit();
                   }else{
                     if(in_array($fileActualExt,$allowed)){   //IF FILE IS JPG,PNG,JPEG
-                          if($fileError === 0){                  //IF FILE HAS A PROBLEM
-                              if($fileSize<20000000){              // IF FILE SIZE IS NOT LARGE
+                          if(1){                  //IF FILE HAS A PROBLEM
+                              if(1){              // IF FILE SIZE IS NOT LARGE
                   //////////////////////////////////////// INITIALIZING THE INPUTS TO DATABASE  ////////////////////////////////////////
                   //Check how many items are there in Database
                               $sql  = "SELECT * FROM report_messages_db;";
@@ -90,7 +90,7 @@ if(isset($_POST['reportbutton'])){
                                   //////Reconfiguring Image File and Format////////
                                   $Name_ReportImage = $Victim_Image_Name."."."ReportNumber_".$setImageOrder; //New File Name of the Image - example of format: TanishaBrown.ReportNumber_1
                                   // $ImageFullName    = $Name_ReportImage.".".$fileActualExt;                  //Complete Fille Name of the Image - example of format: TanishaBrown.ReportNumber_1.jpg
-                                  $fileDestination  = "../Image_Report_Database/".$ImageFullName;            //Build up file destination
+                                  // $fileDestination  = "../Image_Report_Database/".$ImageFullName;            //Build up file destination
                                   date_default_timezone_set('Asia/Manila');
                                   $dates = date("Y")."-".date("m")."-".date("j");
                                   $time = date('G').":".date('i').":".date('s');
@@ -106,7 +106,7 @@ if(isset($_POST['reportbutton'])){
                                       mysqli_stmt_bind_param($stmt,"sssssss",$Victim_Num,$Victim_Name_B,$Reported_Num,$Message,$ImageFullName,$Name_ReportImage,$DateTime);
                                       mysqli_stmt_execute($stmt); //FILE SENT
   
-                                      move_uploaded_file($fileTempName,$fileDestination); //moving the file
+                                      // move_uploaded_file($fileTempName,$fileDestination); //moving the file
                                       // UPDATE ID INCREMENT
                                       $update = "SET @num :=0;";
                                       $resultup = mysqli_query($conn, $update);
