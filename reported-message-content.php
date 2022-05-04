@@ -39,7 +39,6 @@
 
 <body>
 
-  <!-- NAVBAR PART -->
   <header>
 
     <nav class="navbar navbar-expand-lg">
@@ -64,7 +63,7 @@
             </li>
             </ul>
 
-  
+
               <form class="form-btnn" action="Logout/logoutprocess_Admin.php" method="POST">
                 <button type="submit" name="btn-primary" class="log-button">Logout</button>
               </form>
@@ -72,9 +71,6 @@
       </div>
     </nav>
   </header>
-
-
-  <!-- MESSAGE PART -->
 
     <div class="container">
       <div class="row">
@@ -85,10 +81,9 @@
         $sentAt = mysqli_real_escape_string($conn, $_GET['sent']);
         $user = mysqli_real_escape_string($conn, $_GET['user']);
 
-        // SELECT STATEMENT
         $sql = "SELECT * FROM report_messages_db WHERE report_id = '$repId' AND sent_at = '$sentAt' AND user_name = '$user';";
         $result = mysqli_query($conn, $sql);
-        $queryResults = mysqli_num_rows($result);  //checks how many rows are the results
+        $queryResults = mysqli_num_rows($result);
 
 
         if($queryResults > 0 ):
@@ -96,12 +91,10 @@
             $repNum = $row['reported_number'];
             $_GET['reportt'] = $repNum;
 
-            // SELECT STATEMENT
             $varReport = $_GET['reportt'];
-            // echo $varReport;
             $sqlfind = "SELECT * FROM registered_simusers_db WHERE simnum = '$varReport';";
             $resultfind = mysqli_query($conn, $sqlfind);
-            $queryResultsfind = mysqli_num_rows($resultfind);  //checks how many rows are the results
+            $queryResultsfind = mysqli_num_rows($resultfind);
 
             if($queryResultsfind > 0 ){
               while($rowfind = mysqli_fetch_assoc($resultfind)){
@@ -123,10 +116,6 @@
 
 
         ?>
-
-
-
-        <!-- COLUMN 1 NAME AND USER'S CELLPHONE NUMBER -->
 
         <div class="col-12">
           <div class="infolabels">
@@ -160,7 +149,6 @@
               <div class="col-12">
                 <button type="button" name="button" class="send-btn replybtn" data-toggle="modal" data-target="#screenshotModal">View Screenshot</button>
 
-                <!-- MODAL PART FOR SCREENSHOT -->
                 <div class="modal fade" id="screenshotModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
@@ -191,10 +179,5 @@ else :
       </div>
 
     </div>
-
-
-
-
 </body>
-
 </html>

@@ -28,7 +28,7 @@
 
 </head>
   <body>
-    <!-- NAVBAR PART -->
+  
     <header>
 
       <nav class="navbar navbar-expand-lg">
