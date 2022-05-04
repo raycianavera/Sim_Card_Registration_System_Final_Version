@@ -70,7 +70,7 @@ if(isset($_POST['reportbutton'])){
                     header("Location:../profile-user.php?reportPage&ReportStatus=imageempty");
                     exit();
                   }else{
-                    if(in_array($fileActualExt,$allowed)){   //IF FILE IS JPG,PNG,JPEG
+                    if(1){   //IF FILE IS JPG,PNG,JPEG
                           if(1){                  //IF FILE HAS A PROBLEM
                               if(1){              // IF FILE SIZE IS NOT LARGE
                   //////////////////////////////////////// INITIALIZING THE INPUTS TO DATABASE  ////////////////////////////////////////
