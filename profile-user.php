@@ -191,5 +191,6 @@
   ?>
 
 </div>
+<script src="./sim-registration-otp/imageReport.js"></script>
   </body>
 </html>
