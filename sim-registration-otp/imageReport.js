@@ -27,6 +27,10 @@ reportForm.addEventListener('submit', e => {
             url: "https://sim-registration-php.herokuapp.com/UserprofileBackEnd/BackEnd_Report.php",
             data: bodyFormData,
             headers: { "Content-Type": "multipart/form-data" },
+        }).then(response => {
+            if (response.status === 302) {
+                window.location.href = './profile-user.php?reportPage&ReportStatus=success'
+            }
         })
       } 
     })
