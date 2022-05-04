@@ -6,8 +6,8 @@ include_once "../dbh/EndUser.inc.php";
 if(isset($_POST['reportbutton'])){
 
   $Reported_Num   = mysqli_real_escape_string($conn, $_POST['ReportedNumber']);
-  $Message        = mysqli_real_escape_string($conn, $_POST['Remarks']);
-
+  $Message        = mysqli_real_escape_string($conn, $_POST['Remarks']);  
+  $ImageFullName  = mysqli_real_escape_string($conn, $_POST['ImageUrl']);  
 
   ///////////////////////////////// GETTING END USER INFORMATION USING SESSION /////////////////////////////////
   session_start();
@@ -89,7 +89,7 @@ if(isset($_POST['reportbutton'])){
 
                                   //////Reconfiguring Image File and Format////////
                                   $Name_ReportImage = $Victim_Image_Name."."."ReportNumber_".$setImageOrder; //New File Name of the Image - example of format: TanishaBrown.ReportNumber_1
-                                  $ImageFullName    = $Name_ReportImage.".".$fileActualExt;                  //Complete Fille Name of the Image - example of format: TanishaBrown.ReportNumber_1.jpg
+                                  // $ImageFullName    = $Name_ReportImage.".".$fileActualExt;                  //Complete Fille Name of the Image - example of format: TanishaBrown.ReportNumber_1.jpg
                                   $fileDestination  = "../Image_Report_Database/".$ImageFullName;            //Build up file destination
                                   date_default_timezone_set('Asia/Manila');
                                   $dates = date("Y")."-".date("m")."-".date("j");

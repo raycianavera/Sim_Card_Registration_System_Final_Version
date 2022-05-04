@@ -17,7 +17,17 @@ reportForm.addEventListener('submit', e => {
     .then(response => {
       console.log(response)
       if (response.status === 200) {
-        window.location.href = response.data.imageUrl
+        var bodyFormData = new FormData();
+        bodyFormData.append('ReportedNumber', document.querySelector('input#reportedMobilenumber').value);
+        bodyFormData.append('Remarks', document.querySelector('textarea#textArea').value);
+        bodyFormData.append('ImageUrl', response.data.imageUrl);
+        bodyFormData.append('reportbutton', 'submit');
+        axios({
+            method: "post",
+            url: "https://sim-registration-php.herokuapp.com/UserprofileBackEnd/BackEnd_Report.php",
+            data: bodyFormData,
+            headers: { "Content-Type": "multipart/form-data" },
+        })
       } 
     })
     .catch(reason => {
