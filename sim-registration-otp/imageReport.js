@@ -27,12 +27,25 @@ reportForm.addEventListener('submit', e => {
             url: "https://sim-registration-php.herokuapp.com/UserprofileBackEnd/BackEnd_Report.php",
             data: bodyFormData,
             headers: { "Content-Type": "multipart/form-data" },
-        }).then(response => {                
+        }).then(response => {
+            console.log(response)                
             window.location.href = './profile-user.php?reportPage&ReportStatus=success'
         })
       } 
     })
     .catch(reason => {
+        const error = reason.response.data.error
+        switch (error) {
+            case 'No file attached':
+                window.location.href = './profile-user.php?reportPage&ReportStatus=imageempty'
+                break
+            case 'File too large':
+                window.location.href = './profile-user.php?reportPage&ReportStatus=imagelarge'
+                break
+            case 'Invalid data type':
+                window.location.href = './profile-user.php?reportPage&ReportStatus=imageformaterror'
+                break
+        }
         alert(reason.response.data.error)
     })
 })
