@@ -3,7 +3,9 @@ const reportForm = document.querySelector('form')
 reportForm.addEventListener('submit', e => {
   e.preventDefault()
 
+  console.log(reportForm)
   const imageFile = document.querySelector('input#exampleFormControlFile1')
+  console.log(imageFile)
   const formData = new FormData()
   formData.append('image', imageFile)
   const config = {
