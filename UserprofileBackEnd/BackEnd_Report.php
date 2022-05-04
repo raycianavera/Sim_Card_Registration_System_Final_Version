@@ -1,7 +1,7 @@
 <?php
 include_once "../dbh/EndUser.inc.php";
 
-require __DIR__ . 'vendor/autoload.php';
+require __DIR__.'vendor/autoload.php';
 use Aws\S3\S3Client;
 // Instantiate an Amazon S3 client.
 $s3Client = new S3Client([
