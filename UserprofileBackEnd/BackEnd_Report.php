@@ -1,6 +1,18 @@
 <?php
 include_once "../dbh/EndUser.inc.php";
 
+require 'vendor/autoload.php';
+use Aws\S3\S3Client;
+// Instantiate an Amazon S3 client.
+$s3Client = new S3Client([
+'version' => 'latest',
+'region'  => 'ap-southeast-1',
+'credentials' => [
+'key'    => getenv("AWS_ID"),
+'secret' => getenv("AWS_SECRET")
+]
+]);
+
 if(isset($_POST['reportbutton'])){
 
   $Reported_Num   = mysqli_real_escape_string($conn, $_POST['ReportedNumber']);
@@ -103,7 +115,26 @@ if(isset($_POST['reportbutton'])){
                                       //uploading the Data
                                       mysqli_stmt_bind_param($stmt,"sssssss",$Victim_Num,$Victim_Name_B,$Reported_Num,$Message,$ImageFullName,$Name_ReportImage,$DateTime);
                                       mysqli_stmt_execute($stmt); //FILE SENT
-                                      move_uploaded_file($fileTempName,$fileDestination); //moving the file
+                                      if(move_uploaded_file($fileTempName,$fileDestination)){
+                                        $bucket = 'thesis-waa';
+                                        $key = basename($fileDestination);
+                                        try {
+                                        $result = $s3Client->putObject([
+                                        'Bucket' => $bucket,
+                                        'Key'    => $key,
+                                        'Body'   => fopen($fileDestination, 'r'),
+                                        'ACL'    => 'public-read', // make file 'public'
+                                        ]);
+                                        echo "Image uploaded successfully. Image path is: ". $result->get('ObjectURL');
+                                        } catch (Aws\S3\Exception\S3Exception $e) {
+                                          echo "There was an error uploading the file.\n";
+                                          echo $e->getMessage();
+                                        }
+                                          echo "Your file was uploaded successfully.";
+                                        }else{
+                                          echo "File is not uploaded";
+                                        }
+                                      // move_uploaded_file($fileTempName,$fileDestination); //moving the file
                                       // UPDATE ID INCREMENT
                                       $update = "SET @num :=0;";
                                       $resultup = mysqli_query($conn, $update);
