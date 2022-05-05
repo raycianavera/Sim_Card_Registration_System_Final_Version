@@ -35,6 +35,7 @@
 
 </head>
   <body>
+    <!-- NAVBAR PART -->
     <header>
 
       <nav class="navbar navbar-expand-lg">
@@ -76,6 +77,8 @@
       </nav>
     </header>
 
+<!-- INBOX PART -->
+<!-- INBOX PART -->
 
 <div class="row admin-row" style="background-color: white;">
   <div class="col-md-6" style="padding-left: 2rem;">
@@ -109,6 +112,7 @@
               while($row = mysqli_fetch_assoc($result)):
         ?>
 
+        <!-- <tr class="canHov" onclick="window.location='reported-message-content.php';"> -->
 
       <tr class="canHov" onclick="window.location='<?php echo "../reported-message-content.php?id=".$row['report_id']."&sent=".$row['sent_at']."&user=".$row['user_name']."";?>';">
           <th scope="row" class="text-truncate"><?php echo $row['report_id']; ?></th>

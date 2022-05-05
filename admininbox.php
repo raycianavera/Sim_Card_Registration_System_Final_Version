@@ -37,7 +37,7 @@ $AdminPass  = $_SESSION['AdminPassword'];
 
 </head>
   <body>
-
+    <!-- NAVBAR PART -->
     <header>
 
       <nav class="navbar navbar-expand-lg">
@@ -79,6 +79,7 @@ $AdminPass  = $_SESSION['AdminPassword'];
       </nav>
     </header>
 
+<!-- INBOX PART -->
 
 <div class="row admin-row" style="background-color: white;">
   <div class="col-md-6" style="padding-left: 2rem;">
@@ -91,7 +92,7 @@ $AdminPass  = $_SESSION['AdminPassword'];
   </div>
 
 </div>
-
+<!-- <div class="table-responsive"> -->
     <table class="table table-striped inboxtable">
       <thead>
         <tr>
@@ -121,7 +122,7 @@ $AdminPass  = $_SESSION['AdminPassword'];
 
       </tbody>
     </table>
-
+    <!-- </div> -->
 
     <?php
     

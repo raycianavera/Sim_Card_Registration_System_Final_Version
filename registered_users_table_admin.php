@@ -37,6 +37,7 @@ $AdminPass  = $_SESSION['AdminPassword'];
 
 </head>
   <body>
+    <!-- NAVBAR PART -->
     <header>
 
       <nav class="navbar navbar-expand-lg">
@@ -78,6 +79,21 @@ $AdminPass  = $_SESSION['AdminPassword'];
       </nav>
     </header>
 
+<!-- INBOX PART -->
+
+<!--
+    <div class="row header">
+      <div class="title-cont">
+      <div class="col-md-6">
+        <h4>Administrator: <?php echo "$AdminFName $AdminLName";?></h4>
+      </div>
+        <div class="col-md-6">
+        <h4 class="rep-message">Registered SIM Card Users</h4>
+        </div>
+
+    </div>
+
+    </div> -->
     <div class="row admin-row" style="background-color: white;">
       <div class="col-md-6" style="padding-left: 2rem;">
         <p class="header text-truncate">Administrator: <?php echo "$AdminFName $AdminLName";?></p>

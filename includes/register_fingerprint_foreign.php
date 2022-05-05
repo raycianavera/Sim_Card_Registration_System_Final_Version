@@ -63,6 +63,8 @@ if(isset($_POST['register'])){
          $resultsCheck = mysqli_num_rows($result);
          if($resultsCheck == 1){
        header("Location: ../register-users-foreign.php?error=simnum-already-exist");
+       // echo "<script> window.location.href='../register-users-foreign.php?error=simnum-already-exist'; </script>";
+       // echo "<h2>Error</h2>";
      }
 
      else {
@@ -75,7 +77,8 @@ if(isset($_POST['register'])){
          echo "SQL statement failed";
        }else{
          //enter image error handlers
-           if($fileSize==0){
+         //////////////////////  IMAGE ERRORS  /////////////////////
+           if($fileSize==0){   //ERROR 404 for no file added
              header("Location: ../register-users-foreign.php?imageempty");
              exit();
            }else{
@@ -95,7 +98,7 @@ if(isset($_POST['register'])){
                      exit();
                    }
                    //enter mobile number error handlers
-
+                   //////////////////////  MOBILE NUMBER ERRORS  /////////////////////
                      $noplusnum = str_replace("+","",$simnum); //remove "+"
                      if(preg_match("/^[a-zA-Z_ -]*$/", $noplusnum)){ // ERROR 404 for not being number
                          header("Location: ../register-users-foreign.php?error=wrongchars");
@@ -114,9 +117,9 @@ if(isset($_POST['register'])){
                      // RUN PARAMETER INDSIDE DATABASE
                      mysqli_stmt_execute($stmt);
                      $result = mysqli_stmt_get_result($stmt);
-                     $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName;
-                     move_uploaded_file($fileTempName,$fileDestination);
-
+                     $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
+                     move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
+                     // echo "<script> window.location.href='../register-users-foreign.php?signup=success'; </script>";
                      header("Location: ../register-users-foreign.php?signup=success");
                    }
                  }

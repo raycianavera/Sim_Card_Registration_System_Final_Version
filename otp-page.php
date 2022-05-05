@@ -30,10 +30,10 @@
 </head>
 
 <body>
-
+  <!-- <div class="container-fluid bg"> -->
     <div class="row">
       <div class="col-md-6 firstcol text-center">
-
+        <!--COL 1 LOGO PART-->
         <div class="logo">
           <div class="brand-part">
             <img src="images/logo.png" alt="logo" class="img-fluid logopic">
@@ -45,7 +45,7 @@
       </div>
 
       <div class="col-md-6 secondcol">
-
+        <!--COL 2 LOGIN FORM-->
 <div class='div-for-retail'>
 
           <form action='seller-register-local.html' method='post' class='form-retail'>
@@ -55,7 +55,7 @@
           <button type='Submit' name='button' class='btn'>Submit</button>
 
 
-
+<!-- DISREGARD THIS PART , THIS PART IS HIDDEN FOR THIS PAGE -->
           <div class='edit-margin links-users'>
           <a href='login_sections.php' class='aF'>
           <p class='simuser-type'>Sim User</p>

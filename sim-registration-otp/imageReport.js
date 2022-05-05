@@ -46,7 +46,6 @@ reportForm.addEventListener('submit', e => {
                 window.location.href = './profile-user.php?reportPage&ReportStatus=imageformaterror'
                 break
         }
-        alert(reason.response.data.error)
     })
 })
 

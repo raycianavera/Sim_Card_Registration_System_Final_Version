@@ -24,6 +24,7 @@
 ?>
 
 
+<!-- BODY PART -->
 <div class="container">
   <?php
     if (isset($_GET['reportPage'])) {
@@ -114,7 +115,7 @@
 
   } else {
 
-
+//REPORT PAGE
     echo "
     <form class='' id='form'>
     <div class='row'>

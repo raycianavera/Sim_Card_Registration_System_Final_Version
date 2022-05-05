@@ -27,10 +27,10 @@
 </head>
 
 <body>
-
+  <!-- <div class="container-fluid bg"> -->
     <div class="row">
       <div class="col-md-6 firstcol text-center">
-
+        <!--COL 1 LOGO PART-->
         <div class="logo">
           <div class="brand-part">
             <img src="images/logo.png" alt="logo" class="img-fluid logopic">
@@ -42,14 +42,14 @@
       </div>
 
       <div class="col-md-6 secondcol">
-
+        <!--COL 2 LOGIN FORM-->
       <?php
           if (isset($_GET['simRetailer'])) {
               echo "<div class='div-for-retail'>
              <form action='SellerBackEnd/sellerlogin.inc.php' method='post' class='form-retail'>
              <p class='userlogtext'>SIM RETAILER LOGIN</p>";
 
-
+             //BACKEND OF SIM RETAILER LOGIN
              $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
              if (strpos($fulUrl,"login_sections.php?simRetailer=invalidpassoremail") == true){
                echo "<p class= 'errormessage'> Incorrect Email or Password</p>";
@@ -77,7 +77,7 @@
           echo " <div class='div-for-retail'>
                   <form action='AdminBackEnd/adminlogin.inc.php' method='post' class='form-retail'>
                   <p class='userlogtext'>ADMINISTRATOR LOGIN</p>";
-
+//SELLER LOGIN
                   $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                   if (strpos($fulUrl,"login_sections.php?adminLogin=invalidpassoremail") == true){
                     echo "<p class= 'errormessage' style=''> Incorrect Email or Password</p>";
@@ -104,14 +104,14 @@
 
         } else {
 
-
+//LOGIN USER
           echo "<div class='div-for-retail'>
 
           <form name='otpForm' action='UserprofileBackEnd/index.inc.php' method='post' class='form-retail'>
 
           <p class='userlogtext'>USER LOGIN</p>";
 
-          
+          //ERROR MESSAGES
           $fulUrl="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
           if (strpos($fulUrl,"errornumber=notexist") == true){
             echo "<p class= 'errormessage'>This number is not registered</p>";
@@ -125,11 +125,11 @@
               echo "<p class= 'errormessage'>Incorrect input detected</p>";
           };
 
-
+          //Second half of login page
           echo "
           <input type='tel' name='IndexNumber' id='userMobileNum' class='input-retail' placeholder='Mobile Number ex: +639176578905' required>
           <button type='Submit' name='indexButton' class='btn'>Submit</button>
-
+        
           <div class='edit-margin links-users'>
           <a href='login_sections.php' class='aF'>
           <p class='simuser-type'>Sim User</p>

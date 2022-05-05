@@ -26,11 +26,14 @@
   <!-- FONT AWESOME -->
   <script src="https://kit.fontawesome.com/207a28b81e.js" crossorigin="anonymous"></script>
 
+
+
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
   <body>
-  
+    <!-- NAVBAR PART -->
     <header>
 
       <nav class="navbar navbar-expand-lg">
