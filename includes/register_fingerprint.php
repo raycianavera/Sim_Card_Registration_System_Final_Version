@@ -5,9 +5,14 @@ session_start();
 
 
 if(isset($_POST['register'])){
-  // $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
+  $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
 
   $nso = $_SESSION['nsonumber'];
+  if(empty($nso)){
+    header("Location: ../register-users-local.php?Status=nsoempty");
+  }else{
+    header("Location: ../register-users-local.php?nsonum=.$nso.&button=no-result");
+  }
   $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso';";
   $result = mysqli_query($conn,$query);
 
@@ -53,7 +58,8 @@ if(isset($_POST['register'])){
   $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$timeImg;
   $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
 
-  $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnum';";
+  $simnumber = "+63".$simnum;
+  $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnumber';";
   $result = mysqli_query($conn, $sqlnso);
   $resultsCheck = mysqli_num_rows($result);
   if($resultsCheck == 1){
@@ -61,7 +67,7 @@ if(isset($_POST['register'])){
     // header("Location: Sim_Card_Registration_System_Final_Version/register-users-local.php?error=simnum-already-exist");
     // echo "<script> window.location.href='../register-users-local.php?error=simnum-already-exist'; </script>";
 
-  }else {
+  }else{
     $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,nationality,address,simcard, simnum,regisite,dateofregis,time,fingerprint_File_Format, fingerprint_File_Name)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
     // PREPARED STATEMENT
@@ -94,36 +100,39 @@ if(isset($_POST['register'])){
                 //enter mobile number error handlers
                 //////////////////////  MOBILE NUMBER ERRORS  /////////////////////
                   $noplusnum = str_replace("+","",$simnum); //remove "+"
-                  if(preg_match("/^[a-zA-Z_ -]*$/", $noplusnum)){ // ERROR 404 for not being number
+                  if(!preg_match("/^[0-9]*$/", $simnum)){ // ERROR 404 for not being number
                       header("Location: ../register-users-local.php?error=wrongchars");
                       exit();
-                }else{
-                  if(!preg_match("/[a-zA-Z +]/",$simnum)){   //ERROR 404 for lack of + plus
-                  header("Location: ../register-users-local.php?error=missplus");
-                  exit();
-                }else{
+                }
+                // else{
+                //   if(empty($nso)){
+                //       header("Location: ../register-users-local.php?Status=empty");
+                //       exit();
+                // }
+                else{
                   $countnumber = strlen($simnum);
-                  if($countnumber != 13){
+                  if($countnumber != 10){
                       header("Location: ../register-users-local.php?error=incorrectNum"); //error for wrong count
                       exit();
                 }else{
+                  $simnum = "+63". $simnum;
                   mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$nationality,$address,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
                   // RUN PARAMETER INDSIDE DATABASE
                   mysqli_stmt_execute($stmt);
                   $result = mysqli_stmt_get_result($stmt);
                   $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
                   move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
+                  unset($_SESSION['nsonumber']);
                   header("Location: ../register-users-local.php?signup=success");
                   // echo "<script> window.location.href='../register-users-local.php?signup=success'; </script>";
                 }
               }
-            }
+            // }
           }
         }
       }
       mysqli_stmt_close($stmt);
       mysqli_close($conn);
     }
-  }else{
-    header("Location: ../register-users-local.php?nsonum=.$nso.&button=no-result");
   }
+

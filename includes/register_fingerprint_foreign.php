@@ -5,10 +5,17 @@ session_start();
 
 
 if(isset($_POST['register'])){
+  $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
 
   $passport = $_SESSION['passportnumber'];
+  if(empty($passport)){
+    header("Location: ../register-users-foreign.php?Status=passempty");
+  }else{
+    header("Location: ../register-users-foreign.php?nsonum=.$nso.&button=no-result");
+  }
      $query = "SELECT * FROM foreign_passport_db WHERE passnum =  '$passport'; ";
      $result = mysqli_query($conn,$query);
+
 
      if (mysqli_num_rows($result) > 0) {
        // if there is a result
@@ -23,8 +30,6 @@ if(isset($_POST['register'])){
          $nationality = $row['nationality'];
 
        }
-
-
 
      // DATA FROM REGIS
      $address = $_POST['address'];
@@ -57,8 +62,8 @@ if(isset($_POST['register'])){
        $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$timeImg;
        $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
 
-
-         $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnum';";
+        $simnumber = "+63".$simnum;
+         $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnumber';";
          $result = mysqli_query($conn, $sqlnso);
          $resultsCheck = mysqli_num_rows($result);
          if($resultsCheck == 1){
@@ -100,36 +105,36 @@ if(isset($_POST['register'])){
                    //enter mobile number error handlers
                    //////////////////////  MOBILE NUMBER ERRORS  /////////////////////
                      $noplusnum = str_replace("+","",$simnum); //remove "+"
-                     if(preg_match("/^[a-zA-Z_ -]*$/", $noplusnum)){ // ERROR 404 for not being number
+                     if(!preg_match("/^[0-9]*$/", $simnum)){ // ERROR 404 for not being number
                          header("Location: ../register-users-foreign.php?error=wrongchars");
                          exit();
-                 }else{
-                   if(!preg_match("/[a-zA-Z +]/",$simnum)){   //ERROR 404 for lack of + plus
-                     header("Location: ../register-users-foreign.php?error=missplus");
-                     exit();
-                  }else{
+                 }
+                 // else{
+                 //   if(!preg_match("/[a-zA-Z +]/",$simnum)){   //ERROR 404 for lack of + plus
+                 //     header("Location: ../register-users-foreign.php?error=missplus");
+                 //     exit();
+                  else{
                      $countnumber = strlen($simnum);
-                     if($countnumber != 13){
+                     if($countnumber != 10){
                          header("Location: ../register-users-foreign.php?error=incorrectNum"); //error for wrong count
                          exit();
                    }else{
+                     $simnum = "+63". $simnum;
                      mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $address,$nationality,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
                      // RUN PARAMETER INDSIDE DATABASE
                      mysqli_stmt_execute($stmt);
                      $result = mysqli_stmt_get_result($stmt);
                      $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
                      move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
-                     // echo "<script> window.location.href='../register-users-foreign.php?signup=success'; </script>";
+                     unset($_SESSION['passportnumber']);
                      header("Location: ../register-users-foreign.php?signup=success");
                    }
                  }
-               }
+               // }
              }
            }
          }
          mysqli_stmt_close($stmt);
          mysqli_close($conn);
        }
-     }else{
-      header("Location: ../register-users-foreign.php?nsonum=.$nso.&button=no-result");
-  }
+     }

@@ -53,17 +53,14 @@ if(isset($_POST['reportbutton'])){
             header("Location: ../profile-user.php?reportPage&ReportStatus=empty");
             exit();
           }else{
-            $zeroReported_Num2 = str_replace("+","",$Reported_Num);
-            if(preg_match("/^[a-zA-Z_ -]*$/",$zeroReported_Num2)){ //not number /invalid characters
-              header("Location:../profile-user.php?reportPage&ReportStatus=InvalidInput");
-              exit();
-            }else{
-              if(!preg_match("/[a-zA-Z +-]/",$Reported_Num)){ //invalid format/not number
+              if(!preg_match('/^[0-9]*$/',$Reported_Num)){ //ERROR HANDLERS FOR NOT INTEGER/NUMBER 
                 header("Location:../profile-user.php?reportPage&ReportStatus=InvalidFormat");
                 exit();
               }else{
-                $numbercount = strlen($zeroReported_Num2);
-                if($numbercount == 12){
+                $numbercount = strlen($Reported_Num);
+                if($numbercount == 10){  //ERROR HANDLERS FOR INCORRECT DIGITS/CHARACTERS LENGTH
+
+
                   //enter image error handlers
                   //////////////////////  IMAGE ERRORS  /////////////////////
                   if(0){   //ERROR 404 for no file added
@@ -89,8 +86,8 @@ if(isset($_POST['reportbutton'])){
 
                                   //////Reconfiguring Image File and Format////////
                                   $Name_ReportImage = $Victim_Image_Name."."."ReportNumber_".$setImageOrder; //New File Name of the Image - example of format: TanishaBrown.ReportNumber_1
-                                  // $ImageFullName    = $Name_ReportImage.".".$fileActualExt;                  //Complete Fille Name of the Image - example of format: TanishaBrown.ReportNumber_1.jpg
-                                  // $fileDestination  = "../Image_Report_Database/".$ImageFullName;            //Build up file destination
+                                  $ImageFullName    = $Name_ReportImage.".".$fileActualExt;                  //Complete Fille Name of the Image - example of format: TanishaBrown.ReportNumber_1.jpg
+                                  $fileDestination  = "../Image_Report_Database/".$ImageFullName;            //Build up file destination
                                   date_default_timezone_set('Asia/Manila');
                                   $dates = date("Y")."-".date("m")."-".date("j");
                                   $time = date('G').":".date('i').":".date('s');
@@ -102,11 +99,11 @@ if(isset($_POST['reportbutton'])){
                                   if(!mysqli_stmt_prepare($stmt,$sql)){ //ERROR 404 for unable to upload
                                       header("Location:../profile-user.php?reportPage&ReportStatus=uploaderror");
                                   }else{
+                                      $Reported_Num = "+63". $Reported_Num;
                                       //uploading the Data
                                       mysqli_stmt_bind_param($stmt,"sssssss",$Victim_Num,$Victim_Name_B,$Reported_Num,$Message,$ImageFullName,$Name_ReportImage,$DateTime);
                                       mysqli_stmt_execute($stmt); //FILE SENT
-  
-                                      // move_uploaded_file($fileTempName,$fileDestination); //moving the file
+                                      move_uploaded_file($fileTempName,$fileDestination); //moving the file
                                       // UPDATE ID INCREMENT
                                       $update = "SET @num :=0;";
                                       $resultup = mysqli_query($conn, $update);
@@ -137,7 +134,7 @@ if(isset($_POST['reportbutton'])){
                           exit();
                         } //line 123 end
                       } //line 62 end
-                    } // line 58 end
+                     // line 58 end
                   } // line 53 end
         }  //line 4 end
 ?>

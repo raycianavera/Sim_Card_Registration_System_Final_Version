@@ -88,6 +88,9 @@
         elseif(strpos($fulUrl, "no-result") == true){
           echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
         }
+        elseif(strpos($fulUrl, "nsoempty")==true){
+          echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
+        }
 
         // error message for mobile number
         elseif(strpos($fulUrl, "incorrectNum")==true){
@@ -171,7 +174,7 @@
                 echo $_GET['nsonum'];
                 $_SESSION['nsonumber'] = $_GET['nsonum'];
               }
-             ?>" >
+             ?>" required >
           </div>
 
         </div>
@@ -209,7 +212,12 @@
             </div>
             <div class="col-md-6 infodiv">
               <label class="labelings">Register SIM number</label>
-              <input id="simnum" type="tel" name="simnum" class="form-control" placeholder="ex: +639175901234" required>
+              <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">+63</div>
+              </div>
+              <input type="tel" class="form-control" id="simnum" name="simnum" required>
+            </div>
             </div>
           </div>
 
@@ -298,7 +306,7 @@
              if (isset($_GET['nsonum'])) {
                echo $_GET['nsonum'];
              }
-            ?>" >
+            ?>" required>
          </div>
 
        </div>
@@ -333,7 +341,12 @@
          </div>
          <div class="col-md-6 infodiv">
            <label class="labelings">Register SIM number</label>
-           <input id="simnum" type="tel" name="simnum" class="form-control" placeholder="ex: +639175901234" required>
+           <div class="input-group mb-2">
+           <div class="input-group-prepend">
+             <div class="input-group-text">+63</div>
+           </div>
+           <input type="tel" class="form-control" id="simnum" name="simnum" required>
+         </div>
          </div>
        </div>
 

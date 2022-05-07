@@ -86,6 +86,10 @@
         elseif(strpos($fulUrl, "no-result") == true){
           echo "<p class= 'nsoexist'>USER NOT FOUND ON DATABASE</p>";
         }
+        elseif(strpos($fulUrl, "passempty")==true){
+          echo "<p class= 'nsoexist'>PASSPORT NUMBER IS EMPTY</p>";
+        }
+
           // error message for mobile number
           elseif(strpos($fulUrl, "incorrectNum")==true){
           echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
@@ -162,7 +166,7 @@
        <div class="row srow">
          <div class="col-md-12 ">
            <label class="">Passport Number</label>
-           <input type="text" name="passnum" class="form-control" value="<?php
+           <input type="text" required name="passnum" class="form-control" value="<?php
            if (isset($_GET['passnum'])) {
              echo $_GET['passnum'];
              $_SESSION['passportnumber'] = $_GET['passnum'];
@@ -203,7 +207,12 @@
               </div>
               <div class="col-md-6 infodiv">
                 <label class="labelings">Register SIM number</label>
-                <input type="tel" name="simnum" class="form-control" placeholder="ex: +639175901234" required>
+                <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">+63</div>
+                </div>
+                <input type="tel" class="form-control" id="simnum" name="simnum" required>
+              </div>
               </div>
             </div>
             <div class="row srow">
@@ -288,7 +297,7 @@
     <div class="row srow">
       <div class="col-md-12 infodiv ">
         <label class="">Passport Number</label>
-        <input type="text" name="passnum" class="form-control" value="<?php
+        <input type="text" required name="passnum" class="form-control" value="<?php
         if (isset($_GET['passnum'])) {
           echo $_GET['passnum'];
         }
@@ -325,8 +334,15 @@
       </div>
       <div class="col-md-6 infodiv">
         <label class="labelings">Register SIM number</label>
-        <input type="tel" name="simnum" class="form-control" placeholder="ex: +639175901234" required>
+         <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">+63</div>
+        </div>
+        <input type="tel" class="form-control" id="simnum" name="simnum" required>
       </div>
+      </div>
+
+
 
     </div>
     <div class="row srow">
