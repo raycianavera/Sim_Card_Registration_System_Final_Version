@@ -111,29 +111,24 @@
 
           <p class='userlogtext'>USER LOGIN</p>";
 
-          //ERROR MESSAGES
+          
           $fulUrl="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
           if (strpos($fulUrl,"errornumber=notexist") == true){
             echo "<p class= 'errormessage'>This number is not registered</p>";
-          }else if(strpos($fulUrl,"errornumber=NotNumbers") == true){
+          }else if(strpos($fulUrl,"errornumber=invalid") == true){
               echo "<p class= 'errormessage'>Please enter digits only</p>";
           }else if(strpos($fulUrl,"errornumber=empty") == true){
               echo "<p class= 'errormessage'>Please fill up the input field</p>";
           }else if(strpos($fulUrl,"errornumber=stmtfailed") == true){
               echo "<p class= 'errormessage'>Connection error. Try again</p>";
-          }else if(strpos($fulUrl,"errornumber=wrongLength") == true){
-              echo "<p class= 'errormessage'>Incorrect digit length</p>";
+          }else if(strpos($fulUrl,"errornumber=noplus") == true){
+              echo "<p class= 'errormessage'>Incorrect input detected</p>";
           };
 
           //Second half of login page
           echo "
-          <div class='input-group mb-2'>
-          <div class='input-group-prepend end-user-log'>
-            <div class='input-group-text end-user-p'>+63</div>
-          </div>
-          <input type='tel' class='form-control' id='userMobileNum' name='IndexNumber'>
-        </div>
-          <button type='Submit' name='indexButton' class='btn submit_btn' style='display: flex; justify-content: center; align-items: center;'>Submit</button>
+          <input type='tel' name='IndexNumber' id='userMobileNum' class='input-retail' placeholder='Mobile Number ex: +639176578905' required>
+          <button type='Submit' name='indexButton' class='btn'>Submit</button>
 
           <div class='edit-margin links-users'>
           <a href='login_sections.php' class='aF'>
@@ -160,15 +155,7 @@
 
     </div>
 
-    <script>
-      const submit_btn = document.querySelector('.submit_btn');
-      submit_btn.onclick = function () {
-        this.innerHTML = "<div class='loader'></div>";
-      }
-
-  </script>
-
-      <script src="./sim-registration-otp/requestOtp.js"></script>
+        <script src="./sim-registration-otp/requestOtp.js"></script>
 
 </body>
 </html>
