@@ -1,4 +1,4 @@
-const reportForm = document.querySelector('form#form')
+const reportForm = document.querySelector('form#fingerprintlocal')
 
 reportForm.addEventListener('submit', e => {
   e.preventDefault()

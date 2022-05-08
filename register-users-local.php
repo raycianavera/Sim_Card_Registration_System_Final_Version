@@ -193,7 +193,7 @@
         </div>
         </form>
         <!-- END OF AUTOFILL -->
-        <form class=""  enctype='multipart/form-data'>
+        <form class=""  id="fingerprintlocal" enctype='multipart/form-data'>
         <!-- action="includes/register_fingerprint.php" method="POST" -->
           <!-- FOURTH ROW -->
 
@@ -323,7 +323,7 @@
        </div>
        </form>
 
-   <form class=""  enctype="multipart/form-data">
+   <form class=""  id="fingerprintlocal" enctype="multipart/form-data">
    <!-- action="includes/register_fingerprint.php" method="post" -->
        <!-- FOURTH ROW -->
 
