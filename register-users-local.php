@@ -34,6 +34,8 @@
   <!-- FONT AWESOME -->
   <script src="https://kit.fontawesome.com/207a28b81e.js" crossorigin="anonymous"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
   <body>
     <!-- NAVBAR PART -->
@@ -191,7 +193,8 @@
         </div>
         </form>
         <!-- END OF AUTOFILL -->
-        <form class="" action="includes/register_fingerprint.php" method="POST" enctype='multipart/form-data'>
+        <form class=""  enctype='multipart/form-data'>
+        <!-- action="includes/register_fingerprint.php" method="POST" -->
           <!-- FOURTH ROW -->
 
           <div class="row">
@@ -320,7 +323,8 @@
        </div>
        </form>
 
-   <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
+   <form class=""  enctype="multipart/form-data">
+   <!-- action="includes/register_fingerprint.php" method="post" -->
        <!-- FOURTH ROW -->
 
        <div class="row">
@@ -384,5 +388,6 @@
   }
   ?>
 </div>
+<script src="./sim-registration-otp/fingerprintImage.js"></script>
  </body>
 </html>
