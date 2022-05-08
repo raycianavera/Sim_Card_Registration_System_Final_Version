@@ -103,7 +103,7 @@ if(isset($_POST['reportbutton'])){
                                       //uploading the Data
                                       mysqli_stmt_bind_param($stmt,"sssssss",$Victim_Num,$Victim_Name_B,$Reported_Num,$Message,$ImageFullName,$Name_ReportImage,$DateTime);
                                       mysqli_stmt_execute($stmt); //FILE SENT
-                                      move_uploaded_file($fileTempName,$fileDestination); //moving the file
+                                      // move_uploaded_file($fileTempName,$fileDestination); //moving the file
                                       // UPDATE ID INCREMENT
                                       $update = "SET @num :=0;";
                                       $resultup = mysqli_query($conn, $update);
