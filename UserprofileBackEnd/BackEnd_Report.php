@@ -86,8 +86,8 @@ if(isset($_POST['reportbutton'])){
 
                                   //////Reconfiguring Image File and Format////////
                                   $Name_ReportImage = $Victim_Image_Name."."."ReportNumber_".$setImageOrder; //New File Name of the Image - example of format: TanishaBrown.ReportNumber_1
-                                  $ImageFullName    = $Name_ReportImage.".".$fileActualExt;                  //Complete Fille Name of the Image - example of format: TanishaBrown.ReportNumber_1.jpg
-                                  $fileDestination  = "../Image_Report_Database/".$ImageFullName;            //Build up file destination
+                                  // $ImageFullName    = $Name_ReportImage.".".$fileActualExt;                  //Complete Fille Name of the Image - example of format: TanishaBrown.ReportNumber_1.jpg
+                                  // $fileDestination  = "../Image_Report_Database/".$ImageFullName;            //Build up file destination
                                   date_default_timezone_set('Asia/Manila');
                                   $dates = date("Y")."-".date("m")."-".date("j");
                                   $time = date('G').":".date('i').":".date('s');
@@ -103,7 +103,7 @@ if(isset($_POST['reportbutton'])){
                                       //uploading the Data
                                       mysqli_stmt_bind_param($stmt,"sssssss",$Victim_Num,$Victim_Name_B,$Reported_Num,$Message,$ImageFullName,$Name_ReportImage,$DateTime);
                                       mysqli_stmt_execute($stmt); //FILE SENT
-                                      move_uploaded_file($fileTempName,$fileDestination); //moving the file
+                                      // move_uploaded_file($fileTempName,$fileDestination); //moving the file
                                       // UPDATE ID INCREMENT
                                       $update = "SET @num :=0;";
                                       $resultup = mysqli_query($conn, $update);
