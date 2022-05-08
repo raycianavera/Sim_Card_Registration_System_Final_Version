@@ -193,8 +193,7 @@
         </div>
         </form>
         <!-- END OF AUTOFILL -->
-        <form class=""  id="fingerprintlocal" enctype='multipart/form-data'>
-        <!-- action="includes/register_fingerprint.php" method="POST" -->
+        <form class="" action="includes/register_fingerprint.php" method="POST" enctype='multipart/form-data'>
           <!-- FOURTH ROW -->
 
           <div class="row">
@@ -323,8 +322,7 @@
        </div>
        </form>
 
-   <form class=""  id="fingerprintlocal" enctype="multipart/form-data">
-   <!-- action="includes/register_fingerprint.php" method="post" -->
+   <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
        <!-- FOURTH ROW -->
 
        <div class="row">
@@ -388,6 +386,6 @@
   }
   ?>
 </div>
-<script src="./sim-registration-otp/fingerprintImage.js"></script>
+<!-- //<script src="./sim-registration-otp/fingerprintImage.js"></script> -->
  </body>
 </html>

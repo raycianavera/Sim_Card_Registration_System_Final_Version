@@ -6,7 +6,7 @@ session_start();
 
 if(isset($_POST['register'])){
 
- $Fingerprint_ImageFullName  = mysqli_real_escape_string($conn, $_POST['ImageUrl']);  
+//  $Fingerprint_ImageFullName  = mysqli_real_escape_string($conn, $_POST['ImageUrl']);  
 
   $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
 
@@ -60,7 +60,7 @@ if(isset($_POST['register'])){
 
 
   $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$timeImg;
-  // $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
+  $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
 
   $simnumber = "+63".$simnum;
   $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnumber';";
@@ -82,13 +82,13 @@ if(isset($_POST['register'])){
     }else{
       //enter image error handlers
       //////////////////////  IMAGE ERRORS  /////////////////////
-        if(1){   //ERROR 404 for no file added
+        if($fileSize==0){   //ERROR 404 for no file added
           header("Location: ../register-users-local.php?imageempty");
           exit();
         }else{
-          if(1){   //IF FILE IS JPG,PNG,JPEG
-                if(1){                  //IF FILE HAS A PROBLEM
-                    if(1){
+          if(in_array($fileActualExt,$allowed)){   //IF FILE IS JPG,PNG,JPEG
+                if($fileError === 0){                  //IF FILE HAS A PROBLEM
+                    if($fileSize<20000000){
                     }else{
                       header("Location: ../register-users-local.php?imagelarge");
                       exit();
@@ -124,8 +124,8 @@ if(isset($_POST['register'])){
                   // RUN PARAMETER INDSIDE DATABASE
                   mysqli_stmt_execute($stmt);
                   $result = mysqli_stmt_get_result($stmt);
-                  // $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
-                  // move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
+                  $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
+                  move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
                   unset($_SESSION['nsonumber']);
                   header("Location: ../register-users-local.php?signup=success");
                   // echo "<script> window.location.href='../register-users-local.php?signup=success'; </script>";
