@@ -1,8 +1,6 @@
 <?php
 include_once "../dbh/EndUser.inc.php";
 
-
-
 if(isset($_POST['reportbutton'])){
 
   $Reported_Num   = mysqli_real_escape_string($conn, $_POST['ReportedNumber']);
