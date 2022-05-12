@@ -56,7 +56,7 @@
       }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=empty") == true){
           echo "<p class= 'errormessage'>Please input the number you want to report</p>";
       }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=NoMessage") == true){
-          echo "<p class= 'errormessage'>Please add details regarding your report</p>";
+          echo "<p class= 'errormessage'>Hello World</p>";
       };
 
       echo "
