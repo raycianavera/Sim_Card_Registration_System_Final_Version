@@ -1,10 +1,10 @@
 <?php
   require "navbar.php";
   include_once 'dbh/EndUser.inc.php';
-  // if (empty($_SESSION['UserNumber'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
+  if (empty($_SESSION['UserNumber'])){
+    header("Location: index.php");
+    exit();
+  }
   $SimCardNumber = $_SESSION['UserNumber'] ;
   $LastName      = $_SESSION['UserLast']  ;
   $FirstName     = $_SESSION['UserFirst']  ;
@@ -53,6 +53,10 @@
           echo "<p class= 'errormessage'> Incorrect digit length. Please make sure the digit length is correct </p>";
       }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=success") == true){
           echo "<p class= 'successmsg'>Your report has been successfully sent</p>";
+      }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=empty") == true){
+          echo "<p class= 'errormessage'>Please input the number you want to report</p>";
+      }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=NoMessage") == true){
+          echo "<p class= 'errormessage'>Please add details regarding your report</p>";
       };
 
       echo "
@@ -93,7 +97,7 @@
 
           <div class='infodiv1'>
             <p class='labelings'>Remarks</p>
-            <textarea id='textArea' class='form-control' name='Remarks' rows='9' cols='80' required></textarea>
+            <textarea id='textArea' class='form-control' name='Remarks' rows='9' cols='80'></textarea>
           </div>
 
         </div>
@@ -109,7 +113,7 @@
     </div>
 
     <div class='col-md-6'>
-      <button type='submit' name='reportbutton' class='send-btn'>Send</button>
+      <button type='submit' name='reportbutton' class='send-btn submit_btn' style='display: flex; justify-content: center; align-items: center;'>Send</button>
     </div>
     </div>
       </form>
@@ -196,6 +200,13 @@
   ?>
 
 </div>
+<script>
+  const submit_btn = document.querySelector('.submit_btn');
+  submit_btn.onclick = function () {
+    this.innerHTML = "<div class='loader'></div>";
+  }
+</script>
+
 <script src="./sim-registration-otp/imageReport.js"></script>
   </body>
 </html>
