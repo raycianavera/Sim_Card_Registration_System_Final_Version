@@ -34,7 +34,7 @@
   <!-- FONT AWESOME -->
   <script src="https://kit.fontawesome.com/207a28b81e.js" crossorigin="anonymous"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 
 </head>
   <body>
@@ -190,8 +190,7 @@
         </div>
         </form>
         <!-- END OF AUTOFILL -->
-        <form class=""  id="fingerprintlocal" enctype='multipart/form-data'>
-        <!-- action="includes/register_fingerprint.php" method="POST" -->
+        <form class="" action="includes/register_fingerprint.php" method="POST" enctype='multipart/form-data'>
           <!-- FOURTH ROW -->
 
           <div class="row">
@@ -258,7 +257,7 @@
    }
   } else {
     // header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
-    header("Location: ../register-users-local.php?no-result=nsonum='.$nso.'&button");
+    header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/register-users-local.php?no-result=nsonum='.$nso.'&button");
     // echo "NO RESULT";
 
   }
@@ -319,8 +318,7 @@
        </div>
        </form>
 
-   <form class=""  id="fingerprintlocal" enctype="multipart/form-data">
-   <!-- action="includes/register_fingerprint.php" method="post" -->
+   <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
        <!-- FOURTH ROW -->
 
        <div class="row">
@@ -384,6 +382,6 @@
   }
   ?>
 </div>
-<script src="./sim-registration-otp/fingerprintImage.js"></script>
+<!-- <script src="./sim-registration-otp/fingerprintImage.js"></script> -->
  </body>
 </html>
