@@ -53,7 +53,6 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
 
-
         <ul class='navbar-nav'>
               <li class='nav-item'>
                 <a class='nav-link selected' href='register-users-local.php'>Local User Registration</a>
@@ -121,7 +120,6 @@
 
 
 
-
 ?>
 <?php
 // BUTTON CLICKED : WITH RESULTS
@@ -181,7 +179,6 @@
 
         </div>
 
-
         <!-- BUTTON ROW -->
         <div class="row srow nsobutton">
           <div class="col-12 infodiv">
@@ -193,7 +190,8 @@
         </div>
         </form>
         <!-- END OF AUTOFILL -->
-        <form class="" action="includes/register_fingerprint.php" method="POST" enctype='multipart/form-data'>
+        <form class=""  id="fingerprintlocal" enctype='multipart/form-data'>
+        <!-- action="includes/register_fingerprint.php" method="POST" -->
           <!-- FOURTH ROW -->
 
           <div class="row">
@@ -313,7 +311,6 @@
 
        </div>
 
-
        <div class="row srow nsobutton">
          <div class="col-12 infodiv">
          <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php">Search Database</button>
@@ -322,7 +319,8 @@
        </div>
        </form>
 
-   <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
+   <form class=""  id="fingerprintlocal" enctype="multipart/form-data">
+   <!-- action="includes/register_fingerprint.php" method="post" -->
        <!-- FOURTH ROW -->
 
        <div class="row">
@@ -386,6 +384,6 @@
   }
   ?>
 </div>
-<!-- //<script src="./sim-registration-otp/fingerprintImage.js"></script> -->
+<script src="./sim-registration-otp/fingerprintImage.js"></script>
  </body>
 </html>
