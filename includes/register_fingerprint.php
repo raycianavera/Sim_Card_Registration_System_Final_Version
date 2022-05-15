@@ -64,6 +64,7 @@ if(isset($_POST['register'])){
   $resultsCheck = mysqli_num_rows($result);
   if($resultsCheck == 1){
     header("Location: ../register-users-local.php?error=simnum-already-exist");
+    exit();
     // header("Location: Sim_Card_Registration_System_Final_Version/register-users-local.php?error=simnum-already-exist");
     // echo "<script> window.location.href='../register-users-local.php?error=simnum-already-exist'; </script>";
 
