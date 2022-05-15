@@ -28,8 +28,9 @@ reportForm.addEventListener('submit', e => {
             data: bodyFormData,
             headers: { "Content-Type": "multipart/form-data" },
         }).then(response => {
-            console.log(response)                
-            window.location.href = './profile-user.php?reportPage&ReportStatus=success'
+            console.log(response)                         
+            window.location.href = response.request.responseURL   
+    
         })
       } 
     })
