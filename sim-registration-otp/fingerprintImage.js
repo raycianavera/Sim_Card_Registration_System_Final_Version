@@ -32,7 +32,7 @@ reportForm.addEventListener('submit', e => {
             headers: { "Content-Type": "multipart/form-data" },
         }).then(response => {
             console.log(response)                
-            window.location.href = './register-users-local.php?signup=success'
+            window.location.href = response.request.responseURL  
         })
       } 
     })
