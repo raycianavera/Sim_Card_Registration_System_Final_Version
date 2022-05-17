@@ -90,7 +90,7 @@
           echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
         }
         elseif(strpos($fulUrl, "nsoempty")==true){
-          echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
+          echo "<p class= 'nsoexist'>NSO NUMBER IS EMPTY</p>";
         }
 
         // error message for mobile number
@@ -168,7 +168,7 @@
             <input  type="text" name="Gender"  class="Gender form-control" value="<?= $row['gender'] ?>" disabled>
           </div>
           <div class="col-md-6 infodiv">
-            <label class="labelings">NSO Barcode Number</label>
+            <label class="labelings">NSO Number</label>
             <input id="nsonum" type="text" name="nsonum" class="form-control"value="<?php
               if (isset($_GET['nsonum'])) {
                 echo $_GET['nsonum'];
@@ -300,7 +300,7 @@
            <input  type="text" name="Gender"  class="Gender form-control" disabled>
          </div>
          <div class="col-md-6 infodiv">
-           <label class="labelings">NSO Barcode Number</label>
+           <label class="labelings">NSO Number</label>
            <input id="nsonum" type="text" name="nsonum" class="form-control"value="<?php
              if (isset($_GET['nsonum'])) {
                echo $_GET['nsonum'];
