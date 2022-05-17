@@ -130,19 +130,19 @@
         <div class="row">
           <div class="col-md-3">
             <label class="labelings">Last Name</label>
-            <input type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>">
+            <input type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>" disabled>
           </div>
           <div class="col-md-3">
             <label class="labelings">First Name</label>
-            <input type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>">
+            <input type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>" disabled>
           </div>
           <div class="col-md-3">
             <label class="labelings">Middle Name</label>
-            <input type="text" name="midname" class="form-control"  value="<?= $row['midname'] ?>">
+            <input type="text" name="midname" class="form-control"  value="<?= $row['midname'] ?>" disabled>
           </div>
           <div class="col-md-3">
             <label class="labelings">Suffix</label>
-            <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>">
+            <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>" disabled>
           </div>
         </div>
 

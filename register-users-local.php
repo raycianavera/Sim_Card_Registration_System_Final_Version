@@ -137,22 +137,22 @@
 
           <div class="col-md-3 infodiv">
             <label class="labelings">Last Name</label>
-            <input id="lastname" type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>">
+            <input id="lastname" type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>" disabled>
           </div>
 
           <div class="col-md-3 infodiv">
             <label class="labelings">First Name</label>
-            <input id="firstname" type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>">
+            <input id="firstname" type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>" disabled>
           </div>
 
           <div class="col-md-3 infodiv">
             <label class="labelings">Middle Name</label>
-            <input id="midname" type="text" name="midname" class="form-control" value="<?= $row['midname'] ?>">
+            <input id="midname" type="text" name="midname" class="form-control" value="<?= $row['midname'] ?>" disabled>
           </div>
 
           <div class="col-md-3">
             <label class="labelings">Suffix</label>
-            <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>">
+            <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>" disabled>
           </div>
 
         </div>
@@ -257,7 +257,7 @@
    }
   } else {
     // header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
-    header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/register-users-local.php?no-result=nsonum='.$nso.'&button");
+    header("Location: ../register-users-local.php?no-result=nsonum='.$nso.'&button");
     // echo "NO RESULT";
 
   }
