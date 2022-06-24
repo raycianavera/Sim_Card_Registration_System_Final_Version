@@ -6,8 +6,8 @@ session_start();
 
 if(isset($_POST['register'])){
         $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
-        $passportnumber = $_SESSION['passportnumber'];
-        $query = "SELECT * FROM foreign_passport_db WHERE passnum =  '$passportnumber';";
+        $nso = $_SESSION['nsonumber'];
+        $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso';";
         $result = mysqli_query($conn,$query);
 
         if (mysqli_num_rows($result) > 0) {
@@ -19,10 +19,12 @@ if(isset($_POST['register'])){
                     $sfx = $row['suffix'];
                     $dob = $row['dateofbirth'];
                     $gndr = $row['gender'];
-                    $passnum_nsonum = $row['passnum'];
+                    $passnum_nsonum = $row['nsonum'];
                     // $address = $row['address'];
-                    $nationality = $row['nationality'];
+                    $nationality = 'Filipino';
                }
+        
+        
         // ADDED DATA
         $address = $_POST['address'];
         $simcard = $_POST['simcard'];
@@ -40,23 +42,23 @@ if(isset($_POST['register'])){
         $result = mysqli_query($conn, $sqlnso);
         $resultsCheck = mysqli_num_rows($result);
         if($resultsCheck == 1){ //check
-                header("Location: ../register-users-foreign.php?error=simnum-already-exist");
+                header("Location: ../register-users-local.php?error=simnum-already-exist");
         }else{ 
                 $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,address,nationality,simcard,simnum,services, regisite,dateofregis,time,fingerprint_File_Format,fingerprint_File_Name,sim_retailer,sim_shop,sim_status,ban_start,ban_end,offense_count,nsopass_pic,link_nsopass_pic,id_pic,link_id_pic) 
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-                $sqlservice = "SELECT passnum_nsonum, services FROM registered_simusers_db WHERE services = '$services' AND passnum_nsonum = '$passportnumber';";
+                $sqlservice = "SELECT passnum_nsonum, services FROM registered_simusers_db WHERE services = '$services' AND passnum_nsonum = '$nso';";
                 $result = mysqli_query($conn,$sqlservice);
                 $resultsCheck = mysqli_num_rows($result);
                 
                 if($simcard == "new prepaid user"){
                   if($_SESSION['Simcard_Limit'] <= 0){
-                  header("Location: ../register-users-foreign.php?error=maxlimit");
-                  exit();  
+                    header("Location: ../register-users-local.php?error=maxlimit");
+                    exit();  
                   }
                 }
                 //CHECK IF USER HAS ALREADY SIMILAR SERVICE
                 if($resultsCheck > 0){
-                    header("Location: ../register-users-foreign.php?error=simservice");
+                    header("Location: ../register-users-local.php?error=simservice");
                     exit();  
                 }
                 
@@ -67,29 +69,29 @@ if(isset($_POST['register'])){
 
                   //CHECKING FOR NON-INT
                   if(!preg_match("/^[0-9]*$/", $simnum)){ 
-                        header("Location: ../register-users-foreign.php?error=wrongchars");
+                        header("Location: ../register-users-local.php?error=wrongchars");
                         exit();
                   }
                   //COUNTING NUMBER LENGTH
                   $countnumber = strlen($simnum);
                   if($countnumber != 10){
-                        header("Location: ../register-users-foreign.php?error=incorrectNum"); //error for wrong count
+                        header("Location: ../register-users-local.php?error=incorrectNum"); //error for wrong count
                         exit();
                   }
 
                   //FUNCTION ERROR HANDLERS FOR IMAGE
                           function ImageCheck($allowed,$fileActualExt,$fileExt,$FullName,$fileError,$fileSize){
                                     if($fileSize == 0){
-                                      header("Location: ../register-users-foreign.php?imageempty");
+                                      header("Location: ../register-users-local.php?imageempty");
                                       exit();
                                     }else if (!in_array($fileActualExt,$allowed)){
-                                      header("Location: ../register-users-foreign.php?imageformaterror");
+                                      header("Location: ../register-users-local.php?imageformaterror");
                                       exit();
                                     }else if ($fileSize>20000000000){
-                                      header("Location: ../register-users-foreign.php?imagelarge");
+                                      header("Location: ../register-users-local.php?imagelarge");
                                       exit();
                                     }else if($fileError !== 0){
-                                      header("Location: ../register-users-foreign.php?imageerror"); 
+                                      header("Location: ../register-users-local.php?imageerror"); 
                                     }else{
                                       $ImageFullName = $FullName.".".$fileActualExt;
                                       return $ImageFullName;
@@ -97,25 +99,34 @@ if(isset($_POST['register'])){
                           }
                 
                           
-
-                /// NSO Image Process   
-                  $Passportfile                 = $_FILES['Passportfile'];
-                        $fileName               = $Passportfile["name"];
-                        $fileType               = $Passportfile["type"];
-                        $PassportfileTempName   = $Passportfile["tmp_name"];
-                        $fileError              = $Passportfile["error"];
-                        $fileSize               = $Passportfile["size"];
-                        $allowed                = array("jpg","jpeg","png","bmp");
+                /// NSO Image Process
+                  $NSOfile              = $_FILES['NSOfile'];
+                        $fileName       = $NSOfile["name"];
+                        $fileType       = $NSOfile["type"];
+                        $NSOfileTempName   = $NSOfile["tmp_name"];
+                        $fileError         = $NSOfile["error"];
+                        $fileSize          = $NSOfile["size"];
+                        $allowed           = array("jpg","jpeg","png","bmp");
                         //conversion
-                        $fileExt                = explode(".",$fileName);
-                        $fileActualExt          = strtolower(end($fileExt));
-                        $Passportname           = $lastN."_Passport_".$passnum_nsonum.$timeImg;
-                  $PassportExt = ImageCheck($allowed,$fileActualExt,$fileExt,$Passportname,$fileError,$fileSize);
+                        $fileExt           = explode(".",$fileName);
+                        $fileActualExt     = strtolower(end($fileExt));
+                        $NSOName       = $lastN."_NSO_".$passnum_nsonum.$timeImg;
+                  $NSOExt = ImageCheck($allowed,$fileActualExt,$fileExt,$NSOName,$fileError,$fileSize);
     
-
-                //SET -- to ID since Foreigner has no ID
-                $IDName = "--";
-                $IDExt  = "--";
+                /// VALID ID
+                  $IDfile               = $_FILES['IDfile'];
+                        $fileName       = $IDfile["name"];
+                        $fileType       = $IDfile["type"];
+                        $IDfileTempName   = $IDfile["tmp_name"];
+                        $fileError      = $IDfile["error"];
+                        $fileSize       = $IDfile["size"];
+                        $allowed        = array("jpg","jpeg","png","bmp");
+                        //conversion
+                        $fileExt        = explode(".",$fileName);
+                        $fileActualExt  = strtolower(end($fileExt));
+                        $IDName = $lastN."_ID_".$passnum_nsonum.$timeImg;
+                  $IDExt = ImageCheck($allowed,$fileActualExt,$fileExt,$IDName,$fileError,$fileSize);
+                  
                 /// IMAGE FINGERPRINT
                 $Fingerfile                 = $_FILES['Fingerfile'];
                       $fileName             = $Fingerfile["name"];
@@ -125,10 +136,42 @@ if(isset($_POST['register'])){
                       $fileSize             = $Fingerfile["size"];
                       $allowed              = array("jpg","jpeg","png","bmp");
                       //conversion
-                      $fileExt              = explode(".",$fileName);
-                      $fileActualExt        = strtolower(end($fileExt));
-                      $FingerName           = $lastN."_Finger_".$passnum_nsonum.$timeImg;
+                      $fileExt        = explode(".",$fileName);
+                      $fileActualExt  = strtolower(end($fileExt));
+                      $FingerName     = $lastN."_Finger_".$passnum_nsonum.$timeImg;
                 $FingerExt = ImageCheck($allowed,$fileActualExt,$fileExt,$FingerName,$fileError,$fileSize);
+
+                //ENDORESEMENT
+                $Endoresementfile         = $_FILES['Endoresementfile'];
+                    $fileName             = $Endoresementfile["name"];
+                    $fileType             = $Endoresementfile["type"];
+                    $EndoresementTempName = $Endoresementfile["tmp_name"];
+                    $fileError            = $Endoresementfile["error"];
+                    $fileSize             = $Endoresementfile["size"];
+                    $allowed              = array("jpg","jpeg","png","bmp");
+                        //conversion
+                    $fileExt        = explode(".",$fileName);
+                    $fileActualExt  = strtolower(end($fileExt));
+                    $EndoresementName     = $lastN."_Finger_".$passnum_nsonum.$timeImg;
+                $EndoresementExt = ImageCheck($allowed,$fileActualExt,$fileExt,$EndoresementName,$fileError,$fileSize);
+
+                //PERMIT LETTER
+                $Permitfile               = $_FILES['Permitfile'];
+                    $fileName             = $Permitfile["name"];
+                    $fileType             = $Permitfile["type"];
+                    $PermitTempName       = $Permitfile["tmp_name"];
+                    $fileError            = $Permitfile["error"];
+                    $fileSize             = $Permitfile["size"];
+                    $allowed              = array("jpg","jpeg","png","bmp");
+                        //conversion
+                    $fileExt        = explode(".",$fileName);
+                    $fileActualExt  = strtolower(end($fileExt));
+                    $PermitName     = $lastN."_Finger_".$passnum_nsonum.$timeImg;
+                $PermitExt = ImageCheck($allowed,$fileActualExt,$fileExt,$PermitName,$fileError,$fileSize);
+                // KUNIN IMPORTANTE YUNG
+                // $DataName and $DataExt
+                // 
+
 
                 //GETTING SHOP DATA AND SETTING FIXED DATA
                 $sim_shop = $_SESSION['Shop_Name'];
@@ -140,71 +183,17 @@ if(isset($_POST['register'])){
                 $simnum = "+63". $simnum;
 
                 //SETTING BINDING VARIABLES/DATA
-
-                echo $lastN;
-                echo "<br>";
-                echo $firstN;
-                echo "<br>";
-                echo $midN;
-                echo "<br>";
-                echo $sfx;
-                echo "<br>";
-                echo $dob;
-                echo "<br>";
-                echo $gndr;
-                echo "<br>";
-                echo $passnum_nsonum;
-                echo "<br>";
-                echo $address;
-                echo "<br>";
-                echo $nationality;
-                echo "<br>";
-                echo $simcard;
-                echo "<br>";
-                echo $simnum;
-                echo "<br>";
-                echo $services;
-                echo "<br>";
-                echo $regisite;
-                echo "<br>";
-                echo $dateofregis;
-                echo "<br>";
-                echo $time;
-                echo "<br>";
-                echo $FingerExt;
-                echo "<br>";
-                echo $FingerName;
-                echo "<br>";
-                echo $sim_retailer;
-                echo "<br>";
-                echo $sim_shop;
-                echo "<br>";
-                echo $sim_status;
-                echo "<br>";
-                echo $ban_start;
-                echo "<br>";
-                echo $ban_end;
-                echo "<br>";
-                echo $offense_count;
-                echo "<br>";
-                echo $Passportname;
-                echo "<br>";
-                echo $PassportExt;
-                echo "<br>";
-                echo $IDName;
-                echo "<br>";
-                echo $IDExt;
-                echo "<br>";
-                mysqli_stmt_bind_param($stmt,"sssssssssssssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$address,$nationality,$simcard, $simnum, $services, $regisite, $dateofregis,$time, $FingerExt , $FingerName,$sim_retailer,$sim_shop,$sim_status,$ban_start,$ban_end,$offense_count,$Passportname,$PassportExt,$IDName,$IDExt);
+                mysqli_stmt_bind_param($stmt,"sssssssssssssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$address,$nationality,$simcard, $simnum, $services, $regisite, $dateofregis,$time, $FingerExt , $FingerName,$sim_retailer,$sim_shop,$sim_status,$ban_start,$ban_end,$offense_count,$NSOName,$NSOExt,$IDName,$IDExt);
                 mysqli_stmt_execute($stmt);                                   //      //      //      //    //    //          //          //        //            //     //        //            //          //     //            //          //          //       //         //         //          //           //     //       //     //
                 $result = mysqli_stmt_get_result($stmt);
 
                 //MOVING FILES
                 $FingerfileDestination = '../Fingerprint_Registered_User_Database/'.$FingerExt; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
-                $NSOfileDestination    = '../NSO_User_Database/'.$PassportExt;
+                $NSOfileDestination    = '../NSO_User_Database/'.$NSOExt;
+                $IDfileDestination     = '../ID_User_Database/'. $IDExt;
                 move_uploaded_file($FingerfileTempName,$FingerfileDestination);  //imomove na yung file to that folder
-                move_uploaded_file($PassportfileTempName,$NSOfileDestination);
-  
+                move_uploaded_file($NSOfileTempName,$NSOfileDestination);
+                move_uploaded_file($IDfileTempName,$IDfileDestination);
 
                 //IF NEW PREPAID, DECREASE SIM RETAILER STOCK
                 if($simcard == "new prepaid user"){
@@ -219,8 +208,8 @@ if(isset($_POST['register'])){
                       mysqli_query($TRY,$limitdown);  
                 }
                 //UNSET NSO
-                unset($_SESSION['passportnumber']);
-                header("Location: ../verify-passport.php?signup=success");
+                unset($_SESSION['nsonumber']);
+                header("Location: ../verify-document.php?signup=success");
           }  
       }
     }
